@@ -39,13 +39,11 @@ export const Label = styled.div`
 `;
 
 export const Writer = styled.input`
-    padding-top: 40px;
     width: 486px;
     height: 52px;
 `;
 
 export const Password = styled.input`
-    padding-top: 40px;
     width: 486px;
     height: 52px;
 `;
@@ -53,10 +51,9 @@ export const Password = styled.input`
 export const Subject = styled.input`
     width: 996px;
     height: 52px;
-    padding-top: 40px;
 `;
 
-export const Contents = styled.input`
+export const Contents = styled.textarea`
     width: 996px;
     height: 480px;
 `;

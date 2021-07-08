@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useMutation, gql } from '@apollo/client'
+// import { assertScalarType } from 'graphql'
 import { 
     Wrapper,
     Title,
@@ -24,9 +26,7 @@ import {
     Error
 
 } from '../../../styles/boards/new/BoardsNew'
-
-
-
+import { SingleFieldSubscriptionsRule } from 'graphql'
 
 export default function New() {
 
@@ -40,6 +40,49 @@ export default function New() {
     const [titleError, setTitleError] = useState('')
     const [contentsError, setContentsError] = useState('')
 
+    const [qqq] = useMutation (
+        gql`
+            mutation aaaa ($boards:CreateBoardInput!){
+
+                createBoard(createBoardInput:$boards) {
+                    _id
+                }
+            }
+        `
+    )
+    
+    async function onClickSubmit() {
+        if (writer === "") {
+            setWriterError("이름을 입력하세요")
+        }
+        if (password === "") {
+            setPasswordError("비밀번호를 입력하세요.")
+        } 
+        if (title === "") {
+            setTitleError("제목을 입력하세요")
+        }
+        if (contents === "") {
+            setContentsError("내용을 입력하세요")
+        }
+        try {
+            const result = await qqq({
+                variables: {
+                    boards:{
+                        writer: writer,
+                        password: password,
+                        title: title,
+                        contents: contents
+                    }
+                }
+            })
+            alert("등록합니다")
+        } catch (error){
+            alert(error.message)
+        } 
+        
+    }
+
+    
 
     function onChangeWriter(event) {
         setWriter(event.target.value)
@@ -67,24 +110,6 @@ export default function New() {
             setContentsError("")
         }
     }
-
-    function onClickSubmit () {
-        if (writer === "") {
-            setWriterError("작성자를 입력하세요.")
-        }
-        if (password === "") {
-            setPasswordError("비밀번호를 입력하세요.")
-        } 
-        if (title === "") {
-            setTitleError("제목을 입력하세요")
-        }
-        if (contents === "") {
-            setContentsError("내용을 입력하세요")
-        }
-        if (writer !== "" && password !== "" && title !== "" && contents !== "")
-            alert("게시물을 등록합니다!")
-    }
-
 
     return (
     <Wrapper>

@@ -9,15 +9,16 @@ export const Wrapper = styled.div`
     padding-right: 50px;
     padding-left: 50px;
     border: 1px solid black;
-    display: flex;
+    display: flex;  
     flex-direction: column;
     align-items: center;
+    background-image: url("/eats/login_background.png");
 `;
 
 export const Logo = styled.div`
     width: 100px;
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid red;
     margin-top: 181px;
 `;
 
@@ -28,7 +29,7 @@ export const Title = styled.div`
     font-size: 60px;
     font-weight: bold;
     letter-spacing: --2px;
-    /* color: #ffffff; */
+    color: #ffffff;
 `;
 
 export const Email = styled.input`
@@ -42,7 +43,8 @@ export const LineWrapper = styled.div`
     width: 540px;
     height: 1px;
     margin-top: 20px;
-    border-bottom: 1px solid black ; 
+    border-bottom: 1px solid #ffffff;
+    opacity : 0.4;
 `;
 
 export const Password = styled.input`
@@ -106,6 +108,18 @@ export const Kakao = styled.button`
     border: 2px solid #fae100;
     border-radius: 38px;
     background-color: white;
+`;
 
-`
+export const LogoTop = styled.img`
+    position: absolute;
+    top: 325px;
+`;
 
+export const LogoBottom = styled.img`
+    position:relative;
+`;
+
+export const Error = styled.div`
+    height: 20px;
+    margin-top: 10px;
+`;
