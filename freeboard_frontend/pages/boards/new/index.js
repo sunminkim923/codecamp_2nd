@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
+import { useRouter } from 'next/router'
 // import { assertScalarType } from 'graphql'
 import { 
     Wrapper,
@@ -28,7 +29,19 @@ import {
 } from '../../../styles/boards/new/BoardsNew'
 import { SingleFieldSubscriptionsRule } from 'graphql'
 
+const CREATE_BOARD = gql`
+    mutation createBoard ($createBoard:CreateBoardInput!){
+
+        createBoard(createBoardInput:$createBoard) {
+            _id
+        }
+    }
+`
+
+
 export default function New() {
+
+    const router = useRouter()
 
     const [writer, setWriter] = useState ('')
     const [password, setPassword] = useState ('')
@@ -40,16 +53,7 @@ export default function New() {
     const [titleError, setTitleError] = useState('')
     const [contentsError, setContentsError] = useState('')
 
-    const [qqq] = useMutation (
-        gql`
-            mutation aaaa ($boards:CreateBoardInput!){
-
-                createBoard(createBoardInput:$boards) {
-                    _id
-                }
-            }
-        `
-    )
+    const [createBoard] = useMutation (CREATE_BOARD)
     
     async function onClickSubmit() {
         if (writer === "") {
@@ -65,9 +69,9 @@ export default function New() {
             setContentsError("내용을 입력하세요")
         }
         try {
-            const result = await qqq({
+            const result = await createBoard({
                 variables: {
-                    boards:{
+                    createBoard:{
                         writer: writer,
                         password: password,
                         title: title,
@@ -76,6 +80,8 @@ export default function New() {
                 }
             })
             alert("등록합니다")
+            console.log(result.data.createBoard)
+            router.push(`/boards/${result.data.createBoard._id}`)
         } catch (error){
             alert(error.message)
         } 

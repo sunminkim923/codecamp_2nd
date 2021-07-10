@@ -1,25 +1,29 @@
 import {useState} from 'react'
 import {useMutation,gql} from '@apollo/client'
 import { assertScalarType } from 'graphql'
+import { useRouter } from 'next/router'
+
+
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!) {
+
+        createBoard(createBoardInput: $createBoardInput){
+        _id
+        }
+    }
+`
 
 export default function ApolloPage () {
+    const router = useRouter()
+
 
     const [writer, setWriter] = useState ()
     const [password, setPassword] = useState ()
     const [title, setTitle] = useState ()
     const [contents, setContents] = useState ()
     
+    const [createBoard] = useMutation( CREATE_BOARD )
 
-    const [qqq] = useMutation(
-        gql`
-            mutation aaaa($aaa:String,$bbb:String, $ccc:String, $ddd:String) {
-
-                createBoard(writer:$aaa, password:$bbb, title:$ccc, contents:$ddd){
-                message
-                }
-            }
-        `
-        )
 
     function onChangeWriter(event) {
         setWriter(event.target.value)
@@ -37,15 +41,18 @@ export default function ApolloPage () {
 
     async function onClickSubmit() {
         try {
-            const result = await qqq({
+            const result = await createBoard({
                 variables: {
-                    aaa : writer, 
-                    bbb : password,
-                    ccc : title,
-                    ddd : contents
+                    createBoardInput : {
+                        writer: writer,
+                        password: password,
+                        title: title,
+                        contents: contents
+                    }
                 }
             })
-            alert(result.data.createBoard.message)
+            alert(result.data.createBoard._id)
+            router.push(`/detail/${result.data.createBoard._id}`)
         } catch (error){
             alert(error.message)
         }
