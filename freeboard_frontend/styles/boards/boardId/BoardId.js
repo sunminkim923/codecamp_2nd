@@ -46,3 +46,31 @@ export const WriterWrapper = styled.div`
     height: 60px;
     border: 1px solid black;
 `;
+
+export const ContentsTitle = styled.div`
+    /* width: 285px; */
+    height: 52px;
+    font-size: 36px;
+    font-weight: bold;
+`;
+
+export const ContentsImages = styled.div`
+    width: 996px;
+    height: 480px;
+    border: 1px solid black;
+    margin-top: 40px;
+`;
+
+export const ContentsText = styled.div`
+    width: 996px;
+    height: auto;
+    border: 1px solid black;
+    margin-top: 40px ;
+`
+export const YoutubeBox  = styled.div`
+    width: 486px;
+    height: 240px;
+    border: 1px solid black;
+    margin-top: 120px;
+`;
+

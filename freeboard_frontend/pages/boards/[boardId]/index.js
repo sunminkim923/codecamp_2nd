@@ -8,6 +8,11 @@ import {
     ContentsWrapper,
     AdressBox,
     WriterWrapper,
+    ContentsTitle,
+    ContentsImages,
+    ContentsText,
+    YoutubeBox,
+    
 
 } from '../../../styles/boards/boardId/BoardId'
 
@@ -17,6 +22,7 @@ const FETCH_BOARD = gql`
             writer
             title
             contents
+            images
             youtubeUrl
         }
 
@@ -34,36 +40,24 @@ export default function DetailPage () {
 
     )
 
-
-        // <div>작성자 : {data?.fetchBoard.writer} </div>
-        // <div>제목:: : {data?.fetchBoard.title}</div>
-        // <div>글내용: : {data?.fetchBoard.contents} </div> */
-
     return (
     <Wrapper>
         <HeadWrapper>
             <AdressBox></AdressBox>
-            <WriterWrapper>
-                <div>{data?.fetchBoard.writer}</div>
-            </WriterWrapper>
+            <WriterWrapper>{data?.fetchBoard.writer}</WriterWrapper>
         </HeadWrapper>
         <HeadLine></HeadLine>
         <ContentsWrapper>
-            
+            <ContentsTitle>{data?.fetchBoard.title}</ContentsTitle>
+            <ContentsImages>{data?.fetchBoard.images}</ContentsImages>
+            <ContentsText>{data?.fetchBoard.contents}</ContentsText>
         </ContentsWrapper>
-
-
+        <YoutubeBox>{data?.fetchBoard.youtubeUrl}</YoutubeBox>
     </Wrapper>
-
-    
 
 
 
     )
-
-
-
-
 
 
 
