@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
     width: 1200px;
@@ -47,6 +47,27 @@ export const WriterWrapper = styled.div`
     border: 1px solid black;
 `;
 
+export const profile = styled.div`
+    width: 46px;
+    height: 46px;
+`;
+
+export const WriterInfo = styled.div`
+
+`;
+
+export const WriterName = styled.div`
+    font-size: 24px;
+    font-weight: 500;
+`;
+
+export const WriterDate = styled.div`
+    font-size: 16px;
+    font-weight: 400;
+    color: #828282;
+`;
+
+
 export const ContentsTitle = styled.div`
     /* width: 285px; */
     height: 52px;
@@ -74,4 +95,3 @@ export const YoutubeBox  = styled.div`
     border: 1px solid black;
     margin-top: 120px;
 `;
-
