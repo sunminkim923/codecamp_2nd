@@ -20,12 +20,12 @@ export default function BoardDetailUI(props) {
     return (
         <Wrapper>
             <HeadWrapper>
-                <AdressBox></AdressBox>
+                <AdressBox>영등포구</AdressBox>
                 <WriterWrapper>
-                    <Profile></Profile>
+                    <Profile src="/images/vector.png"></Profile>
                     <WriterInfo>
                         <WriterName>{props.aaa?.fetchBoard.writer}</WriterName>
-                        <WriterDate></WriterDate>
+                        <WriterDate>2</WriterDate>
                     </WriterInfo>
                 </WriterWrapper>
             </HeadWrapper>
@@ -38,5 +38,4 @@ export default function BoardDetailUI(props) {
             <YoutubeBox>{props.aaa?.fetchBoard.youtubeUrl}</YoutubeBox>
         </Wrapper>
     )
-
 }

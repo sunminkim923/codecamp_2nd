@@ -35,24 +35,24 @@ export default function BoardWriteUI(props) {
             <WriterWrapper>
                 <InputWrapper>
                     <Label>작성자</Label>
-                    <Writer name="writer" type="text" placeholder="이름을 입력해주세요." onChange={props.aaa}></Writer>
-                    <Error> {props.qqq} </Error>
+                    <Writer name="writer" type="text" placeholder="이름을 입력해주세요." onChange={props.onChangeWriter}></Writer>
+                    <Error> {props.writerError} </Error>
                 </InputWrapper>
                 <InputWrapper>
                     <Label> 비밀번호</Label>
-                    <Password name="password" type='password' onChange={props.bbb} placeholder='비밀번호를 입력해주세요'></Password>
-                    <Error>{props.www}</Error>
+                    <Password name="password" type='password' onChange={props.onChangePassword} placeholder='비밀번호를 입력해주세요'></Password>
+                    <Error>{props.passwordError}</Error>
                 </InputWrapper>
             </WriterWrapper>
             <InputWrapper>
                 <Label>제목</Label>
-                <Subject name="title" type='text' placeholder='제목을 작성해주세요.' onChange={props.ccc}></Subject>
-                <Error>{props.eee}</Error>
+                <Subject name="title" type='text' placeholder='제목을 작성해주세요.' onChange={props.onChangeTitle}></Subject>
+                <Error>{props.titleError}</Error>
             </InputWrapper>
             <InputWrapper>
                 <Label>내용</Label>
-                <Contents name="contents" type='text' placeholder='내용을 작성해주세요.' onChange={props.ddd}></Contents>
-                <Error>{props.rrr}</Error>
+                <Contents name="contents" type='text' placeholder='내용을 작성해주세요.' onChange={props.onChangeContents}></Contents>
+                <Error>{props.contentsError}</Error>
             </InputWrapper>
             <InputWrapper>
                 <Label>주소</Label>
@@ -90,7 +90,7 @@ export default function BoardWriteUI(props) {
                 <RadioLabel>사진</RadioLabel>
             </OptionWrapper>
             <ButtonWrapper>
-                <SubmitButton onClick={props.ttt}>
+                <SubmitButton onClick={props.onClickSubmit} active={props.active}>
                     등록하기
                 </SubmitButton>
             </ButtonWrapper>

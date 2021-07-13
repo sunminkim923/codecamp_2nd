@@ -17,6 +17,8 @@ export default function BoardWrite () {
     const [titleError, setTitleError] = useState('')
     const [contentsError, setContentsError] = useState('')
 
+    const [active, setActive] = useState(false)
+
     const [createBoard] = useMutation(CREATE_BOARD)
     
     async function onClickSubmit() {
@@ -57,6 +59,10 @@ export default function BoardWrite () {
         setWriter(event.target.value)
         if(event.target.value !== ""){
             setWriterError("")
+        } if (event.target.value !== "" &&  password !== "" && title !== "" && contents !== "") {
+            setActive(true)
+        } else {
+            setActive(false)
         }
     }
     
@@ -64,12 +70,20 @@ export default function BoardWrite () {
         setPassword(event.target.value)
         if(event.target.value !== "") {
             setPasswordError("")
+        } if (writer !== "" &&  event.target.value !== "" && title !== "" && contents !== "") {
+            setActive(true)
+        } else {
+            setActive(false)
         }
     }
     function onChangeTitle(event) {
         setTitle(event.target.value)
         if(event.target.value !== "") {
             setTitleError("")
+        } if (writer !== "" &&  password !== "" && event.target.value !== "" && contents !== "") {
+            setActive(true)
+        } else {
+            setActive(false)
         }
     }
 
@@ -77,22 +91,26 @@ export default function BoardWrite () {
         setContents(event.target.value)
         if(event.target.value !=="") {
             setContentsError("")
+        } if (writer !== "" &&  password !== "" && title !== "" && event.target.value !== "") {
+            setActive(true)
+        } else {
+            setActive(false)
         }
     }
 
     return (
         <BoardWriteUI 
-            aaa={onChangeWriter}
-            bbb={onChangePassword}
-            ccc={onChangeTitle}
-            ddd={onChangeContents}
-            qqq={writerError}
-            www={passwordError}
-            eee={titleError}
-            rrr={contentsError}
-            ttt={onClickSubmit}
+            onChangeWriter={onChangeWriter}
+            onChangePassword={onChangePassword}
+            onChangeTitle={onChangeTitle}
+            onChangeContents={onChangeContents}
+            writerError={writerError}
+            passwordError={passwordError}
+            titleError={titleError}
+            contentsError={contentsError}
+            onClickSubmit={onClickSubmit}
+            active={active}
         />
-
     )
 
 

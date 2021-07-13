@@ -17,5 +17,4 @@ export const Blank = styled.input`
 
 export const Password = styled.div`
     font-size: 10px;
-    font
-``
+`

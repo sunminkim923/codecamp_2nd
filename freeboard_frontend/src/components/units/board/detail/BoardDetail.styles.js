@@ -45,9 +45,12 @@ export const WriterWrapper = styled.div`
     width: 199px;
     height: 60px;
     border: 1px solid black;
+    display: flex;
 `;
 
-export const profile = styled.div`
+export const Profile = styled.img`
+    /* background-image: url("/images/vector.png"); */ 
+    // 자잘한 이미지는 보통 img태그를 사용하고 큰 배경이미지 같은경우 div에 백그라운드 이미지를 쓴다.
     width: 46px;
     height: 46px;
 `;

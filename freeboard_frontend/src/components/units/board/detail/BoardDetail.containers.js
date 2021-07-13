@@ -4,7 +4,7 @@ import { FETCH_BOARD } from "./BoardDetail.queries"
 import BoardDetailUI from "./BoardDetail.presenter"
 
 
-export default function BoardDetail2() {
+export default function BoardDetail() {
     
     const router = useRouter()  
     const { data } = useQuery(
