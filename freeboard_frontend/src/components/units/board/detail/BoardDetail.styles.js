@@ -98,3 +98,21 @@ export const YoutubeBox  = styled.div`
     border: 1px solid black;
     margin-top: 120px;
 `;
+
+export const ButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`
+export const ListButton = styled.button`
+    width: 179px;
+    height: 45px;
+`
+export const EditButton = styled.button`
+    width: 179px;
+    height: 45px;
+`
+export const DeleteButton = styled.button`
+    width: 179px;
+    height: 45px;
+`

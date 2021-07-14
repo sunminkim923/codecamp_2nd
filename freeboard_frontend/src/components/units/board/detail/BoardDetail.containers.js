@@ -11,10 +11,16 @@ export default function BoardDetail() {
         FETCH_BOARD,
         { variables: {boardId: router.query.boardId } }
     )
+    
+    function onClickEdit() {
+        router.push(`/boards/${router.query.boardId}/edit`)
+    }
 
+    
     return ( 
         <BoardDetailUI 
-            aaa={data}
+            data={data}
+            onClickEdit={onClickEdit}
         />
 
     )

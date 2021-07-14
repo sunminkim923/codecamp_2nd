@@ -12,11 +12,16 @@ export default function BoardDetail() {
             FETCH_BOARD,
             { variables: { boardID: router.query.boardID } }
         )
-    
-        // 실행되면서 날아감
+        function onClickEdit (){
+            router.push(`/detail/${router.query.boardID}/edit`)
+        }
 
         return (
-            <BoardDetailUI qqq={data} />
+            <BoardDetailUI 
+            qqq={data} 
+            onClickEdit={onClickEdit}
+            
+            />
 
 
         )
