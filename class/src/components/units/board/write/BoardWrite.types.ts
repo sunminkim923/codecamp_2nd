@@ -6,4 +6,5 @@ export interface IProps {
     onClickEdit: () => void
     active: boolean
     isEdit?: boolean
+    data: any
 }

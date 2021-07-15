@@ -2,12 +2,19 @@ import { useMutation } from "@apollo/client"
 import { printIntrospectionSchema } from "graphql"
 import { useRouter } from "next/router"
 import { ChangeEvent, useState } from "react"
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IQuery } from "../../../../commons/typs/generated/types"
 import BoardWriteUI from "./BoardWrite.presenter"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 
 
 interface IProps {
     isEdit?: boolean
+    data?: IQuery
+}
+
+interface INewInputs{
+    title?:string,
+    contents?:string
 }
 
 
@@ -20,8 +27,8 @@ export default function BoardWrite (props: IProps) {
         contents: ""
     }
 
-    const [createBoard] = useMutation( CREATE_BOARD )
-    const [updateBoard] = useMutation(UPDATE_BOARD)
+    const [createBoard] = useMutation<IMutation, IMutationCreateBoardArgs>( CREATE_BOARD )
+    const [updateBoard] = useMutation<IMutation, IMutationUpdateBoardArgs>(UPDATE_BOARD)
 
     const router = useRouter()
     const [active, setActive] = useState (false)
@@ -47,19 +54,24 @@ export default function BoardWrite (props: IProps) {
     }
 
     async function onClickEdit () {
+        const newInputs: INewInputs = {}
+        if(inputs.title) newInputs.title = inputs.title
+        if(inputs.contents) newInputs.contents = inputs.contents
+
         try {
             const result = await updateBoard({
                 variables: {
-                    boardID: router.query.boardID,
+                    boardID: String(router.query.boardID),
                     password: inputs.password,
                     updateBoardInput: {
-                        title: inputs.title,
-                        contents: inputs.contents,
+                        ...newInputs
+                        // title: inputs.title,
+                        // contents: inputs.contents,
                     }
                 }
             })
             alert("게시글을 수정합니다.")
-            router.push(`/detail/${result.data.updateBoard._id}`)
+            router.push(`/detail/${result.data?.updateBoard._id}`)
         } catch (error) {
             alert(error.message)
         }
@@ -70,6 +82,7 @@ export default function BoardWrite (props: IProps) {
             const result = await createBoard({
                 variables: {
                     createBoardInput : {
+                        
                         // writer: inputs.writer,
                         // password: inputs.password,
                         // title: inputs.title,
@@ -78,8 +91,8 @@ export default function BoardWrite (props: IProps) {
                     }
                 }
             })
-            alert(result.data.createBoard._id)
-            router.push(`/detail/${result.data.createBoard._id}`)
+            alert(result.data?.createBoard._id)
+            router.push(`/detail/${result.data?.createBoard._id}`)
         } catch (error){
             alert(error.message)
         }
@@ -96,6 +109,7 @@ export default function BoardWrite (props: IProps) {
             onChangeInputs={onChangeInputs}
             isEdit={props.isEdit}
             onClickEdit={onClickEdit}
+            data={props.data}
         />
 
 

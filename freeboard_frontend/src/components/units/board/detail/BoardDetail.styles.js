@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 
+export const BigWrapper = styled.div`
+    margin: 100px;
+`
 export const Wrapper = styled.div`
     width: 1200px;
     height: 1847px;
     border: 1px solid black;
-    margin: 100px;
     padding-top: 20px;
     padding-bottom: 100px;
     padding-right: 102px;
@@ -100,6 +102,8 @@ export const YoutubeBox  = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+    padding-top: 90px;
+    width: 1200px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -116,3 +120,86 @@ export const DeleteButton = styled.button`
     width: 179px;
     height: 45px;
 `
+export const LineBox = styled.div`
+    margin-top: 87px;
+    width: 1200px;
+    height: 1px;
+    border: 1px solid lightgray;
+`
+
+export const CommentWrapper = styled.div`
+    width: 1200px;
+    height: 300px;
+    padding-top: 40px;
+`
+export const Comment = styled.span`
+    
+`
+export const CommentWriter = styled.input`
+    width: 180px;
+    height: 52px;
+    padding-left: 20px;
+    margin-top: 40px;
+    border: 1px solid lightgray;
+`
+export const CommentPassword = styled.input`
+    width: 180px;
+    height: 52px;
+    margin-left: 20px;
+    padding-left: 20px;
+    border: 1px solid lightgray;
+`
+export const CommentBox = styled.div`
+    width: 1200px;
+    height: 161px;
+    border: 1px solid lightgray;
+    margin-top: 20px;
+`
+export const CommentText = styled.textarea`
+    padding: 20px;
+    width: 100%;
+    height: 108px;
+    border: none;
+    border-bottom: 1px dotted lightgray;
+    color: lightgray;
+`
+
+export const SubmitButton = styled.button`
+    width: 91px;
+    height: 52px;
+    margin-left: 1108px;
+    background-color: black;
+    color : white;
+    font-size: 16px;
+    font-weight: 500px;
+`
+
+export const CommentEditWrapper = styled.div`
+    width: 1200px;
+    height: 189px;
+    margin-top: 40px;
+`
+export const CommentEditBox = styled.div`
+    width: 1200px;
+    height: 117px;
+    margin-top: 20px;
+    border: 1px solid lightgray;
+`
+
+export const CommentEdit = styled.textarea`
+    width: 1200px;
+    height: 64px;
+    border:none;
+    border-bottom: 1px dotted lightgray;
+`
+
+export const CommentEditButton = styled.button`
+    width: 91px;
+    height: 52px;
+    margin-left: 1108px;
+    background-color: #FFD600;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+`
+

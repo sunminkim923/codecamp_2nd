@@ -1,4 +1,5 @@
 
+import { EditButton } from '../detail/BoardDetail.styles'
 import { 
     Wrapper,
     Title,
@@ -26,7 +27,6 @@ import {
 } from './BoardWrite.styles'
 
 
-
 export default function BoardWriteUI(props) { 
 
     return (
@@ -35,7 +35,7 @@ export default function BoardWriteUI(props) {
             <WriterWrapper>
                 <InputWrapper>
                     <Label>작성자</Label>
-                    <Writer name="writer" type="text" placeholder="이름을 입력해주세요." onChange={props.onChangeInputs}></Writer>
+                    <Writer name="writer" type="text" placeholder="이름을 입력해주세요." onChange={props.onChangeInputs} defaultValue={props.data?.fetchBoard.writer} readOnly={props.data?.fetchBoard.writer}></Writer>
                     <Error> {props.writerError} </Error>
                 </InputWrapper>
                 <InputWrapper>
@@ -46,12 +46,12 @@ export default function BoardWriteUI(props) {
             </WriterWrapper>
             <InputWrapper>
                 <Label>제목</Label>
-                <Subject name="title" type='text' placeholder='제목을 작성해주세요.' onChange={props.onChangeInputs}></Subject>
+                <Subject name="title" type='text' placeholder='제목을 작성해주세요.' onChange={props.onChangeInputs} defaultValue={props.data?.fetchBoard.title} ></Subject>
                 <Error>{props.titleError}</Error>
             </InputWrapper>
             <InputWrapper>
                 <Label>내용</Label>
-                <Contents name="contents" type='text' placeholder='내용을 작성해주세요.' onChange={props.onChangeInputs}></Contents>
+                <Contents name="contents" type='text' placeholder='내용을 작성해주세요.' onChange={props.onChangeInputs} defaultValue={props.data?.fetchBoard.contents}></Contents>
                 <Error>{props.contentsError}</Error>
             </InputWrapper>
             <InputWrapper>
@@ -90,9 +90,9 @@ export default function BoardWriteUI(props) {
                 <RadioLabel>사진</RadioLabel>
             </OptionWrapper>
             <ButtonWrapper>
-                <SubmitButton onClick={props.onClickSubmit} active={props.active}>
-                    등록하기
-                </SubmitButton>
+            
+            {!props.isEdit && <SubmitButton onClick={props.onClickSubmit} active={props.active}>등록하기</SubmitButton>}
+            {props.isEdit && <EditButton onClick={props.onClickEdit} active={props.active}>수정하기</EditButton>}
             </ButtonWrapper>
         </Wrapper>    
     )
