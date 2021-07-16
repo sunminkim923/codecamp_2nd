@@ -8,10 +8,9 @@ export default function AxiosPage() {
     const [data3, setData3] = useState('')
     const [data4, setData4] = useState('')
 
-
-
     // async function handleClickData () {
-    const handleClickData = async () => {      //화살표 함수로 변형
+    const handleClickData = async () => {     
+        //화살표 함수로 변형
         const aaa = await axios.get('https://koreanjson.com/posts')
          // await 를 쓰기 위해서는 async를 꼭 같이 써야 함
         // console.log (aaa.data[1].title)
