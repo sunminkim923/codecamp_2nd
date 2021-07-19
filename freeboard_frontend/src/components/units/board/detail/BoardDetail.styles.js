@@ -97,7 +97,13 @@ export const YoutubeBox = styled.div`
   border: 1px solid black;
   margin-top: 120px;
 `;
-
+export const IconWrapper = styled.div`
+  padding-top: 160px;
+  display: flex;
+  flex-direction: row;
+`;
+export const LikeWrapper = styled.div``;
+export const DisLikeWrapper = styled.div``;
 export const ButtonWrapper = styled.div`
   padding-top: 90px;
   width: 1200px;

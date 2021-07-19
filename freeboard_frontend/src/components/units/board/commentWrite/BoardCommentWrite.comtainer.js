@@ -1,24 +1,24 @@
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
-import { useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import router from "next/router";
 import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries";
 
 export default function BoardCommentWrite() {
-  return <BoardCommentWriteUI />;
-}
+  const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
 
-const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-
-function onClickSubmit() {
-  try {
-    const result = createBoardComment({
-      variables: {
-        boardId: router.query.boardId,
-        cereateBoardCommentInput: { writer, password, contents },
-      },
-    });
-    alert("댓글을 등록합니다");
-  } catch (error) {
-    alert(error.message);
+  function onClickSubmit() {
+    try {
+      const result = createBoardComment({
+        variables: {
+          boardId: router.query.boardId,
+          cereateBoardCommentInput: { writer, password, contents },
+        },
+      });
+      alert("댓글을 등록합니다");
+    } catch (error) {
+      alert(error.message);
+    }
   }
+
+  return <BoardCommentWriteUI />;
 }

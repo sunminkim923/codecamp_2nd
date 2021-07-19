@@ -3,6 +3,7 @@ import { useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import ReactPlayer from "react-player";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -15,6 +16,7 @@ export default function BoardWrite(props) {
     password: "",
     title: "",
     contents: "",
+    youtubeUrl: "",
   };
 
   // const [writer, setWriter] = useState ('')
@@ -33,7 +35,9 @@ export default function BoardWrite(props) {
       ...inputs,
       [event.target.name]: event.target.value,
     };
+    console.log(newInputs);
     setInputs(newInputs);
+    // delete newInputs.youtubeUrl;
     if (Object.values(newInputs).every((data) => data !== "")) {
       setWriterError("");
       setPasswordError("");

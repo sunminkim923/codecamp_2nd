@@ -1,3 +1,6 @@
+import ReactPlayer from "react-player";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import styled from "@emotion/styled";
 import {
   BigWrapper,
   Wrapper,
@@ -13,7 +16,9 @@ import {
   ContentsTitle,
   ContentsImages,
   ContentsText,
-  YoutubeBox,
+  IconWrapper,
+  LikeWrapper,
+  DisLikeWrapper,
   ButtonWrapper,
   ListButton,
   EditButton,
@@ -21,7 +26,16 @@ import {
   LineBox,
 } from "./BoardDetail.styles";
 
+const YoutubeBox = ReactPlayer;
+const LikeButton = styled(LikeOutlined)`
+  margin-right: 20px;
+`;
+const DisLikeButton = styled(DislikeOutlined)`
+  margin-left: 20px;
+`;
+
 export default function BoardDetailUI(props) {
+  console.log(props.data?.fetchBoard);
   return (
     <BigWrapper>
       <Wrapper>
@@ -41,7 +55,20 @@ export default function BoardDetailUI(props) {
           <ContentsImages>{props.data?.fetchBoard.images}</ContentsImages>
           <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
         </ContentsWrapper>
-        <YoutubeBox>{props.data?.fetchBoard.youtubeUrl}</YoutubeBox>
+        <YoutubeBox
+          url={props.data?.fetchBoard.youtubeUrl}
+          margin-top="200px"
+        ></YoutubeBox>
+        <IconWrapper>
+          <LikeWrapper>
+            <LikeButton />
+            <div></div>
+          </LikeWrapper>
+          <DisLikeWrapper>
+            <DisLikeButton />
+            <div></div>
+          </DisLikeWrapper>
+        </IconWrapper>
       </Wrapper>
       <ButtonWrapper>
         <ListButton>목록으로</ListButton>
