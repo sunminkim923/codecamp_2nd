@@ -71,7 +71,7 @@ export default function BoardDetailUI(props) {
         </IconWrapper>
       </Wrapper>
       <ButtonWrapper>
-        <ListButton>목록으로</ListButton>
+        <ListButton onClick={props.onClickList}>목록으로</ListButton>
         <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
         <DeleteButton>삭제하기</DeleteButton>
       </ButtonWrapper>

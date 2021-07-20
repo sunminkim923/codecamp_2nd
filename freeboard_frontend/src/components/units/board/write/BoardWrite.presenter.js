@@ -1,4 +1,6 @@
 import { EditButton } from "../detail/BoardDetail.styles";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 import {
   Wrapper,
   Title,
@@ -13,6 +15,7 @@ import {
   Zipcode,
   SearchButton,
   Address,
+  AddressDetail,
   Youtube,
   ImageWrapper,
   UploadButton,
@@ -77,11 +80,21 @@ export default function BoardWriteUI(props) {
       <InputWrapper>
         <Label>주소</Label>
         <ZipcodeWrapper>
-          <Zipcode placeholder="07250"></Zipcode>
-          <SearchButton>우편번호 검색</SearchButton>
+          <Zipcode>{props.zonecode}</Zipcode>
+          <SearchButton onClick={props.onClickSearch}>주소 검색</SearchButton>
+          {props.isClick && (
+            <Modal
+              text="주소를 입력하세요"
+              visible={props.isClick}
+              onOk={props.onClickCancel}
+              onCancel={props.onClickCancel}
+            >
+              <DaumPostcode onComplete={props.onComplete} />
+            </Modal>
+          )}
         </ZipcodeWrapper>
-        <Address />
-        <Address />
+        <Address placeholder="주소를 검색해주세요">{props.address}</Address>
+        <AddressDetail type="text" placeholder="상세주소를 입력해주세요" />
       </InputWrapper>
       <InputWrapper>
         <Label>유튜브</Label>
@@ -123,6 +136,16 @@ export default function BoardWriteUI(props) {
           <EditButton onClick={props.onClickEdit} active={props.active}>
             수정하기
           </EditButton>
+        )}
+        {props.isModal && (
+          <Modal
+            title="게시글 등록"
+            visible={props.isOpen}
+            onOk={props.onClickOk}
+            onCancel={props.onClickCancel}
+          >
+            <div>게시글을 등록합니까?</div>
+          </Modal>
         )}
       </ButtonWrapper>
     </Wrapper>

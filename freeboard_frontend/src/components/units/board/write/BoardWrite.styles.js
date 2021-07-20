@@ -63,10 +63,11 @@ export const ZipcodeWrapper = styled.div`
   flex-direction: row;
 `;
 
-export const Zipcode = styled.input`
+export const Zipcode = styled.div`
   width: 77px;
   height: 52px;
-  padding-left: 16px;
+  border: 1px solid black;
+  padding: 14px;
 `;
 
 export const SearchButton = styled.button`
@@ -77,7 +78,14 @@ export const SearchButton = styled.button`
   color: white;
 `;
 
-export const Address = styled.input`
+export const Address = styled.div`
+  width: 996px;
+  height: 52px;
+  margin-top: 25px;
+  border: 1px solid black;
+  padding: 14px 16px;
+`;
+export const AddressDetail = styled.input`
   width: 996px;
   height: 52px;
   margin-top: 25px;

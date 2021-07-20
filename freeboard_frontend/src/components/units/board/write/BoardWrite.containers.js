@@ -3,11 +3,11 @@ import { useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
-import ReactPlayer from "react-player";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createdBoardId, setCreatedBoardId] = useState("");
 
   const router = useRouter();
 
@@ -29,6 +29,11 @@ export default function BoardWrite(props) {
   const [contentsError, setContentsError] = useState("");
   const [active, setActive] = useState(false);
   const [inputs, setInputs] = useState(InputInits);
+  const [isModal, setIsModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [address, setAddress] = useState("");
+  const [zonecode, setZonecode] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
   function onChangeInputs(event) {
     const newInputs = {
@@ -45,6 +50,15 @@ export default function BoardWrite(props) {
       setContentsError("");
       setActive(true);
     }
+  }
+  function onClickSearch() {
+    setIsClick(true);
+  }
+
+  function onComplete(data) {
+    setAddress(data.address);
+    setZonecode(data.zonecode);
+    setIsClick(false);
   }
 
   async function onClickSubmit() {
@@ -69,30 +83,30 @@ export default function BoardWrite(props) {
             },
           },
         });
-        alert("등록합니다");
-        router.push(`/boards/${result.data.createBoard._id}`);
+        // alert("등록합니다");
+        setIsModal(true);
+        setIsOpen(true);
+        setCreatedBoardId(result.data.createBoard._id);
       } catch (error) {
         alert(error.message);
       }
     }
   }
 
+  function onClickOk() {
+    router.push(`/boards/${createdBoardId}`);
+  }
+
+  function onClickCancel() {
+    setIsOpen(false);
+    setIsClick(false);
+  }
+
   async function onClickEdit() {
     const newInputs = {};
     if (inputs.title) newInputs.title = inputs.title;
     if (inputs.contents) newInputs.contents = inputs.contents;
-    // if (inputs.writer === "") {
-    //     setWriterError("이름을 입력하세요")
-    // }
-    // if (inputs.password === "") {
-    //     setPasswordError("비밀번호를 입력하세요.")
-    // }
-    // if (inputs.title === "") {
-    //     setTitleError("제목을 입력하세요")
-    // }
-    // if (inputs.contents === "") {
-    //     setContentsError("내용을 입력하세요")
-    // }
+
     try {
       const result = await updateBoard({
         variables: {
@@ -174,6 +188,15 @@ export default function BoardWrite(props) {
       active={active}
       isEdit={props.isEdit}
       data={props.data}
+      isModal={isModal}
+      isOpen={isOpen}
+      isClick={isClick}
+      onClickOk={onClickOk}
+      onClickCancel={onClickCancel}
+      onClickSearch={onClickSearch}
+      onComplete={onComplete}
+      address={address}
+      zonecode={zonecode}
     />
   );
 }

@@ -13,5 +13,15 @@ export default function BoardDetail() {
     router.push(`/boards/${router.query.boardId}/edit`);
   }
 
-  return <BoardDetailUI data={data} onClickEdit={onClickEdit} />;
+  function onClickList() {
+    router.push("/boards");
+  }
+
+  return (
+    <BoardDetailUI
+      data={data}
+      onClickEdit={onClickEdit}
+      onClickList={onClickList}
+    />
+  );
 }
