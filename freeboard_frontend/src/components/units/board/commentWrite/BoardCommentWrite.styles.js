@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Rate } from "antd";
 
 export const CommentWrapper = styled.div`
   width: 1200px;
@@ -19,6 +20,9 @@ export const CommentPassword = styled.input`
   margin-left: 20px;
   padding-left: 20px;
   border: 1px solid lightgray;
+`;
+export const Star = styled(Rate)`
+  margin-left: 26px;
 `;
 export const CommentBox = styled.div`
   width: 1200px;

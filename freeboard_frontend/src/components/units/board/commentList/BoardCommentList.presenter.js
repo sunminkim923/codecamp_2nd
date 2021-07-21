@@ -1,3 +1,5 @@
+import { useQuery } from "@apollo/client";
+import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries";
 import {
   CommentEditWrapper,
   CommentWriter,
@@ -16,7 +18,7 @@ import {
   Date,
 } from "./BoardCommentList.styles";
 
-export default function BoardCommentListUI() {
+export default function BoardCommentListUI(props) {
   return (
     <>
       <CommentEditWrapper>
@@ -47,7 +49,12 @@ export default function BoardCommentListUI() {
               <span>버튼2</span>
             </IconWrapper>
           </TopWrapper>
-          <Contents></Contents>
+          {props.data?.fetchBoardComments.map((data) => (
+            <Contents>
+              <div>{props.data.writer}</div>
+              <div>{props.data.contents}</div>
+            </Contents>
+          ))}
           <Date></Date>
         </CommentContentsWrapper>
       </CommentWrapper>
