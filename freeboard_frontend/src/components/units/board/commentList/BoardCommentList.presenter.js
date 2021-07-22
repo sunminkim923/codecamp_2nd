@@ -51,8 +51,8 @@ export default function BoardCommentListUI(props) {
           </TopWrapper>
           {props.data?.fetchBoardComments.map((data) => (
             <Contents>
-              <div>{props.data.writer}</div>
-              <div>{props.data.contents}</div>
+              <span>{data.writer}</span>
+              <span>{data.contents}</span>
             </Contents>
           ))}
           <Date></Date>
