@@ -1,7 +1,11 @@
 import Slider from "@ant-design/react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {
+  Header,
+  IMG_1,
 
+} from './LayoutBanner.styles'
 
 
 
@@ -16,12 +20,11 @@ export default function LayoutBannerUI(){
       };
 
     return (
-    <div>
+    <Header>
         <div>Banner 영역입니다.</div>
         <Slider {...settings}>
-            <div>
-            <h3>안녕하세요</h3>
-            </div>
+            <IMG_1 src='/images/dog3.jpg/'>
+            </IMG_1>
             <div>
             <h3>반갑습니다</h3>
             </div>
@@ -38,5 +41,5 @@ export default function LayoutBannerUI(){
             <h3>6</h3>
             </div>
         </Slider>
-  </div>
+    </Header>
     )}
