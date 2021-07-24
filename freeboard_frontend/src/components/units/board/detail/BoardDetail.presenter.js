@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { LinkOutlined, LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import {
   BigWrapper,
@@ -7,16 +7,17 @@ import {
   HeadWrapper,
   HeadLine,
   ContentsWrapper,
-  AdressBox,
   WriterWrapper,
   Profile,
   WriterInfo,
   WriterName,
   WriterDate,
+  IconWrapper,
+  Icon_1,
+  Icon_2,
   ContentsTitle,
   ContentsImages,
   ContentsText,
-  IconWrapper,
   LikeWrapper,
   DisLikeWrapper,
   ButtonWrapper,
@@ -40,7 +41,6 @@ export default function BoardDetailUI(props) {
     <BigWrapper>
       <Wrapper>
         <HeadWrapper>
-          <AdressBox>영등포구</AdressBox>
           <WriterWrapper>
             <Profile src="/images/vector.png"></Profile>
             <WriterInfo>
@@ -48,6 +48,10 @@ export default function BoardDetailUI(props) {
               <WriterDate>2</WriterDate>
             </WriterInfo>
           </WriterWrapper>
+          <IconWrapper>
+            <Icon_1 />
+            <Icon_2>아이콘2</Icon_2>
+          </IconWrapper>
         </HeadWrapper>
         <HeadLine></HeadLine>
         <ContentsWrapper>
@@ -59,7 +63,7 @@ export default function BoardDetailUI(props) {
           url={props.data?.fetchBoard.youtubeUrl}
           margin-top="200px"
         ></YoutubeBox>
-        <IconWrapper>
+        <LikeWrapper>
           <LikeWrapper>
             <LikeButton />
             <div></div>
@@ -68,7 +72,7 @@ export default function BoardDetailUI(props) {
             <DisLikeButton />
             <div></div>
           </DisLikeWrapper>
-        </IconWrapper>
+        </LikeWrapper>
       </Wrapper>
       <ButtonWrapper>
         <ListButton onClick={props.onClickList}>목록으로</ListButton>

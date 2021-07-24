@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { LinkOutlined } from "@ant-design/icons";
 
 export const BigWrapper = styled.div`
   margin: 100px;
@@ -19,8 +20,10 @@ export const Wrapper = styled.div`
 export const HeadWrapper = styled.div`
   width: 996px;
   height: 124px;
-  /* padding-top: 20px; */
-  border: 1px solid black;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const HeadLine = styled.div`
@@ -37,16 +40,15 @@ export const ContentsWrapper = styled.div`
   margin-top: 80px;
 `;
 
-export const AdressBox = styled.div`
-  width: 376px;
-  height: 64px;
-  border: 1px solid black;
-`;
+// export const AdressBox = styled.div`
+//   width: 376px;
+//   height: 64px;
+//   border: 1px solid black;
+// `;
 
 export const WriterWrapper = styled.div`
   width: 199px;
   height: 60px;
-  border: 1px solid black;
   display: flex;
 `;
 
@@ -57,7 +59,9 @@ export const Profile = styled.img`
   height: 46px;
 `;
 
-export const WriterInfo = styled.div``;
+export const WriterInfo = styled.div`
+  padding-left: 17px;
+`;
 
 export const WriterName = styled.div`
   font-size: 24px;
@@ -69,6 +73,15 @@ export const WriterDate = styled.div`
   font-weight: 400;
   color: #828282;
 `;
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const Icon_1 = styled(LinkOutlined)`
+  margin-right: 10px;
+`;
+
+export const Icon_2 = styled.div``;
 
 export const ContentsTitle = styled.div`
   /* width: 285px; */
@@ -97,12 +110,11 @@ export const YoutubeBox = styled.div`
   border: 1px solid black;
   margin-top: 120px;
 `;
-export const IconWrapper = styled.div`
+export const LikeWrapper = styled.div`
   padding-top: 160px;
   display: flex;
   flex-direction: row;
 `;
-export const LikeWrapper = styled.div``;
 export const DisLikeWrapper = styled.div``;
 export const ButtonWrapper = styled.div`
   padding-top: 90px;

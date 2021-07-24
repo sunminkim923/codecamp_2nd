@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {
   Header,
   IMG_1,
+  IMG_2
 
 } from './LayoutBanner.styles'
 
@@ -21,13 +22,9 @@ export default function LayoutBannerUI(){
 
     return (
     <Header>
-        <div>Banner 영역입니다.</div>
         <Slider {...settings}>
-            <IMG_1 src='/images/dog3.jpg/'>
-            </IMG_1>
-            <div>
-            <h3>반갑습니다</h3>
-            </div>
+            <IMG_1 src='/images/dog3.jpg/' />
+            <IMG_2 src='/images/_DSC4006.jpg/'/>
             <div>
             <h3>몇살이세요</h3>
             </div>

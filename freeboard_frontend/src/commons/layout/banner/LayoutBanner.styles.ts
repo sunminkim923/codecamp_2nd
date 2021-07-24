@@ -9,3 +9,8 @@ export const IMG_1 = styled.img`
     width: 1920px;
     height: 400px;
 `
+
+export const IMG_2 = styled.img`
+    width: 1920px;
+    height: 400px;
+`
