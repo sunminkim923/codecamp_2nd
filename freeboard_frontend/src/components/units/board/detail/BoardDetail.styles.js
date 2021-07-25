@@ -30,14 +30,13 @@ export const HeadLine = styled.div`
   width: 996px;
   height: 1px;
   border-bottom: 1px solid black;
-  padding-top: 20px;
+  margin-top: 30px;
 `;
 
 export const ContentsWrapper = styled.div`
   width: 996px;
   height: 710px;
-  border: 1px solid black;
-  margin-top: 80px;
+  padding-top: 80px;
 `;
 
 // export const AdressBox = styled.div`
@@ -115,7 +114,18 @@ export const LikeWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const DisLikeWrapper = styled.div``;
+export const Like = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+`;
+export const LikeCount = styled.div``;
+export const DisLike = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+`;
+export const DisLikeCount = styled.div``;
 export const ButtonWrapper = styled.div`
   padding-top: 90px;
   width: 1200px;
@@ -130,6 +140,8 @@ export const ListButton = styled.button`
 export const EditButton = styled.button`
   width: 179px;
   height: 45px;
+  margin-left: 24px;
+  margin-right: 24px;
 `;
 export const DeleteButton = styled.button`
   width: 179px;

@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { LinkOutlined, LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import {
   BigWrapper,
@@ -19,7 +19,10 @@ import {
   ContentsImages,
   ContentsText,
   LikeWrapper,
-  DisLikeWrapper,
+  Like,
+  LikeCount,
+  DisLike,
+  DisLikeCount,
   ButtonWrapper,
   ListButton,
   EditButton,
@@ -28,12 +31,8 @@ import {
 } from "./BoardDetail.styles";
 
 const YoutubeBox = ReactPlayer;
-const LikeButton = styled(LikeOutlined)`
-  margin-right: 20px;
-`;
-const DisLikeButton = styled(DislikeOutlined)`
-  margin-left: 20px;
-`;
+const LikeButton = styled(LikeOutlined)``;
+const DisLikeButton = styled(DislikeOutlined)``;
 
 export default function BoardDetailUI(props) {
   console.log(props.data?.fetchBoard);
@@ -64,14 +63,14 @@ export default function BoardDetailUI(props) {
           margin-top="200px"
         ></YoutubeBox>
         <LikeWrapper>
-          <LikeWrapper>
+          <Like>
             <LikeButton />
-            <div></div>
-          </LikeWrapper>
-          <DisLikeWrapper>
+            <LikeCount>123</LikeCount>
+          </Like>
+          <DisLike>
             <DisLikeButton />
-            <div></div>
-          </DisLikeWrapper>
+            <DisLikeCount>123</DisLikeCount>
+          </DisLike>
         </LikeWrapper>
       </Wrapper>
       <ButtonWrapper>

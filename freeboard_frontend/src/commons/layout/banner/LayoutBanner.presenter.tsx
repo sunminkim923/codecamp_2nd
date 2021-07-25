@@ -23,20 +23,12 @@ export default function LayoutBannerUI(){
     return (
     <Header>
         <Slider {...settings}>
-            <IMG_1 src='/images/dog3.jpg/' />
-            <IMG_2 src='/images/_DSC4006.jpg/'/>
-            <div>
-            <h3>몇살이세요</h3>
-            </div>
-            <div>
-            <h3>어디사세요</h3>
-            </div>
-            <div>
-            <h3>5</h3>
-            </div>
-            <div>
-            <h3>6</h3>
-            </div>
+            <IMG_1 src='/images/love_dog.jpg/' />
+            <IMG_2 src='/images/lovely_dog.jpg/'/>
+            <IMG_1 src='/images/love_dog.jpg/' />
+            <IMG_2 src='/images/lovely_dog.jpg/'/>
+            <IMG_1 src='/images/love_dog.jpg/' />
+            <IMG_2 src='/images/lovely_dog.jpg/'/>
         </Slider>
     </Header>
     )}
