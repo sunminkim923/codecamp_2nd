@@ -5,6 +5,7 @@ export const CommentWrapper = styled.div`
   width: 1200px;
   height: 300px;
   padding-top: 40px;
+  margin-left: 100px;
 `;
 export const Comment = styled.span``;
 export const CommentWriter = styled.input`

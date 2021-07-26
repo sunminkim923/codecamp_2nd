@@ -6,6 +6,7 @@ export const ListWrapper = styled.div`
   height: 583px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  text-align: center;
 `;
 export const ListTop = styled.div`
   height: 52px;
@@ -30,4 +31,17 @@ export const Board = styled.div`
 export const SubmitButton = styled.button`
   width: 171px;
   height: 52px;
+  margin-top: 30px;
+  margin-right: 0px;
+`;
+export const SubmitButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+`;
+export const PagenationWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
 `;

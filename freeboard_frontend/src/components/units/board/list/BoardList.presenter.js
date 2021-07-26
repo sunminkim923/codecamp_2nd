@@ -1,17 +1,19 @@
 import { useQuery } from "@apollo/client";
 import { getDate } from "../../../../commons/libraries/utils";
 import { FETCH_BOARDS } from "./BoardList.queries";
-
+import PagenationPage from "../../../commons/pagenations/pagenations.container";
 import {
   ListWrapper,
   ListTop,
   List,
   Board,
   SubmitButton,
+  SubmitButtonWrapper,
+  PagenationWrapper,
 } from "./BoardList.styles";
 
 export default function BoardListUI(props) {
-  const { data } = useQuery(FETCH_BOARDS);
+  const { data, refetch } = useQuery(FETCH_BOARDS);
 
   return (
     <div>
@@ -24,14 +26,21 @@ export default function BoardListUI(props) {
         </ListTop>
         {data?.fetchBoards.map((data, index) => (
           <List>
-            <Board>{index}</Board>
+            <Board>{index + 1}</Board>
             <Board>{data.title}</Board>
             <Board>{data.writer}</Board>
             <Board>{getDate(data.createdAt)}</Board>
           </List>
         ))}
+        <SubmitButtonWrapper>
+          <SubmitButton onClick={props.onClickSubmit}>
+            게시물등록하기
+          </SubmitButton>
+        </SubmitButtonWrapper>
+        <PagenationWrapper>
+          <PagenationPage refetch={refetch} />
+        </PagenationWrapper>
       </ListWrapper>
-      <SubmitButton onClick={props.onClickSubmit}>게시물등록하기</SubmitButton>
     </div>
   );
 }

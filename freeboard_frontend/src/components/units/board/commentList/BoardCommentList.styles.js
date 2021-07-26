@@ -4,6 +4,7 @@ export const CommentEditWrapper = styled.div`
   width: 1200px;
   height: 189px;
   margin-top: 40px;
+  margin-left: 100px;
 `;
 export const CommentWriter = styled.input`
   width: 180px;
@@ -46,6 +47,7 @@ export const CommentWrapper = styled.div`
   height: 111px;
   border: 1px solid lightgray;
   margin-top: 80px;
+  margin-left: 100px;
   display: flex;
   flex-direction: row;
 `;
