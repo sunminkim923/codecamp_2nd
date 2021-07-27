@@ -36,28 +36,30 @@ export default function BoardCommentListUI(props) {
         </CommentEditBox>
       </CommentEditWrapper>
 
-      <CommentWrapper>
-        <Profile src="/Vector.svg"></Profile>
-        <CommentContentsWrapper>
-          <TopWrapper>
-            <WriterWrapper>
-              <Writer>작성자</Writer>
-              <span>별점</span>
-            </WriterWrapper>
-            <IconWrapper>
-              <span>버튼1</span>
-              <span>버튼2</span>
-            </IconWrapper>
-          </TopWrapper>
-          {props.data?.fetchBoardComments.map((data) => (
+      {props.data?.fetchBoardComments.map((data) => (
+        <CommentWrapper>
+          <Profile src="/Vector.svg"></Profile>
+          <CommentContentsWrapper>
+            <TopWrapper>
+              <WriterWrapper>
+                <Writer>{data.writer}</Writer>
+                <span>별점</span>
+              </WriterWrapper>
+              <IconWrapper>
+                <span>버튼1</span>
+                <span>버튼2</span>
+              </IconWrapper>
+            </TopWrapper>
+
             <Contents>
-              <span>{data.writer}</span>
+              <span></span>
               <span>{data.contents}</span>
             </Contents>
-          ))}
-          <Date></Date>
-        </CommentContentsWrapper>
-      </CommentWrapper>
+
+            <Date></Date>
+          </CommentContentsWrapper>
+        </CommentWrapper>
+      ))}
     </>
   );
 }

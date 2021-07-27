@@ -6,7 +6,7 @@ export const BigWrapper = styled.div`
 `;
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 1847px;
+  /* height: 1847px; */
   border: 1px solid black;
   padding-top: 20px;
   padding-bottom: 100px;
@@ -89,10 +89,9 @@ export const ContentsTitle = styled.div`
   font-weight: bold;
 `;
 
-export const ContentsImages = styled.div`
-  width: 996px;
-  height: 480px;
-  border: 1px solid black;
+export const ContentsImages = styled.img`
+  width: 100%;
+  height: 100%;
   /* margin-top: 40px; */
   /* padding-top: 40px; */
 `;
@@ -100,14 +99,13 @@ export const ContentsImages = styled.div`
 export const ContentsText = styled.div`
   width: 996px;
   height: auto;
-  border: 1px solid black;
-  margin-top: 40px;
+  padding-top: 40px;
 `;
 export const YoutubeBox = styled.div`
   width: 486px;
   height: 240px;
   border: 1px solid black;
-  margin-top: 120px;
+  padding-top: 120px;
 `;
 export const LikeWrapper = styled.div`
   padding-top: 160px;

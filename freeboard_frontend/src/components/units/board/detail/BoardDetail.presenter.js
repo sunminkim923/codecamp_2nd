@@ -55,7 +55,9 @@ export default function BoardDetailUI(props) {
         <HeadLine></HeadLine>
         <ContentsWrapper>
           <ContentsTitle>{props.data?.fetchBoard.title}</ContentsTitle>
-          <ContentsImages>{props.data?.fetchBoard.images}</ContentsImages>
+          <ContentsImages src="/images/dog_4.jpg">
+            {/* {props.data?.fetchBoard.images} */}
+          </ContentsImages>
           <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
         </ContentsWrapper>
         <YoutubeBox
@@ -76,7 +78,7 @@ export default function BoardDetailUI(props) {
       <ButtonWrapper>
         <ListButton onClick={props.onClickList}>목록으로</ListButton>
         <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
-        <DeleteButton>삭제하기</DeleteButton>
+        <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
       </ButtonWrapper>
       <LineBox></LineBox>
     </BigWrapper>

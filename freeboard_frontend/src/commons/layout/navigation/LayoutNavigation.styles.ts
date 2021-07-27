@@ -20,7 +20,11 @@ export const List = styled.button`
     margin: 10px 20px;
 `
 
-export const Submit = styled.button`
+export const Game = styled.button`
+    border: none;
+    margin: 10px 20px;
+`
+export const UsedMarket = styled.button`
     border: none;
     margin: 10px 20px;
 `
