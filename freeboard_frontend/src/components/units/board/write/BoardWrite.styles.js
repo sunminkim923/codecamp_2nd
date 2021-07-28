@@ -112,6 +112,10 @@ export const UploadButton = styled.button`
   cursor: pointer;
 `;
 
+export const ImageUpload = styled.input`
+  display: none;
+`;
+
 export const OptionWrapper = styled.div`
   width: 996px;
   margin-top: 40px;

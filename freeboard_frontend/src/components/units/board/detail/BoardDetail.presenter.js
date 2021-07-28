@@ -44,7 +44,7 @@ export default function BoardDetailUI(props) {
             <Profile src="/images/vector.png"></Profile>
             <WriterInfo>
               <WriterName>{props.data?.fetchBoard.writer}</WriterName>
-              <WriterDate>2</WriterDate>
+              <WriterDate>{props.data?.fetchBoard.createdAt}</WriterDate>
             </WriterInfo>
           </WriterWrapper>
           <IconWrapper>
@@ -55,9 +55,9 @@ export default function BoardDetailUI(props) {
         <HeadLine></HeadLine>
         <ContentsWrapper>
           <ContentsTitle>{props.data?.fetchBoard.title}</ContentsTitle>
-          <ContentsImages src="/images/dog_4.jpg">
-            {/* {props.data?.fetchBoard.images} */}
-          </ContentsImages>
+          <ContentsImages
+            src={`https://storage.googleapis.com/${props.data?.fetchBoard.images[0]}`}
+          />
           <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
         </ContentsWrapper>
         <YoutubeBox

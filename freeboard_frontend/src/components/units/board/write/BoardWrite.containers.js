@@ -1,12 +1,13 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
   const [createdBoardId, setCreatedBoardId] = useState("");
 
   const router = useRouter();
@@ -17,6 +18,8 @@ export default function BoardWrite(props) {
     title: "",
     contents: "",
     youtubeUrl: "",
+    createdAt: "",
+    // images: "",
   };
 
   // const [writer, setWriter] = useState ('')
@@ -34,6 +37,8 @@ export default function BoardWrite(props) {
   const [address, setAddress] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [isClick, setIsClick] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+  const fileRef = useRef();
 
   function onChangeInputs(event) {
     const newInputs = {
@@ -61,6 +66,24 @@ export default function BoardWrite(props) {
     setIsClick(false);
   }
 
+  async function onChangeFile(event) {
+    const file = event.target.files?.[0];
+    try {
+      const result = await uploadFile({
+        variables: {
+          file: file,
+        },
+      });
+      setImageUrl(result.data.uploadFile.url);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  function onClickUpload01() {
+    fileRef.current?.click();
+  }
+
   async function onClickSubmit() {
     if (inputs.writer === "") {
       setWriterError("이름을 입력하세요");
@@ -80,6 +103,7 @@ export default function BoardWrite(props) {
           variables: {
             createBoard: {
               ...inputs,
+              images: [imageUrl],
             },
           },
         });
@@ -183,6 +207,7 @@ export default function BoardWrite(props) {
       passwordError={passwordError}
       titleError={titleError}
       contentsError={contentsError}
+      onChangeFile={onChangeFile}
       onClickSubmit={onClickSubmit}
       onClickEdit={onClickEdit}
       active={active}
@@ -197,6 +222,8 @@ export default function BoardWrite(props) {
       onComplete={onComplete}
       address={address}
       zonecode={zonecode}
+      fileRef={fileRef}
+      onClickUpload01={onClickUpload01}
     />
   );
 }

@@ -48,19 +48,29 @@ export const CommentWrapper = styled.div`
   border: 1px solid lightgray;
   margin-top: 80px;
   margin-left: 100px;
+`;
+export const HeadWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
-export const Profile = styled.img``;
-export const CommentContentsWrapper = styled.div``;
 export const TopWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const WriterWrapper = styled.div``;
-export const Writer = styled.span``;
+export const Profile = styled.img`
+  margin-top: 6px;
+  margin-left: 4px;
+`;
+export const Writer = styled.span`
+  padding-left: 16px;
+`;
+export const StarPoint = styled.div`
+  padding-left: 18px;
+`;
 export const IconWrapper = styled.div``;
-
-export const Contents = styled.div``;
+export const Contents = styled.div`
+  padding-left: 60px;
+`;
 
 export const Date = styled.div``;

@@ -18,6 +18,7 @@ import {
   AddressDetail,
   Youtube,
   ImageWrapper,
+  ImageUpload,
   UploadButton,
   OptionWrapper,
   RadioButton,
@@ -106,19 +107,24 @@ export default function BoardWriteUI(props) {
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
-        <UploadButton>
-          <div>+</div>
+        <UploadButton onClick={props.onClickUpload01}>
+          <div> + </div>
           <div>Upload</div>
         </UploadButton>
         <UploadButton>
-          <div>+</div>
+          <div> + </div>
           <div>Upload</div>
         </UploadButton>
         <UploadButton>
-          <div>+</div>
+          <div> + </div>
           <div>Upload</div>
         </UploadButton>
       </ImageWrapper>
+      <ImageUpload
+        ref={props.fileRef}
+        type="file"
+        onChange={props.onChangeFile}
+      />
       <OptionWrapper>
         <Label>메인 설정</Label>
         <RadioButton type="radio"></RadioButton>
