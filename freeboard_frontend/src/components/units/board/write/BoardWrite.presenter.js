@@ -120,11 +120,15 @@ export default function BoardWriteUI(props) {
           <div>Upload</div>
         </UploadButton>
       </ImageWrapper>
-      <ImageUpload
-        ref={props.fileRef}
-        type="file"
-        onChange={props.onChangeFile}
-      />
+      {props.fileUrls.map((data, index) => (
+        <ImageUpload
+          id={index}
+          ref={props.fileRef}
+          type="file"
+          onChange={props.onChangeFile}
+        />
+      ))}
+
       <OptionWrapper>
         <Label>메인 설정</Label>
         <RadioButton type="radio"></RadioButton>

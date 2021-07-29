@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import { IdcardFilled } from "@ant-design/icons";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -18,7 +19,7 @@ export default function BoardWrite(props) {
     title: "",
     contents: "",
     youtubeUrl: "",
-    createdAt: "",
+    // createdAt: "",
     // images: "",
   };
 
@@ -38,6 +39,7 @@ export default function BoardWrite(props) {
   const [zonecode, setZonecode] = useState("");
   const [isClick, setIsClick] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const fileRef = useRef();
 
   function onChangeInputs(event) {
@@ -68,18 +70,16 @@ export default function BoardWrite(props) {
 
   async function onChangeFile(event) {
     const file = event.target.files?.[0];
-    try {
-      const result = await uploadFile({
-        variables: {
-          file: file,
-        },
-      });
-      setImageUrl(result.data.uploadFile.url);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (data) => {
+      setImageUrl(data.target.result);
+      const newFileUrls = [...fileUrls];
+      newFileUrls[event.target.id] = file;
 
+      setFileUrls(newFileUrls);
+    };
+  }
   function onClickUpload01() {
     fileRef.current?.click();
   }
@@ -224,6 +224,7 @@ export default function BoardWrite(props) {
       zonecode={zonecode}
       fileRef={fileRef}
       onClickUpload01={onClickUpload01}
+      fileUrls={fileUrls}
     />
   );
 }

@@ -113,7 +113,7 @@ export const UploadButton = styled.button`
 `;
 
 export const ImageUpload = styled.input`
-  display: none;
+  /* display: none; */
 `;
 
 export const OptionWrapper = styled.div`
