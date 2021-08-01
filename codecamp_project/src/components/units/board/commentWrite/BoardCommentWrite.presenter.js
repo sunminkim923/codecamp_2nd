@@ -18,6 +18,7 @@ export default function BoardCommentWriteUI(props) {
           <img src="/rate_review-24px.svg"></img>
           <Comment>댓글</Comment>
         </div>
+        s
         <CommentWriter
           type="text"
           placeholder="작성자"
