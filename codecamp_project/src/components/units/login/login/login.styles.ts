@@ -72,6 +72,7 @@ export const FindPassword = styled.div`
 `
 
 export const Join = styled.div`
+    cursor: pointer;
 
 `
 export const Error = styled.div`

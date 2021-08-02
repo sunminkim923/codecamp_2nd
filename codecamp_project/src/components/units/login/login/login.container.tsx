@@ -18,7 +18,7 @@ export default function Login () {
     }
 
     function onClickJoin (){
-        router.push(`/./`)
+        router.push(`/login/join/`)
     }
     function onClickLogin () {
         if(email === "" ){
@@ -37,5 +37,6 @@ export default function Login () {
     onClickLogin={onClickLogin}
     emailError={emailError}
     passwordError={passwordError}
+    onClickJoin={onClickJoin}
      />
 }

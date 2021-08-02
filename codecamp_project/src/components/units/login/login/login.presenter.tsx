@@ -44,7 +44,6 @@ export default function LoginUI(props) {
                     </OnclickWrapper>     
                 </Wrapper>
             </PageWrapper>
-
         </>
 
     )

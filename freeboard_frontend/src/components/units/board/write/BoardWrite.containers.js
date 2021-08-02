@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
-import { IdcardFilled } from "@ant-design/icons";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);

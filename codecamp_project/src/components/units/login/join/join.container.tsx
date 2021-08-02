@@ -1,7 +1,12 @@
+import { useMutation } from "@apollo/client"
 import { useState } from "react"
 import JoinUI from "./join.presenter"
+import { CREATE_USER } from "./join.queries"
+
 
 export default function Join () {
+    const [createUser] = useMutation(CREATE_USER)
+
     const [name, setName] = useState("")
     const [nameError, setNameError] = useState("")
     const [email, setEmail] = useState("")
@@ -38,8 +43,16 @@ export default function Join () {
         }
         if( samePassword !== password ){
             setSamePasswordError("비밀번호가 일치하지 않습니다")
-        } else {
-            alert ("회원가입이 완료되었습니다")
+        } if ( name !== "" && email !== "" && password !== "" && samePassword === password) {
+            createUser({
+                variables:{
+                    CreateUserInput : {
+                        name,
+                        email,
+                        password,
+                    } 
+                }
+            })
         }
     }
 
@@ -53,8 +66,6 @@ export default function Join () {
         onChangeSamePassword={onChangeSamePassword}
         samePasswordError={samePasswordError}
         onClickJoin={onClickJoin}
-        
-
     />
 
 }
