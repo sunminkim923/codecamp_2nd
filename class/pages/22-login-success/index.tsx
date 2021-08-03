@@ -13,7 +13,7 @@ const FETCH_USER_LOGGED_IN = gql`
 
 export default function LoginSuccessPage (){
     const { data } = useQuery (FETCH_USER_LOGGED_IN)
-    const {accessToken } = useContext(GlobalContext)
+    const { accessToken } = useContext(GlobalContext)
     useEffect(() => {
         if(!accessToken) router.push("/22-login/")
     }, [])

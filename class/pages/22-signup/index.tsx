@@ -8,7 +8,6 @@ const CREATE_USER = gql`
         }
     } 
 `
-
 export default function SignupPage () {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -39,7 +38,6 @@ export default function SignupPage () {
         } catch(error) {
             alert(error.message)
         }
-        
     }
     return (
         <>

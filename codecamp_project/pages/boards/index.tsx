@@ -1,16 +1,9 @@
-import PagenationPage from "../../src/components/commons/pagenations/pagenations.container"
-import BoardList from "../../src/components/units/board/list/BoardList.containers"
+import BoardList from "../../src/components/units/board/list/BoardList.containers";
 
-
-
-export default function ListPage () {
-
-    
-    return (
-        <>
-            <BoardList />
-            
-        </>
-    )    
-    
+export default function ListPage() {
+  return (
+    <>
+      <BoardList />
+    </>
+  );
 }

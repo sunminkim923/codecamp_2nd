@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client"
+import router from "next/router"
 import { useState } from "react"
-import JoinUI from "./join.presenter"
-import { CREATE_USER } from "./join.queries"
+import SignupUI from "./signup.presenter"
+import { CREATE_USER } from "./signup.queries"
 
 
-export default function Join () {
+export default function Signup () {
     const [createUser] = useMutation(CREATE_USER)
 
     const [name, setName] = useState("")
@@ -31,7 +32,7 @@ export default function Join () {
         setSamePassword(event.target.value)
     }
 
-    function onClickJoin () {
+    async function onClickJoin () {
         if( name === "" ){
             setNameError("이름을 입력하세요")
         }
@@ -44,19 +45,26 @@ export default function Join () {
         if( samePassword !== password ){
             setSamePasswordError("비밀번호가 일치하지 않습니다")
         } if ( name !== "" && email !== "" && password !== "" && samePassword === password) {
-            createUser({
-                variables:{
-                    CreateUserInput : {
-                        name,
-                        email,
-                        password,
+            try{
+                await createUser({
+                    variables:{
+                        createUserInput : {
+                            name: name,
+                            email: email,
+                            password: password,
+                        } 
                     } 
-                }
-            })
-        }
+                }) 
+                alert("회원가입을 축하합니다")
+                router.push("/login/")
+            } catch (error) {
+                alert(error.message)
+            }
+            
+        } 
     }
 
-    return <JoinUI 
+    return <SignupUI 
         onChangeName={onChangeName}
         nameError={nameError}
         onChangeEmail={onChangeEmail}

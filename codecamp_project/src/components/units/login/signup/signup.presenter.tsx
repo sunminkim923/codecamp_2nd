@@ -6,9 +6,9 @@ import {
     InputBox,
     JoinButton,
     Error,
-} from "./join.styles"
+} from "./signup.styles"
 
-export default function JoinUI(props) {
+export default function SignupUI(props) {
 
     return (
         <PageWrapper>
