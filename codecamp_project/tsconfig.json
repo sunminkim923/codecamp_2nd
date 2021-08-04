@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,9 +17,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/units/board/write/BoardWrite.containers.js", "pages/boards/[boardId]/edit/index.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/components/units/board/write/BoardWrite.containers.tsx",
+    "pages/boards/[boardId]/edit/index.js"
+  ],
+  "exclude": ["node_modules"]
 }
