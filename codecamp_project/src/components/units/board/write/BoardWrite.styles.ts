@@ -137,16 +137,15 @@ export const Upload = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const RadioWrapper = styled.div`
-  display: flex;
-`;
-export const RadioButton = styled.div`
-  padding-top: 16px;
-  padding-right: 24px;
-`;
+export const RadioWrapper = styled.div``;
 
 export const Radio = styled.input`
-  margin-right: 10px;
+  margin-top: 22px;
+`;
+export const Text02 = styled.span`
+  font-size: 16px;
+  padding-right: 22px;
+  padding-left: 10px;
 `;
 
 export const SubmitButtonWrapper = styled.div`
@@ -160,4 +159,11 @@ export const SubmitButton = styled.button`
   height: 52px;
   border: none;
   background-color: #ffd600;
+`;
+
+export const Error = styled.div`
+  font-size: 12px;
+  color: red;
+  padding-left: 16px;
+  padding-top: 10px;
 `;

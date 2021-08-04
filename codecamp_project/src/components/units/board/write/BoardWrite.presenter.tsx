@@ -22,13 +22,14 @@ import {
   UploadWrapper,
   Upload,
   RadioWrapper,
-  RadioButton,
   Radio,
+  Text02,
   SubmitButtonWrapper,
   SubmitButton,
+  Error,
 } from "./BoardWrite.styles";
 
-export default function BoardWriteUI() {
+export default function BoardWriteUI(props) {
   return (
     <>
       <PageWrapper>
@@ -37,27 +38,44 @@ export default function BoardWriteUI() {
           <TopWrapper>
             <WriterWrapper>
               <Text>작성자</Text>
-              <WriterInput type="text" placeholder="이름을 입력하세요" />
+              <WriterInput
+                type="text"
+                placeholder="이름을 입력하세요"
+                onChange={props.onChangeWriter}
+              />
+              <Error>{props.writerError}</Error>
             </WriterWrapper>
             <PasswordWrapper>
               <Text>비밀번호</Text>
               <PasswordInput
                 type="password"
                 placeholder="비밀번호를 입력하세요"
+                onChange={props.onChangePassword}
               />
+              <Error>{props.passwordError}</Error>
             </PasswordWrapper>
           </TopWrapper>
           <TitleWrapper>
             <Text>제목</Text>
-            <Title type="text" placeholder="제목을 입력하세요" />
+            <Title
+              type="text"
+              placeholder="제목을 입력하세요"
+              onChange={props.onChangeTitle}
+            />
+            <Error>{props.titleError}</Error>
           </TitleWrapper>
           <ContentsWrapper>
             <Text>내용</Text>
-            <Contents type="text" placeholder="내용을 입력하세요" />
+            <Contents
+              type="text"
+              placeholder="내용을 입력하세요"
+              onChange={props.onChangeContents}
+            />
+            <Error>{props.contentsError}</Error>
           </ContentsWrapper>
           <AdressWrapper>
             <Text>주소</Text>
-            <ZoneCode type="text" placeholder="우편번호"></ZoneCode>
+            <ZoneCode type="text" placeholder="우편번호" readOnly></ZoneCode>
             <SearchAdress>주소 검색하기</SearchAdress>
             <Adress placeholder="주소를 검색해주세요" readOnly />
             <AdressDetail type="text" placeholder="상세주소를 입력하세요" />
@@ -66,7 +84,6 @@ export default function BoardWriteUI() {
             <Text>유튜브</Text>
             <Youtube type="text" placeholder="링크를 입력하세요" />
           </YoutubeWrapper>
-
           <Text>사진첨부</Text>
           <UploadWrapper>
             <Upload>
@@ -82,19 +99,15 @@ export default function BoardWriteUI() {
               <div>Upload</div>
             </Upload>
           </UploadWrapper>
-          <Text>메인설정</Text>
           <RadioWrapper>
-            <RadioButton>
-              <Radio type="radio" />
-              <span>유튜브</span>
-            </RadioButton>
-            <RadioButton>
-              <Radio type="radio" />
-              <span>유튜브</span>
-            </RadioButton>
+            <Text>메인설정</Text>
+            <Radio type="radio" name="radio" />
+            <Text02>유튜브</Text02>
+            <Radio type="radio" name="radio" />
+            <Text02>사진</Text02>
           </RadioWrapper>
           <SubmitButtonWrapper>
-            <SubmitButton>등록하기</SubmitButton>
+            <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
           </SubmitButtonWrapper>
         </Wrapper>
       </PageWrapper>
