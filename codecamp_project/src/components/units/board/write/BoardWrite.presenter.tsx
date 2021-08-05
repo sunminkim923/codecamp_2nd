@@ -101,8 +101,8 @@ export default function BoardWriteUI(props) {
           </UploadWrapper>
           <RadioWrapper>
             <Text>메인설정</Text>
-            <Radio type="radio" name="radio" />
-            <Text02>유튜브</Text02>
+            <Radio type="radio" name="radio" id="youtube" />
+            <lavel for="youtube">유튜브</lavel>
             <Radio type="radio" name="radio" />
             <Text02>사진</Text02>
           </RadioWrapper>
