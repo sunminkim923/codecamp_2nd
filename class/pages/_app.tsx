@@ -1,56 +1,62 @@
-import {ApolloClient, ApolloLink, InMemoryCache, ApolloProvider} from '@apollo/client'
-import { AppProps } from 'next/dist/next-server/lib/router/router'
-import '../styles/globals.css'
-import 'antd/dist/antd.css'
-import Layout from '../src/commons/layout'
-import { Global } from '@emotion/react'
-import { globalstyles } from '../src/commons/styles/globalStyles'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import { createUploadLink } from 'apollo-upload-client'
-import { createContext, useState } from 'react'
+import {
+  ApolloClient,
+  ApolloLink,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
+import { AppProps } from "next/dist/next-server/lib/router/router";
+import "../styles/globals.css";
+import "antd/dist/antd.css";
+import Layout from "../src/commons/layout";
+import { Global } from "@emotion/react";
+import { globalstyles } from "../src/commons/styles/globalStyles";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import { createUploadLink } from "apollo-upload-client";
+import { createContext, useState } from "react";
 
-if (typeof window !== "undefined" ) {
-firebase.initializeApp({
-  apiKey: "AIzaSyB2AZodzgw35GmS8qlyy3Z22jFI3Du2GH8",
-  authDomain: "codecamp-01.firebaseapp.com",
-  databaseURL: "https://codecamp-01.firevaseio.com",
-  projectId: "codecamp-01",
-  storageBucket: "codecamp-01.appspot.com",
-})
+if (typeof window !== "undefined") {
+  firebase.initializeApp({
+    apiKey: "AIzaSyB2AZodzgw35GmS8qlyy3Z22jFI3Du2GH8",
+    authDomain: "codecamp-01.firebaseapp.com",
+    databaseURL: "https://codecamp-01.firevaseio.com",
+    projectId: "codecamp-01",
+    storageBucket: "codecamp-01.appspot.com",
+  });
 }
-export const GlobalContext = createContext({})
+export const GlobalContext = createContext({});
 function MyApp({ Component, pageProps }: AppProps) {
-  const [accessToken, setAccessToken] =useState("")
+  const [accessToken, setAccessToken] = useState("");
+  const [userInfo, setUserInfo] = useState({});
   const value = {
-    accessToken : accessToken,
-    setAccessToken : setAccessToken,
-  }
+    accessToken: accessToken,
+    setAccessToken: setAccessToken,
+    userInfo: userInfo,
+    setUserInfo: setUserInfo,
+  };
+
   const uploadLink = createUploadLink({
-    uri: 'http://backend02.codebootcamp.co.kr/graphql',
+    uri: "http://backend02.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${accessToken}`
-    }
-  })
-  
+      authorization: `Bearer ${accessToken}`,
+    },
+  });
+
   const client = new ApolloClient({
     // uri: 'http://backend02.codebootcamp.co.kr/graphql',//백앤드 API가 있는 주소
-    link: ApolloLink.from([ uploadLink as unknown as ApolloLink]),
-    cache: new InMemoryCache()
-  })
+    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    cache: new InMemoryCache(),
+  });
 
   return (
-    <GlobalContext.Provider value = { value } > 
+    <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
         <Layout>
-          <Global styles={globalstyles}/>
+          <Global styles={globalstyles} />
           <Component {...pageProps} />
         </Layout>
       </ApolloProvider>
     </GlobalContext.Provider>
-  )
+  );
 }
-export default MyApp
-
-
-
+export default MyApp;
