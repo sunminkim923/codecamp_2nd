@@ -9,7 +9,9 @@ const Input = styled.input`
 `;
 
 const ErrorMessage = styled.div`
+  padding-top: 5px;
   padding-left: 16px;
+  font-size: 12px;
   color: red;
 `;
 
@@ -21,7 +23,7 @@ export default function InputFullSize(props) {
         {...props.register}
         placeholder={props.placeholder}
       />
-      <ErrorMessage></ErrorMessage>
+      <ErrorMessage>{props.errorMessage}</ErrorMessage>
     </>
   );
 }

@@ -36,14 +36,21 @@ export default function RegisterUI(props) {
           <InputWrapper>
             <Text>상품명</Text>
             <InputFullSize
+              inputName="상품명"
               placeholder="상품명을 입력해주세요"
               type="text"
               register={{ ...props.register("productName") }}
+              errorMessage={props.errors.productName?.message}
             />
           </InputWrapper>
           <InputWrapper>
             <Text>한줄요약</Text>
-            <InputFullSize register={{ ...props.register("productName") }} />
+            <InputFullSize
+              placeholder="상품의 특징을 입력해주세요"
+              tpye="text"
+              register={{ ...props.register("productCharacter") }}
+              errorMessage={props.errors.productCharacter?.message}
+            />
           </InputWrapper>
           <InputWrapper>
             <Text>상품설명</Text>
@@ -56,12 +63,12 @@ export default function RegisterUI(props) {
           </InputWrapper>
           <InputWrapper>
             <Text>판매가격</Text>
-            <TextInput
+            <InputFullSize
               type="text"
-              placeholder="판매가격을 입력해주세요"
-              {...props.register("price")}
+              placeholder="가격을 입력하세요"
+              register={{ ...props.register("price") }}
+              errorMessage={props.errors.price?.message}
             />
-            <Error>{props.errors.price?.message}</Error>
           </InputWrapper>
           <InputWrapper>
             <Text>태그입력</Text>

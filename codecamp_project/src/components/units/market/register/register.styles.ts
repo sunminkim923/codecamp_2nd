@@ -50,6 +50,7 @@ export const ProductExplanation = styled.textarea`
   border-top: none;
   padding: 14px 16px;
   font-size: 16px;
+  resize: none;
 `;
 export const PositionWrapper = styled.div`
   display: flex;
@@ -130,5 +131,5 @@ export const Error = styled.div`
   font-size: 12px;
   color: red;
   padding-left: 16px;
-  padding-top: 10px;
+  padding-top: 5px;
 `;
