@@ -3,10 +3,11 @@ import styled from "@emotion/styled";
 export const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 20px;
 `;
 
 export const Wrapper = styled.div`
-  padding-top: 40px;
   width: 1200px;
 `;
 

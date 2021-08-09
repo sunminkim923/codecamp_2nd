@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import router from "next/router";
 import { useMutation } from "@apollo/client";
 import { CREATE_USEDITEM } from "./register.queries";
+import { Modal } from "antd";
 
 const schema = yup.object().shape({
   productName: yup.string().required("상품명을 입력하세요"),
@@ -29,17 +30,22 @@ export default function Register() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
-    createUseditem({
-      variables: {
-        createUseditemInput: {
-          name: data.name,
-          contents: data.contents,
-          price: data.price,
-          images: data.images,
+  async function onSubmit(data) {
+    try {
+      await createUseditem({
+        variables: {
+          createUseditemInput: {
+            name: data.productName,
+            remarks: data.productCharacter,
+            contents: data.productExplanation,
+            price: data.price,
+          },
         },
-      },
-    });
+      });
+      Modal.info({ content: "게시글을 등록합니다." });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
   }
 
   return (

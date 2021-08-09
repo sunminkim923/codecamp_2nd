@@ -1,5 +1,12 @@
-import LayoutNavigationUI from "./LayoutNavigation.presenter"
-export default function LayoutNavigation () {
+import { useRouter } from "next/router";
 
-    return <LayoutNavigationUI />
+import LayoutNavigationUI from "./LayoutNavigation.presenter";
+export default function LayoutNavigation() {
+  const router = useRouter();
+
+  const onClickUsedMarket = () => {
+    router.push("../../../market/list");
+  };
+
+  return <LayoutNavigationUI onClickUsedMarket={onClickUsedMarket} />;
 }
