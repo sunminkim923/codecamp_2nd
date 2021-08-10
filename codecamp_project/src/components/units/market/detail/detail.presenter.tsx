@@ -26,7 +26,7 @@ import {
   ListButton,
   EditButton,
 } from "./detail.styles";
-export default function ProductDetailUI() {
+export default function ProductDetailUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
@@ -46,19 +46,21 @@ export default function ProductDetailUI() {
         <UnderLine></UnderLine>
         <ProductTitleWrapper>
           <TitleWrapper>
-            <Character>2019 LTE 32GB</Character>
-            <Product>삼성전자 갤럭시탭A 10.1</Product>
+            <Character>{props.data?.fetchUseditem.remarks}</Character>
+            <Product>{props.data?.fetchUseditem.name}</Product>
           </TitleWrapper>
           <LikePointWrapper>
             <LikeHeart src="/images/heart.svg" />
             <LikePoint>20</LikePoint>
           </LikePointWrapper>
         </ProductTitleWrapper>
-        <Price>240,120원</Price>
+        <Price>{props.data?.fetchUseditem.price}원</Price>
         <ProductImageWrapper>
           <ImageWrapper></ImageWrapper>
         </ProductImageWrapper>
-        <ProductExplanation></ProductExplanation>
+        <ProductExplanation>
+          {props.data?.fetchUseditem.contents}
+        </ProductExplanation>
         <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
         <UnderLine />
         <Map />

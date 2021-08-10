@@ -1,4 +1,6 @@
 import InputFullSize from "../../../commons/inputs/Input-full-size";
+import TextAreaQuill from "../../../commons/inputs/input-react-quill";
+import ImageUpload from "../../../commons/imageupload/imageupload";
 import {
   PageWrapper,
   Wrapper,
@@ -6,7 +8,6 @@ import {
   InputWrapper,
   Text,
   TextInput,
-  ToolBox,
   ProductExplanation,
   PositionWrapper,
   MapWrapper,
@@ -18,7 +19,6 @@ import {
   Local,
   AdressWrapper,
   ImageWrapper,
-  ImageUpload,
   RadioWrapper,
   Radio,
   Text02,
@@ -36,7 +36,6 @@ export default function RegisterUI(props) {
           <InputWrapper>
             <Text>상품명</Text>
             <InputFullSize
-              inputName="상품명"
               placeholder="상품명을 입력해주세요"
               type="text"
               register={{ ...props.register("productName") }}
@@ -54,10 +53,9 @@ export default function RegisterUI(props) {
           </InputWrapper>
           <InputWrapper>
             <Text>상품설명</Text>
-            <ToolBox></ToolBox>
-            <ProductExplanation
+            <TextAreaQuill
+              onChange={props.onChangeExplanation}
               placeholder="상품을 설명해주세요"
-              {...props.register("productExplanation")}
             />
             <Error>{props.errors.productExplanation?.message}</Error>
           </InputWrapper>
@@ -103,13 +101,13 @@ export default function RegisterUI(props) {
               </AdressWrapper>
             </GpsAdressWrapper>
           </PositionWrapper>
+          <Text>사진첨부</Text>
           <ImageWrapper>
-            <Text>사진첨부</Text>
-            <ImageUpload>
+            <ImageUpload type="button">
               <div>+</div>
               <div>Upload</div>
             </ImageUpload>
-            <ImageUpload>
+            <ImageUpload type="button">
               <div>+</div>
               <div>Upload</div>
             </ImageUpload>

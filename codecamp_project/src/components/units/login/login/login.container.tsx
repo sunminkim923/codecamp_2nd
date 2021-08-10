@@ -31,7 +31,7 @@ export default function Login() {
         },
       });
       Modal.info({ content: "반갑습니다^^" });
-      router.push("/landing");
+      router.push("./market/list/");
     } catch (error) {
       Modal.error({ content: error.message });
     }

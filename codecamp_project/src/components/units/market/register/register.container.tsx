@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import RegisterUI from "./register.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import router from "next/router";
 import { useMutation } from "@apollo/client";
 import { CREATE_USEDITEM } from "./register.queries";
 import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
   productName: yup.string().required("상품명을 입력하세요"),
@@ -24,15 +24,16 @@ const schema = yup.object().shape({
 
 export default function Register() {
   const [createUseditem] = useMutation(CREATE_USEDITEM);
+  const router = useRouter();
 
-  const { handleSubmit, register, formState } = useForm({
+  const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
   async function onSubmit(data) {
     try {
-      await createUseditem({
+      const result = await createUseditem({
         variables: {
           createUseditemInput: {
             name: data.productName,
@@ -43,10 +44,16 @@ export default function Register() {
         },
       });
       Modal.info({ content: "게시글을 등록합니다." });
+      router.push(`/detail/${result.data.createUseditem._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
   }
+
+  const onChangeExplanation = (value) => {
+    setValue("productExplanation", value);
+    trigger("productExplanation");
+  };
 
   return (
     <RegisterUI
@@ -55,6 +62,7 @@ export default function Register() {
       onSubmit={onSubmit}
       errors={formState.errors}
       isActive={formState.isValid}
+      onChangeExplanation={onChangeExplanation}
     />
   );
 }
