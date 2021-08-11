@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   productExplanation: yup
     .string()
     .required("상품의 설명을 입력해주세요")
-    .min(50, "50자 이상 입력해주세요"),
+    .min(30, "30자 이상 입력해주세요"),
   price: yup
     .number()
     .typeError("가격은 숫자로 입력해 주세요")
@@ -51,7 +51,8 @@ export default function Register() {
   }
 
   const onChangeExplanation = (value) => {
-    setValue("productExplanation", value);
+    const isBlank = "<p><br></p>";
+    setValue("productExplanation", value === isBlank ? "" : value);
     trigger("productExplanation");
   };
 

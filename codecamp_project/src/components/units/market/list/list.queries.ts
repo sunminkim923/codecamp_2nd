@@ -6,6 +6,22 @@ export const FETCH_USEDITEMS = gql`
       name
       contents
       price
+      images
+      pickedCount
+      tags
+    }
+  }
+`;
+
+export const FETCH_USEDITEMS_OF_THE_BEST = gql`
+  query fetchUseditemsOfTheBest {
+    fetchUseditemsOfTheBest {
+      name
+      contents
+      price
+      images
+      pickedCount
+      tags
     }
   }
 `;

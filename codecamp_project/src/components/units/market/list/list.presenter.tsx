@@ -1,12 +1,20 @@
-import withAuth from "../../../commons/hocs/withAuth";
-import { useQuery } from "@apollo/client";
-import { FETCH_USEDITEMS } from "./list.queries";
+import ViewedProduct from "../../../commons/viewed-product/viewedproduct";
 import {
   PageWrapper,
   Wrapper,
   Title,
   BestProductWrapper,
   BestProduct,
+  BestProductImg,
+  BestProductInfoWrapper,
+  BestProductName,
+  BestProductInfoBottomWrapper,
+  BestProductCharacterWrapper,
+  BestProductTags,
+  BestProductPrice,
+  BestProductHeartPointWrapper,
+  BestProductHeart,
+  BestProductHeartPoint,
   ProductListWrapper,
   TopWrapper,
   TextWrapper,
@@ -31,18 +39,38 @@ import {
   SubmitButton,
 } from "./list.styles";
 
-function MarketListUI() {
-  const { data } = useQuery(FETCH_USEDITEMS);
-
+export default function MarketListUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
         <Title>베스트상품</Title>
         <BestProductWrapper>
-          <BestProduct></BestProduct>
-          <BestProduct></BestProduct>
-          <BestProduct></BestProduct>
-          <BestProduct></BestProduct>
+          {props.newData?.fetchUseditemsOfTheBest.map((data, index) => (
+            <BestProduct ket={data.index}>
+              <BestProductImg
+                src={
+                  data.images[0]
+                    ? `https://storage.googleapis.com/${data.images[0]}`
+                    : " "
+                }
+              />
+              <BestProductInfoWrapper>
+                <BestProductName>{data.name}</BestProductName>
+                <BestProductInfoBottomWrapper>
+                  <BestProductCharacterWrapper>
+                    <BestProductTags>{data.tags}</BestProductTags>
+                    <BestProductPrice>{data.price} 원</BestProductPrice>
+                  </BestProductCharacterWrapper>
+                  <BestProductHeartPointWrapper>
+                    <BestProductHeart src="/images/heart-small.svg" />
+                    <BestProductHeartPoint>
+                      {data.pickedCount}
+                    </BestProductHeartPoint>
+                  </BestProductHeartPointWrapper>
+                </BestProductInfoBottomWrapper>
+              </BestProductInfoWrapper>
+            </BestProduct>
+          ))}
         </BestProductWrapper>
         <ProductListWrapper>
           <TopWrapper>
@@ -56,51 +84,43 @@ function MarketListUI() {
               <SearchButton>검색</SearchButton>
             </SearchWrapper>
           </TopWrapper>
-          <ProductWrapper>
-            <ProductImg />
-            <ProductExplanationWrapper>
-              <ContentsWrapper>
-                <ProductName>삼성전자 갤럭시탭A 10.1</ProductName>
-                <ProductCharacter>2019 LTE 32GB</ProductCharacter>
-                <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
-                <ProfileWrapper>
-                  <ProfileImg src="/images/profile-small.svg" />
-                  판매자
-                  <HeartPoint src="/images/heart-small.svg" /> 20
-                </ProfileWrapper>
-              </ContentsWrapper>
-              <PriceWrapper>
-                <Price>200000원</Price>
-              </PriceWrapper>
-            </ProductExplanationWrapper>
-          </ProductWrapper>
-          {data?.fetchUseditems.map((data, index) => (
-            <ProductWrapper>
-              <ProductImg />
+          {props.data?.fetchUseditems.map((data, index) => (
+            <ProductWrapper key={index}>
+              <ProductImg
+                src={
+                  data.images[0]
+                    ? `https://storage.googleapis.com/${data.images[0]}`
+                    : " "
+                }
+              />
               <ProductExplanationWrapper>
                 <ContentsWrapper>
                   <ProductName>{data.name}</ProductName>
                   <ProductCharacter>{data.remarks}</ProductCharacter>
-                  <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
+                  <ProductTag>{data.tags}</ProductTag>
                   <ProfileWrapper>
                     <ProfileImg src="/images/profile-small.svg" />
                     판매자
-                    <HeartPoint src="/images/heart-small.svg" /> 20
+                    <HeartPoint src="/images/heart-small.svg" />
+                    {data.pickedCount}
                   </ProfileWrapper>
                 </ContentsWrapper>
                 <PriceWrapper>
-                  <Price>{data.price}</Price>
+                  <Price>{data.price} 원</Price>
                 </PriceWrapper>
               </ProductExplanationWrapper>
             </ProductWrapper>
           ))}
           <SubmitButtonWrapper>
-            <SubmitButton>상품등록하기</SubmitButton>
+            <SubmitButton onClick={props.onClickSubmit}>
+              상품등록하기
+            </SubmitButton>
           </SubmitButtonWrapper>
         </ProductListWrapper>
       </Wrapper>
+      <ViewedProduct></ViewedProduct>
     </PageWrapper>
   );
 }
 
-export default withAuth(MarketListUI);
+// export default withAuth(MarketListUI);

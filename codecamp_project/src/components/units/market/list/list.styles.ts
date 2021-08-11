@@ -4,11 +4,11 @@ export const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 80px;
+  padding-bottom: 50px;
 `;
 
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 2000px;
 `;
 
 export const Title = styled.div`
@@ -28,10 +28,73 @@ export const BestProduct = styled.div`
   height: 391px;
   border-radius: 20px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  :hover {
+    background-color: #ffd600;
+    transition: 0.5s;
+  }
+  cursor: pointer;
 `;
 
-export const ProductListWrapper = styled.div`\
- padding-top: 92px;
+export const BestProductImg = styled.img`
+  width: 242px;
+  height: 242px;
+  background-color: #f2f2f2;
+`;
+
+export const BestProductInfoWrapper = styled.div`
+  padding-top: 20px;
+  width: 242px;
+`;
+
+export const BestProductName = styled.div`
+  width: 240px;
+  font-size: 18px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const BestProductInfoBottomWrapper = styled.div`
+  width: 242px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const BestProductCharacterWrapper = styled.div``;
+
+export const BestProductTags = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  color: #4f4f4f;
+`;
+
+export const BestProductPrice = styled.div`
+  padding-top: 12px;
+  font-size: 18px;
+  font-weight: 700;
+`;
+
+export const BestProductHeartPointWrapper = styled.div`
+  padding-top: 5px;
+`;
+
+export const BestProductHeart = styled.img``;
+
+export const BestProductHeartPoint = styled.div`
+  padding-top: 5px;
+  font-size: 16px;
+
+  font-weight: 400;
+`;
+
+export const ProductListWrapper = styled.div`
+  padding-top: 92px;
+  padding-bottom: 80px;
 `;
 
 export const TopWrapper = styled.div`
@@ -88,6 +151,7 @@ export const ProductWrapper = styled.div`
   padding-top: 28px;
   display: flex;
   padding-bottom: 28px;
+  cursor: pointer;
 `;
 
 export const ProductImg = styled.img`
