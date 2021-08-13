@@ -57,6 +57,7 @@ export default function BoardWrite(props) {
       setActive(true);
     }
   }
+
   function onClickSearch() {
     setIsClick(true);
   }
@@ -79,6 +80,7 @@ export default function BoardWrite(props) {
       setFileUrls(newFileUrls);
     };
   }
+
   function onClickUpload01() {
     fileRef.current?.click();
   }

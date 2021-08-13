@@ -16,6 +16,7 @@ import {
   CheckboxWrapper,
 } from "./login.styles";
 import Payment from "../../../commons/payment/payment";
+import ImageUpload from "../../../commons/imageupload/imageupload";
 
 export default function LoginUI(props) {
   return (
@@ -53,6 +54,7 @@ export default function LoginUI(props) {
             <Join onClick={props.onClickSignUp}>회원가입</Join>
           </OnclickWrapper>
           <Payment />
+          <ImageUpload />
         </Wrapper>
       </PageWrapper>
     </>

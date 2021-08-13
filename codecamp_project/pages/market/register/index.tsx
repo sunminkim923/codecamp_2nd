@@ -3,3 +3,5 @@ import Register from "../../../src/components/units/market/register/register.con
 export default function RegisterPage() {
   return <Register />;
 }
+
+// export default withAuth

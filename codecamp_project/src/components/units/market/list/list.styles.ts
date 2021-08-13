@@ -5,10 +5,12 @@ export const PageWrapper = styled.div`
   justify-content: center;
   padding-top: 80px;
   padding-bottom: 50px;
+  padding-left: 212px;
 `;
 
 export const Wrapper = styled.div`
   width: 1200px;
+  margin-right: 20px;
 `;
 
 export const Title = styled.div`
@@ -224,4 +226,10 @@ export const SubmitButton = styled.button`
   background-color: white;
   font-size: 16px;
   font-weight: 500;
+  border-radius: 7px;
+  :hover {
+    background-color: #ffd600;
+    transition: 0.5s;
+  }
+  cursor: pointer;
 `;
