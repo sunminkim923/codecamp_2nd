@@ -1,4 +1,5 @@
 import ViewedProduct from "../../../commons/viewed-product/viewedproduct";
+import PagenationPage from "../../../commons/pagenations/pagenations.container";
 import {
   PageWrapper,
   Wrapper,
@@ -94,7 +95,7 @@ export default function MarketListUI(props) {
                 }
               />
               <ProductExplanationWrapper>
-                <ContentsWrapper>
+                <ContentsWrapper onClick={props.onClickProduct}>
                   <ProductName>{data.name}</ProductName>
                   <ProductCharacter>{data.remarks}</ProductCharacter>
                   <ProductTag>{data.tags}</ProductTag>
@@ -112,6 +113,7 @@ export default function MarketListUI(props) {
             </ProductWrapper>
           ))}
           <SubmitButtonWrapper>
+            <PagenationPage />
             <SubmitButton onClick={props.onClickSubmit}>
               상품등록하기
             </SubmitButton>
