@@ -128,6 +128,15 @@ export const SubmitButton = styled.button`
   background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
 `;
 
+export const EditButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  background-color: #bdbdbd;
+  margin-top: 80px;
+  background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
+`;
+
 export const Error = styled.div`
   font-size: 12px;
   color: red;

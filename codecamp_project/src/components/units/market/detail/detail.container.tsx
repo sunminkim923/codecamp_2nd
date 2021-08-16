@@ -9,5 +9,20 @@ export default function productDetail() {
     variables: { useditemId: router.query.id },
   });
 
-  return <ProductDetailUI data={data} />;
+  const onClickList = () => {
+    router.push("/market/list");
+  };
+
+  const onClickEdit = () => {
+    router.push(`../../../../../pages/market/detail/${router.query.id}/edit`);
+    // router.push(`/detail/${router.query.id}/edit/`);
+  };
+
+  return (
+    <ProductDetailUI
+      data={data}
+      onClickList={onClickList}
+      onClickEdit={onClickEdit}
+    />
+  );
 }

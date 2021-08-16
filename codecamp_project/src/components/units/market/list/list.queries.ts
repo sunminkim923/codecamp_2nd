@@ -10,6 +10,7 @@ export const FETCH_USEDITEMS = gql`
       images
       pickedCount
       tags
+      remarks
     }
   }
 `;
@@ -24,6 +25,7 @@ export const FETCH_USEDITEMS_OF_THE_BEST = gql`
       images
       pickedCount
       tags
+      remarks
     }
   }
 `;

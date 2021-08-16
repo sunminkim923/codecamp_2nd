@@ -1,3 +1,4 @@
+import MybasketPage from "../mybasket/mybasket.container";
 import {
   PageWrapper,
   UserInfoWrapper,
@@ -42,6 +43,7 @@ export default function MypageUI() {
             <MyProfile>내 프로필</MyProfile>
           </MyProfileWrapper>
         </UserInfoWrapper>
+        <MybasketPage />
       </PageWrapper>
     </>
   );

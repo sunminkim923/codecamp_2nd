@@ -95,8 +95,6 @@ export const ImageWrapper = styled.div`
 export const ProductExplanation = styled.div`
   margin-top: 80px;
   width: 100%;
-  height: 150px;
-  border: 1px solid #bdbdbd;
   font-size: 18px;
   font-weight: 500;
 `;
@@ -129,6 +127,7 @@ export const ListButton = styled.button`
   border: none;
   margin-right: 12px;
   background-color: #bdbdbd;
+  cursor: pointer;
 `;
 
 export const EditButton = styled.button`
@@ -137,4 +136,5 @@ export const EditButton = styled.button`
   border: none;
   margin-left: 12px;
   background-color: #ffd600;
+  cursor: pointer;
 `;

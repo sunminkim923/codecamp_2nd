@@ -24,6 +24,7 @@ import {
   Text02,
   SubmitWrapper,
   SubmitButton,
+  EditButton,
   Error,
 } from "./register.styles";
 
@@ -32,7 +33,11 @@ export default function RegisterUI(props) {
     <PageWrapper>
       <Wrapper>
         <Title>상품 등록하기</Title>
-        <form onSubmit={props.handleSubmit(props.onSubmit)}>
+        <form
+          onSubmit={props.handleSubmit(
+            !props.isEdit ? props.onSubmit : props.onEdit
+          )}
+        >
           <InputWrapper>
             <Text>상품명</Text>
             <InputFullSize
@@ -120,9 +125,16 @@ export default function RegisterUI(props) {
             <Text02>사진 2</Text02>
           </RadioWrapper>
           <SubmitWrapper>
-            <SubmitButton type="submit" isActive={props.isActive}>
-              등록하기
-            </SubmitButton>
+            {!props.isEdit && (
+              <SubmitButton type="submit" isActive={props.isActive}>
+                등록하기
+              </SubmitButton>
+            )}
+            {props.isEdit && (
+              <EditButton type="submit" isActive={props.isActive}>
+                수정하기
+              </EditButton>
+            )}
           </SubmitWrapper>
         </form>
       </Wrapper>

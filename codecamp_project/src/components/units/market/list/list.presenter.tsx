@@ -11,7 +11,7 @@ import {
   BestProductName,
   BestProductInfoBottomWrapper,
   BestProductCharacterWrapper,
-  BestProductTags,
+  BestProductRemarks,
   BestProductPrice,
   BestProductHeartPointWrapper,
   BestProductHeart,
@@ -47,7 +47,7 @@ export default function MarketListUI(props) {
         <Title>베스트상품</Title>
         <BestProductWrapper>
           {props.newData?.fetchUseditemsOfTheBest.map((data, index) => (
-            <BestProduct ket={data.index}>
+            <BestProduct key={data._id}>
               <BestProductImg
                 src={
                   data.images[0]
@@ -55,11 +55,13 @@ export default function MarketListUI(props) {
                     : " "
                 }
               />
-              <BestProductInfoWrapper>
+              <BestProductInfoWrapper
+                onClick={() => props.onClickBestProduct(data._id)}
+              >
                 <BestProductName>{data.name}</BestProductName>
                 <BestProductInfoBottomWrapper>
                   <BestProductCharacterWrapper>
-                    <BestProductTags>{data.tags}</BestProductTags>
+                    <BestProductRemarks>{data.remarks}</BestProductRemarks>
                     <BestProductPrice>{data.price} 원</BestProductPrice>
                   </BestProductCharacterWrapper>
                   <BestProductHeartPointWrapper>
@@ -85,8 +87,8 @@ export default function MarketListUI(props) {
               <SearchButton>검색</SearchButton>
             </SearchWrapper>
           </TopWrapper>
-          {props.data?.fetchUseditems.map((data, index) => (
-            <ProductWrapper key={index}>
+          {props.data?.fetchUseditems.map((data) => (
+            <ProductWrapper key={data._id}>
               <ProductImg
                 src={
                   data.images[0]
@@ -94,8 +96,10 @@ export default function MarketListUI(props) {
                     : " "
                 }
               />
-              <ProductExplanationWrapper>
-                <ContentsWrapper onClick={props.onClickProduct}>
+              <ProductExplanationWrapper
+                onClick={() => props.onClickProduct(data._id)}
+              >
+                <ContentsWrapper>
                   <ProductName>{data.name}</ProductName>
                   <ProductCharacter>{data.remarks}</ProductCharacter>
                   <ProductTag>{data.tags}</ProductTag>
@@ -113,7 +117,7 @@ export default function MarketListUI(props) {
             </ProductWrapper>
           ))}
           <SubmitButtonWrapper>
-            <PagenationPage />
+            <PagenationPage refetch={props.refetch} />
             <SubmitButton onClick={props.onClickSubmit}>
               상품등록하기
             </SubmitButton>

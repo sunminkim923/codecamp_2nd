@@ -63,23 +63,23 @@ export default function ProductDetailUI(props) {
           <ProductImageWrapper>
             <ImageWrapper></ImageWrapper>
           </ProductImageWrapper>
-          <ProductExplanation>
-            {props.data?.fetchUseditem.contents}
-          </ProductExplanation>
-          <ProductTag>#삼성전자 #갤럭시탭 #갓성비</ProductTag>
+          <ProductExplanation
+            dangerouslySetInnerHTML={{
+              __html: props.data?.fetchUseditem.contents,
+            }}
+          ></ProductExplanation>
+          <ProductTag>{props.data?.fetchUseditem.tags}</ProductTag>
           <UnderLine />
           <Map />
           <UnderLine />
           <ButtonWrapper>
-            <ListButton>목록으로</ListButton>
-            <EditButton>수정하기</EditButton>
+            <ListButton onClick={props.onClickList}>목록으로</ListButton>
+            <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
           </ButtonWrapper>
         </Wrapper>
       </PageWrapper>
       <CommentWrite />
-      <CommentWrite />
       <CommentList />
-
       <ReComment />
     </>
   );

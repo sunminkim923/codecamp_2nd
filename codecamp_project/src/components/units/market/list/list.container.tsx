@@ -12,8 +12,12 @@ export default function MarketList() {
     router.push("./register/");
   };
 
-  const onClickProduct = () => {
-    router.push(`./detail/${data._id}`);
+  const onClickBestProduct = (data) => {
+    router.push(`./detail/${data}`);
+  };
+
+  const onClickProduct = (data) => {
+    router.push(`./detail/${data}`);
   };
 
   return (
@@ -22,6 +26,7 @@ export default function MarketList() {
       newData={newData}
       onClickSubmit={onClickSubmit}
       retetch={refetch}
+      onClickBestProduct={onClickBestProduct}
       onClickProduct={onClickProduct}
     />
   );

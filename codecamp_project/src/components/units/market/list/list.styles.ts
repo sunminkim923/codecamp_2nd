@@ -69,7 +69,8 @@ export const BestProductInfoBottomWrapper = styled.div`
 
 export const BestProductCharacterWrapper = styled.div``;
 
-export const BestProductTags = styled.div`
+export const BestProductRemarks = styled.div`
+  height: 18px;
   font-size: 12px;
   font-weight: 500;
   color: #4f4f4f;
@@ -83,9 +84,16 @@ export const BestProductPrice = styled.div`
 
 export const BestProductHeartPointWrapper = styled.div`
   padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const BestProductHeart = styled.img``;
+export const BestProductHeart = styled.img`
+  text-align: end;
+  width: 20px;
+  height: 20px;
+`;
 
 export const BestProductHeartPoint = styled.div`
   padding-top: 5px;

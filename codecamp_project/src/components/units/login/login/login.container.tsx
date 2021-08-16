@@ -6,6 +6,8 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "./login.queries";
 import { Modal } from "antd";
 import router from "next/router";
+import { GlobalContext } from "../../../../../pages/_app";
+import { useContext } from "react";
 
 const schema = yup.object().shape({
   email: yup
@@ -16,6 +18,8 @@ const schema = yup.object().shape({
 });
 
 export default function Login() {
+  const { setAccessToken } = useContext(GlobalContext);
+
   const { handleSubmit, register, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -24,12 +28,13 @@ export default function Login() {
 
   async function onSubmit(data) {
     try {
-      await loginUser({
+      const result = await loginUser({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
+      setAccessToken(result.data?.loginUser.accessToken);
       Modal.info({ content: "반갑습니다^^" });
       router.push("./market/list/");
     } catch (error) {

@@ -5,6 +5,7 @@ export const PageWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   padding-top: 80px;
+  padding-bottom: 80px;
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -12,6 +13,7 @@ export const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 40px;
 `;
 
 export const Title = styled.div`

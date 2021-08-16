@@ -3,7 +3,7 @@ import RegisterUI from "./register.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@apollo/client";
-import { CREATE_USEDITEM } from "./register.queries";
+import { CREATE_USEDITEM, UPDATE_USEDITEM } from "./register.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 
@@ -24,6 +24,7 @@ const schema = yup.object().shape({
 
 export default function Register() {
   const [createUseditem] = useMutation(CREATE_USEDITEM);
+  const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const router = useRouter();
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
@@ -44,11 +45,24 @@ export default function Register() {
         },
       });
       Modal.info({ content: "게시글을 등록합니다." });
-      router.push(`/detail/${result.data.createUseditem._id}`);
+      router.push(`./detail/${result.data?.createUseditem._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
   }
+
+  const onEdit = (data) => {
+    updateUseditem({
+      variables: {
+        updateUseditemInput: {
+          name: data.productName,
+          remarks: data.productCharacter,
+          contents: data.productExplanation,
+          price: data.price,
+        },
+      },
+    });
+  };
 
   const onChangeExplanation = (value) => {
     const isBlank = "<p><br></p>";
@@ -61,6 +75,7 @@ export default function Register() {
       handleSubmit={handleSubmit}
       register={register}
       onSubmit={onSubmit}
+      onEdit={onEdit}
       errors={formState.errors}
       isActive={formState.isValid}
       onChangeExplanation={onChangeExplanation}
