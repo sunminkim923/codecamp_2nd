@@ -17,6 +17,7 @@ export const UserInfoWrapper = styled.div`
 export const Title = styled.div`
   font-size: 24px;
   font-weight: 700;
+  text-align: center;
 `;
 
 export const ProfileImg = styled.img`

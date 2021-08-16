@@ -27,11 +27,11 @@ export default function MypageUI() {
           <UserName>노원두</UserName>
           <PointWrapper>
             <PigIcon src="/images/pig.png/" />
-            <Point>100,000P</Point>
+            <Point>10,000P</Point>
           </PointWrapper>
           <MyBasketWrapper>
             <BasketIcon src="/images/basket.png/" />
-            <MyBasket>내장터</MyBasket>
+            <MyBasket>내 장터</MyBasket>
           </MyBasketWrapper>
           <MyPointWrapper>
             <PigIcon src="/images/pig.png/" />
