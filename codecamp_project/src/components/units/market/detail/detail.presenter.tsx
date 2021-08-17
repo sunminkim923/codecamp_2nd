@@ -61,7 +61,16 @@ export default function ProductDetailUI(props) {
           </ProductTitleWrapper>
           <Price>{props.data?.fetchUseditem.price}원</Price>
           <ProductImageWrapper>
-            <ImageWrapper></ImageWrapper>
+            {props.data?.fetchUseditem.map((data) => (
+              <ImageWrapper
+                key={data.id}
+                src={
+                  data.imges
+                    ? `https://storage.googleapis.com/${data.images}`
+                    : ""
+                }
+              />
+            ))}
           </ProductImageWrapper>
           <ProductExplanation
             dangerouslySetInnerHTML={{

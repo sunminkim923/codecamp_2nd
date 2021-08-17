@@ -4,8 +4,8 @@ import { ChangeEvent, useContext, useState } from "react";
 import { GlobalContext } from "../_app";
 
 const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+  mutation loginUserExample($email: String!, $password: String!) {
+    loginUserExample(email: $email, password: $password) {
       accessToken
     }
   }
@@ -31,9 +31,10 @@ export default function SignupPage() {
           password: password,
         },
       });
-      setAccessToken(result.data?.loginUser.accessToken || "");
+      setAccessToken(result.data?.loginUserExample.accessToken || "");
+      localStorage.setItem("refreshToken", "true");
       // router.push("/22-login-success/")
-      router.push("/23-hoc");
+      router.push("/22-login-success");
     } catch (error) {
       alert(error.message);
     }

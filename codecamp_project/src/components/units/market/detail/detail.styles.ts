@@ -86,7 +86,7 @@ export const ProductImageWrapper = styled.div`
   justify-content: center;
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.img`
   width: 504px;
   height: 482px;
   background-color: #bdbdbd;

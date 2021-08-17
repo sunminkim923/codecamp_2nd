@@ -11,6 +11,18 @@ const UPLOAD_FILE = gql`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Images = styled.img`
+  width: 180px;
+  height: 180px;
+
+  /* border: 1px solid black; */
+`;
+
 const Button = styled.button`
   width: 180px;
   height: 180px;
@@ -18,11 +30,13 @@ const Button = styled.button`
   background-color: #bdbdbd;
 `;
 
-const FileInput = styled.input``;
+const FileInput = styled.input`
+  display: none;
+`;
 
-export default function ImageUpload(props) {
-  const [imageUrl, setImageUrl] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+export default function ImageUpload() {
+  const [imageUrl, setImageUrl] = useState();
+  const [fileUrls, setFileUrls] = useState([""]);
 
   const fileRef = useRef();
   const uploadFile = useMutation(UPLOAD_FILE);
@@ -44,13 +58,14 @@ export default function ImageUpload(props) {
   };
 
   return (
-    <>
-      <Button onClick={onClickUpload}>
-        <div>upload</div>
+    <Wrapper>
+      <Images src={imageUrl} />
+      <Button type="button" onClick={onClickUpload}>
+        <di>upload</di>
         <div>+</div>
       </Button>
 
       <FileInput type="file" onChange={onChangeFile} ref={fileRef} />
-    </>
+    </Wrapper>
   );
 }

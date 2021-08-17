@@ -108,14 +108,7 @@ export default function RegisterUI(props) {
           </PositionWrapper>
           <Text>사진첨부</Text>
           <ImageWrapper>
-            <ImageUpload type="button">
-              <div>+</div>
-              <div>Upload</div>
-            </ImageUpload>
-            <ImageUpload type="button">
-              <div>+</div>
-              <div>Upload</div>
-            </ImageUpload>
+            <ImageUpload />
           </ImageWrapper>
           <RadioWrapper>
             <Text>메인사진 설정</Text>

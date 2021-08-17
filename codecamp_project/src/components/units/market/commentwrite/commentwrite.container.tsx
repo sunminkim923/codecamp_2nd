@@ -15,12 +15,13 @@ export default function CommentWrite() {
 
   const onClickRegister = async (data) => {
     try {
-      await createUseditemQuestion({
+      const result = await createUseditemQuestion({
         variables: {
-          createUseditemQuestionInput: contents,
+          createUseditemQuestionInput: { contents: contents },
           useditemId: router.query.id,
         },
       });
+      console.log(result.data.createUseditemQuestion.contents);
       alert("댓글을 등록합니다.");
       console.log(data);
     } catch (error) {

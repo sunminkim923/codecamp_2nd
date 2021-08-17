@@ -34,7 +34,8 @@ export default function Login() {
           password: data.password,
         },
       });
-      setAccessToken(result.data?.loginUser.accessToken);
+      setAccessToken(result.data?.loginUser.accessToken || "");
+      localStorage.setItem("refreshToken", "true");
       Modal.info({ content: "반갑습니다^^" });
       router.push("./market/list/");
     } catch (error) {
