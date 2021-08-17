@@ -39,7 +39,9 @@ export default function ImageUpload() {
   const [fileUrls, setFileUrls] = useState([""]);
 
   const fileRef = useRef();
-  const uploadFile = useMutation(UPLOAD_FILE);
+  // const uploadFile = useMutation(UPLOAD_FILE);
+
+  const images = [""];
 
   const onClickUpload = () => {
     fileRef.current?.click();
@@ -55,13 +57,16 @@ export default function ImageUpload() {
       newFileUrls[event.target.id] = file;
       setFileUrls(newFileUrls);
     };
+    images.push("");
   };
 
   return (
     <Wrapper>
-      <Images src={imageUrl} />
+      {images.map(() => (
+        <Images src={imageUrl} />
+      ))}
       <Button type="button" onClick={onClickUpload}>
-        <di>upload</di>
+        <div>upload</div>
         <div>+</div>
       </Button>
 

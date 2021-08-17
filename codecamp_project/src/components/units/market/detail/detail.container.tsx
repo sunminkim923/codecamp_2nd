@@ -14,7 +14,7 @@ export default function productDetail() {
   };
 
   const onClickEdit = () => {
-    router.push(`../../../../../pages/market/detail/${router.query.id}/edit`);
+    router.push(`/market/detail/${router.query.id}/edit`);
     // router.push(`/detail/${router.query.id}/edit/`);
   };
 

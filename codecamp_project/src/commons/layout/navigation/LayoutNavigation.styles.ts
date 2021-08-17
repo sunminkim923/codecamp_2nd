@@ -2,17 +2,19 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 52px;
+  height: 70px;
   background-color: #bdbdbd;
   display: flex;
   justify-content: center;
 `;
 
 export const Header = styled.div`
-  width: 600px;
-  border: 1px solid red;
+  width: 900px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  letter-spacing: 3px;
 `;
 
 export const Main = styled.div`
@@ -41,5 +43,5 @@ export const Mypage = styled.div`
 export const HeightLine = styled.div`
   width: 1px;
   height: 30px;
-  border: 1px solid blue;
+  border: 1px solid black;
 `;

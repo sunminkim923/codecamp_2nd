@@ -26,9 +26,9 @@ import {
   ListButton,
   EditButton,
 } from "./detail.styles";
-import CommentWrite from "../commentwrite/commentwrite.container";
-import CommentList from "../commentlist/commentlist.container";
-import ReComment from "../recomment/recomment.contatiner";
+import CommentWrite from "../../../commons/comment/commentwrite/commentwrite.container";
+import CommentList from "../../../commons/comment/commentlist/commentlist.container";
+import ReComment from "../../../commons/comment/recomment/recomment.contatiner";
 
 export default function ProductDetailUI(props) {
   return (
@@ -61,14 +61,10 @@ export default function ProductDetailUI(props) {
           </ProductTitleWrapper>
           <Price>{props.data?.fetchUseditem.price}원</Price>
           <ProductImageWrapper>
-            {props.data?.fetchUseditem.map((data) => (
+            {props.data?.fetchUseditem.images.map((data) => (
               <ImageWrapper
-                key={data.id}
-                src={
-                  data.imges
-                    ? `https://storage.googleapis.com/${data.images}`
-                    : ""
-                }
+                key={data}
+                src={data ? `https://storage.googleapis.com/${data}` : ""}
               />
             ))}
           </ProductImageWrapper>

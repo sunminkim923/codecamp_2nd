@@ -22,7 +22,7 @@ const schema = yup.object().shape({
   addressDetail: yup.string().required("상세주소를 입력하세요"),
 });
 
-export default function Register() {
+export default function Register(props) {
   const [createUseditem] = useMutation(CREATE_USEDITEM);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const router = useRouter();
@@ -79,6 +79,8 @@ export default function Register() {
       errors={formState.errors}
       isActive={formState.isValid}
       onChangeExplanation={onChangeExplanation}
+      isEdit={props.isEdit}
+      data={props.data}
     />
   );
 }

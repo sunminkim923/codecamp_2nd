@@ -83,12 +83,14 @@ export const Price = styled.div`
 export const ProductImageWrapper = styled.div`
   padding-top: 80px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const ImageWrapper = styled.img`
   width: 504px;
   height: 482px;
+  margin: 15px 0px;
   background-color: #bdbdbd;
 `;
 

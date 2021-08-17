@@ -54,7 +54,6 @@ export default function LoginUI(props) {
             <Join onClick={props.onClickSignUp}>회원가입</Join>
           </OnclickWrapper>
           <Payment />
-          <ImageUpload />
         </Wrapper>
       </PageWrapper>
     </>

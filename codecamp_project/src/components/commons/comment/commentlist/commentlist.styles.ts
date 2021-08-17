@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 80px;
 `;
 
