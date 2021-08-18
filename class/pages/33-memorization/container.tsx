@@ -13,6 +13,19 @@ export default function Container() {
   //   let randomNumber = useMemo(() => Math.random(), []);
   //   console.log(randomNumber);
 
+  let aaa = useMemo( () => {
+
+
+ // 함수 전체를 기억할 수도 있다. 
+ // useMemo의 응용, 실지로는 사용하지 않음 
+    return () => {
+        console.log("let 클릭");
+        console.log(countLet + 1);
+        countLet = countLet + 1;
+      }
+
+  }.[] )
+
   const onClickCountLet = useCallback(() => {
     console.log("let 클릭");
     console.log(countLet + 1);

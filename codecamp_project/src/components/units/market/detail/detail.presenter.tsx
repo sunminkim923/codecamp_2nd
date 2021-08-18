@@ -55,8 +55,11 @@ export default function ProductDetailUI(props) {
               <Product>{props.data?.fetchUseditem.name}</Product>
             </TitleWrapper>
             <LikePointWrapper>
-              <LikeHeart src="/images/heart.svg" />
-              <LikePoint>20</LikePoint>
+              <LikeHeart
+                src="/images/heart.svg"
+                onClick={props.onClickToggle}
+              />
+              <LikePoint>{props.data?.fetchUseditem.pickedCount}</LikePoint>
             </LikePointWrapper>
           </ProductTitleWrapper>
           <Price>{props.data?.fetchUseditem.price}원</Price>

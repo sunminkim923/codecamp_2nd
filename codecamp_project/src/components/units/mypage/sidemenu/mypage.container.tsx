@@ -1,5 +1,5 @@
-import MypageUI from "./mypage.presenter";
+import SideMenuUI from "./mypage.presenter";
 
-export default function Mypage() {
-  return <MypageUI />;
+export default function SideMenu() {
+  return <SideMenuUI />;
 }

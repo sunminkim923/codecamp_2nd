@@ -25,6 +25,7 @@ import { onError } from "@apollo/client/link/error";
 //     storageBucket: "codecamp-01.appspot.com",
 //   });
 // }
+
 export const GlobalContext = createContext({});
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
@@ -60,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
     uri: "https://backend02.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${accessToken || null}`,
+      authorization: `Bearer ${accessToken}`,
     },
     credentials: "include",
   });

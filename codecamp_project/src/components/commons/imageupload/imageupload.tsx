@@ -3,14 +3,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useRef } from "react";
 
-const UPLOAD_FILE = gql`
-  mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      url
-    }
-  }
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,14 +26,13 @@ const FileInput = styled.input`
   display: none;
 `;
 
-export default function ImageUpload() {
-  const [imageUrl, setImageUrl] = useState();
+export default function ImageUpload(props) {
+  const [imageUrl, setImageUrl] = useState([]);
   const [fileUrls, setFileUrls] = useState([""]);
+  // const [images, setImages ] = useState([""])
 
   const fileRef = useRef();
   // const uploadFile = useMutation(UPLOAD_FILE);
-
-  const images = [""];
 
   const onClickUpload = () => {
     fileRef.current?.click();
@@ -52,19 +43,20 @@ export default function ImageUpload() {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (data) => {
-      setImageUrl(data.target?.result);
+      setImageUrl((prev) => [...prev, data.target?.result]);
       const newFileUrls = [...fileUrls];
       newFileUrls[event.target.id] = file;
       setFileUrls(newFileUrls);
     };
-    images.push("");
+    props.setImageUrl = file;
   };
 
   return (
     <Wrapper>
-      {images.map(() => (
-        <Images src={imageUrl} />
+      {imageUrl.map((data) => (
+        <Images src={data} />
       ))}
+
       <Button type="button" onClick={onClickUpload}>
         <div>upload</div>
         <div>+</div>

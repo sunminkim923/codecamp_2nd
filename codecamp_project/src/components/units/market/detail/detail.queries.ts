@@ -10,6 +10,15 @@ export const FETCH_USEDITEM = gql`
       price
       tags
       images
+      pickedCount
+    }
+  }
+`;
+
+export const TOGGLE_USEDITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId) {
+      _id
     }
   }
 `;

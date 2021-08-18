@@ -66,9 +66,16 @@ export const Product = styled.div`
 
 export const LikePointWrapper = styled.div`
   padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const LikeHeart = styled.img``;
+export const LikeHeart = styled.img`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+`;
 
 export const LikePoint = styled.div`
   font-size: 18px;

@@ -45,6 +45,7 @@ export default function RegisterUI(props) {
               type="text"
               register={{ ...props.register("productName") }}
               errorMessage={props.errors.productName?.message}
+              defaultvalue={props.data?.fetchUseditem.name}
             />
           </InputWrapper>
           <InputWrapper>
@@ -108,7 +109,7 @@ export default function RegisterUI(props) {
           </PositionWrapper>
           <Text>사진첨부</Text>
           <ImageWrapper>
-            <ImageUpload />
+            <ImageUpload setImageUrl={props.setImageUrl} />
           </ImageWrapper>
           <RadioWrapper>
             <Text>메인사진 설정</Text>

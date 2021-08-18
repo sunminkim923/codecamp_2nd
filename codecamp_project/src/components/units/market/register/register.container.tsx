@@ -2,10 +2,16 @@ import { useForm } from "react-hook-form";
 import RegisterUI from "./register.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@apollo/client";
-import { CREATE_USEDITEM, UPDATE_USEDITEM } from "./register.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  CREATE_USEDITEM,
+  UPDATE_USEDITEM,
+  UPLOAD_FILE,
+} from "./register.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { FETCH_USEDITEM } from "../detail/detail.queries";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   productName: yup.string().required("상품명을 입력하세요"),
@@ -23,9 +29,15 @@ const schema = yup.object().shape({
 });
 
 export default function Register(props) {
+  const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USEDITEM);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
-  const router = useRouter();
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [imageUrl, setImageUrl] = useState();
+
+  const { data } = useQuery(FETCH_USEDITEM, {
+    variables: { useditemId: router.query.id },
+  });
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -33,7 +45,23 @@ export default function Register(props) {
   });
 
   async function onSubmit(data) {
+    //upload file
+    //promise all
+    // 자식 컴포넌트의 파일 스테이트 값을 받아와야 한다.
     try {
+      // const resultFiles = await Promise.all([
+      //   uploadFile({
+      //     variables: {
+      //       file: {
+      //         url: imageUrl,
+      //       },
+      //     },
+      //   }),
+      // ]);
+      // const image1 = resultFiles[0].data.uploadFile.url;
+      // const image2 = resultFiles[1].data.uploadFile.url;
+      // const image3 = resultFiles[2].data.uploadFile.url;
+
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
@@ -41,6 +69,7 @@ export default function Register(props) {
             remarks: data.productCharacter,
             contents: data.productExplanation,
             price: data.price,
+            // images: [image1, image2, image3],
           },
         },
       });
@@ -51,17 +80,23 @@ export default function Register(props) {
     }
   }
 
-  const onEdit = (data) => {
-    updateUseditem({
-      variables: {
-        updateUseditemInput: {
-          name: data.productName,
-          remarks: data.productCharacter,
-          contents: data.productExplanation,
-          price: data.price,
+  const onEdit = async (data) => {
+    try {
+      const result = await updateUseditem({
+        variables: {
+          useditemId: router.query.id,
+          updateUseditemInput: {
+            name: data.productName,
+            remarks: data.productCharacter,
+            contents: data.productExplanation,
+            price: data.price,
+          },
         },
-      },
-    });
+      });
+      router.push(`./detail/${result.data?.createUseditem._id}`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const onChangeExplanation = (value) => {
@@ -80,7 +115,8 @@ export default function Register(props) {
       isActive={formState.isValid}
       onChangeExplanation={onChangeExplanation}
       isEdit={props.isEdit}
-      data={props.data}
+      data={data}
+      setImageUel={setImageUrl}
     />
   );
 }

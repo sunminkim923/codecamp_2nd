@@ -1,4 +1,5 @@
 import MybasketPage from "../mybasket/mybasket.container";
+import MyProfilePage from "../myprofile/myprofile.container";
 import {
   PageWrapper,
   UserInfoWrapper,
@@ -18,7 +19,7 @@ import {
   MyProfile,
 } from "./mypage.styles";
 
-export default function MypageUI() {
+export default function SideMenuUI() {
   return (
     <>
       <PageWrapper>
@@ -43,7 +44,8 @@ export default function MypageUI() {
             <MyProfile>내 프로필</MyProfile>
           </MyProfileWrapper>
         </UserInfoWrapper>
-        <MybasketPage />
+        {/* <MybasketPage /> */}
+        <MyProfilePage />
       </PageWrapper>
     </>
   );
