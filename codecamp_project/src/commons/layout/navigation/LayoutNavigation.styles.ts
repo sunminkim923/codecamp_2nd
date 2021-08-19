@@ -2,41 +2,41 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 70px;
-  background-color: #bdbdbd;
+  height: 100px;
+  background-color: #ffd600;
   display: flex;
   justify-content: center;
 `;
 
 export const Header = styled.div`
-  width: 900px;
+  width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 `;
 
 export const Main = styled.div`
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 700;
 `;
 
 export const List = styled.div`
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 700;
 `;
 
 export const Game = styled.div`
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 700;
 `;
 export const UsedMarket = styled.div`
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 700;
 `;
 export const Mypage = styled.div`
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 700;
 `;
 

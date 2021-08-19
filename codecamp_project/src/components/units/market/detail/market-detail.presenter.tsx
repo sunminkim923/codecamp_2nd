@@ -25,10 +25,12 @@ import {
   ButtonWrapper,
   ListButton,
   EditButton,
+  DeleteButton,
 } from "./market-detail.styles";
 import CommentWrite from "../../../commons/comment/commentwrite/commentwrite.container";
 import CommentList from "../../../commons/comment/commentlist/commentlist.container";
 import ReComment from "../../../commons/comment/recomment/recomment.contatiner";
+import { Modal } from "antd";
 
 export default function ProductDetailUI(props) {
   return (
@@ -83,6 +85,17 @@ export default function ProductDetailUI(props) {
           <ButtonWrapper>
             <ListButton onClick={props.onClickList}>목록으로</ListButton>
             <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
+            {props.isModal && (
+              <Modal
+                title="게시글삭제"
+                visible={props.isOpen}
+                onOk={props.onClickOk}
+                onCancel={props.onClickCancel}
+              >
+                <div>게시글을 삭제하시겠습니까?</div>
+              </Modal>
+            )}
+            <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
           </ButtonWrapper>
         </Wrapper>
       </PageWrapper>

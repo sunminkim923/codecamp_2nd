@@ -125,25 +125,42 @@ export const Map = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+  width: 100%;
   padding-top: 85px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 export const ListButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-  margin-right: 12px;
   background-color: #bdbdbd;
   cursor: pointer;
+  :hover {
+    background-color: #ffd600;
+  }
 `;
 
 export const EditButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-  margin-left: 12px;
-  background-color: #ffd600;
+
+  background-color: #bdbdbd;
   cursor: pointer;
+  :hover {
+    background-color: #ffd600;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  background-color: #bdbdbd;
+  cursor: pointer;
+  :hover {
+    background-color: #ffd600;
+  }
 `;

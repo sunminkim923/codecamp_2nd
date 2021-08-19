@@ -45,9 +45,6 @@ export default function Register(props) {
   });
 
   async function onSubmit(data) {
-    //upload file
-    //promise all
-    // 자식 컴포넌트의 파일 스테이트 값을 받아와야 한다.
     try {
       const resultFiles = await Promise.all(
         imageFile.map((fileData) =>
@@ -58,10 +55,6 @@ export default function Register(props) {
       const finalUrl = resultFiles.map(
         (resultUrl) => resultUrl.data.uploadFile.url
       );
-
-      // const image1 = resultFiles[0].data.uploadFile.url;
-      // const image2 = resultFiles[1].data.uploadFile.url;
-      // const image3 = resultFiles[2].data.uploadFile.url;
 
       const result = await createUseditem({
         variables: {
@@ -74,7 +67,7 @@ export default function Register(props) {
           },
         },
       });
-      Modal.info({ content: "게시글을 등록합니다." });
+      Modal.info({ content: "게시물이 등록되었습니다." });
       router.push(`./detail/${result.data?.createUseditem._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
@@ -94,9 +87,10 @@ export default function Register(props) {
           },
         },
       });
+      Modal.info({ content: "게시글이 수정되었습니다." });
       router.push(`/market/detail/${result.data?.updateUseditem._id}`);
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 
