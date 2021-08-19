@@ -19,6 +19,10 @@ import { createUploadLink } from "apollo-upload-client";
 import { createContext, useState } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
+Sentry.init({
+  dsn: "https://c9936d084a6e41338dd9831389718eba@o965494.ingest.sentry.io/5916347",
+});
 
 if (typeof window !== "undefined") {
   firebase.initializeApp({
@@ -64,7 +68,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
     uri: "https://backend02.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${accessToken || null}`,
+      authorization: `Bearer ${accessToken}`,
     },
     credentials: "include",
   });
@@ -73,6 +77,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // uri: 'http://backend02.codebootcamp.co.kr/graphql',//백앤드 API가 있는 주소
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
+    connectToDevTools: true,
   });
 
   return (
