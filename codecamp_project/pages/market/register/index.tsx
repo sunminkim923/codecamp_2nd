@@ -1,4 +1,4 @@
-import Register from "../../../src/components/units/market/register/register.container";
+import Register from "../../../src/components/units/market/write/market-write.container";
 import withAuth from "../../../src/components/commons/hocs/withAuth";
 
 function RegisterPage() {

@@ -25,7 +25,7 @@ import {
   ButtonWrapper,
   ListButton,
   EditButton,
-} from "./detail.styles";
+} from "./market-detail.styles";
 import CommentWrite from "../../../commons/comment/commentwrite/commentwrite.container";
 import CommentList from "../../../commons/comment/commentlist/commentlist.container";
 import ReComment from "../../../commons/comment/recomment/recomment.contatiner";

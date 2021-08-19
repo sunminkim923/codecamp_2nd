@@ -38,7 +38,8 @@ import {
   Price,
   SubmitButtonWrapper,
   SubmitButton,
-} from "./list.styles";
+  StickyWrapper,
+} from "./market-list.styles";
 
 export default function MarketListUI(props) {
   return (
@@ -124,7 +125,9 @@ export default function MarketListUI(props) {
           </SubmitButtonWrapper>
         </ProductListWrapper>
       </Wrapper>
-      <ViewedProduct></ViewedProduct>
+      <StickyWrapper>
+        <ViewedProduct></ViewedProduct>
+      </StickyWrapper>
     </PageWrapper>
   );
 }

@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import Register from "../../../../../src/components/units/market/register/register.container";
+import Register from "../../../../../src/components/units/market/write/market-write.container";
 
 const FETCH_USEDITEM = gql`
   query fetchUseditem($useditemId: ID!) {

@@ -17,8 +17,6 @@ export const FETCH_USEDITEM = gql`
 
 export const TOGGLE_USEDITEM_PICK = gql`
   mutation toggleUseditemPick($useditemId: ID!) {
-    toggleUseditemPick(useditemId: $useditemId) {
-      _id
-    }
+    toggleUseditemPick(useditemId: $useditemId)
   }
 `;

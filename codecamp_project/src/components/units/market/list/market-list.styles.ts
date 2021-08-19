@@ -6,6 +6,7 @@ export const PageWrapper = styled.div`
   padding-top: 80px;
   padding-bottom: 50px;
   padding-left: 212px;
+  height: 100%;
 `;
 
 export const Wrapper = styled.div`
@@ -240,4 +241,9 @@ export const SubmitButton = styled.button`
     transition: 0.5s;
   }
   cursor: pointer;
+`;
+
+export const StickyWrapper = styled.div`
+  padding-top: 100px;
+  height: 100%;
 `;

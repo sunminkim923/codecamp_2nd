@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import RegisterUI from "./register.presenter";
+import RegisterUI from "./market-write.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQuery } from "@apollo/client";
@@ -7,10 +7,10 @@ import {
   CREATE_USEDITEM,
   UPDATE_USEDITEM,
   UPLOAD_FILE,
-} from "./register.queries";
+} from "./market-write.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { FETCH_USEDITEM } from "../detail/detail.queries";
+import { FETCH_USEDITEM } from "../detail/market-detail.queries";
 import { useState } from "react";
 
 const schema = yup.object().shape({
@@ -33,7 +33,7 @@ export default function Register(props) {
   const [createUseditem] = useMutation(CREATE_USEDITEM);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageFile, setImageFile] = useState([]);
 
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
@@ -49,15 +49,16 @@ export default function Register(props) {
     //promise all
     // 자식 컴포넌트의 파일 스테이트 값을 받아와야 한다.
     try {
-      // const resultFiles = await Promise.all([
-      //   uploadFile({
-      //     variables: {
-      //       file: {
-      //         url: imageUrl,
-      //       },
-      //     },
-      //   }),
-      // ]);
+      const resultFiles = await Promise.all(
+        imageFile.map((fileData) =>
+          uploadFile({ variables: { file: fileData } })
+        )
+      );
+
+      const finalUrl = resultFiles.map(
+        (resultUrl) => resultUrl.data.uploadFile.url
+      );
+
       // const image1 = resultFiles[0].data.uploadFile.url;
       // const image2 = resultFiles[1].data.uploadFile.url;
       // const image3 = resultFiles[2].data.uploadFile.url;
@@ -69,7 +70,7 @@ export default function Register(props) {
             remarks: data.productCharacter,
             contents: data.productExplanation,
             price: data.price,
-            // images: [image1, image2, image3],
+            images: finalUrl,
           },
         },
       });
@@ -93,7 +94,7 @@ export default function Register(props) {
           },
         },
       });
-      router.push(`./detail/${result.data?.createUseditem._id}`);
+      router.push(`/market/detail/${result.data?.updateUseditem._id}`);
     } catch (error) {
       alert(error.message);
     }
@@ -116,7 +117,7 @@ export default function Register(props) {
       onChangeExplanation={onChangeExplanation}
       isEdit={props.isEdit}
       data={data}
-      setImageUel={setImageUrl}
+      setImageFile={setImageFile}
     />
   );
 }

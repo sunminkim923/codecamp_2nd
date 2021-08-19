@@ -26,7 +26,7 @@ import {
   SubmitButton,
   EditButton,
   Error,
-} from "./register.styles";
+} from "./market-write.styles";
 
 export default function RegisterUI(props) {
   return (
@@ -45,7 +45,7 @@ export default function RegisterUI(props) {
               type="text"
               register={{ ...props.register("productName") }}
               errorMessage={props.errors.productName?.message}
-              defaultvalue={props.data?.fetchUseditem.name}
+              defaultvalue={props.isEdit ? props.data?.fetchUseditem.name : ""}
             />
           </InputWrapper>
           <InputWrapper>
@@ -109,7 +109,7 @@ export default function RegisterUI(props) {
           </PositionWrapper>
           <Text>사진첨부</Text>
           <ImageWrapper>
-            <ImageUpload setImageUrl={props.setImageUrl} />
+            <ImageUpload setImageFile={props.setImageFile} />
           </ImageWrapper>
           <RadioWrapper>
             <Text>메인사진 설정</Text>

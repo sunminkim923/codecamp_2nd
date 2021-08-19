@@ -4,6 +4,9 @@ export const Wrapper = styled.div`
   width: 980px;
   /* padding-top: 60px; */
   padding-left: 126px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 `;
 
 export const Title = styled.div`
@@ -15,7 +18,7 @@ export const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 40px;
+  /* padding-top: 40px; */
 `;
 
 export const Text = styled.div`
@@ -35,7 +38,6 @@ export const Input = styled.input`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-top: 40px;
 `;
 
 export const ChangeButton = styled.button`

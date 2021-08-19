@@ -44,11 +44,11 @@ export default function ImageUpload(props) {
     fileReader.readAsDataURL(file);
     fileReader.onload = (data) => {
       setImageUrl((prev) => [...prev, data.target?.result]);
-      const newFileUrls = [...fileUrls];
-      newFileUrls[event.target.id] = file;
-      setFileUrls(newFileUrls);
+      // const newFileUrls = [...fileUrls];
+      // newFileUrls[event.target.id] = file;
+      // setFileUrls(newFileUrls);
+      props.setImageFile((prev) => [...prev, file]);
     };
-    props.setImageUrl = file;
   };
 
   return (
