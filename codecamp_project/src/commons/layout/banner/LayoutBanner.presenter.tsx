@@ -10,17 +10,19 @@ export default function LayoutBannerUI() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   return (
     <Header>
       <Slider {...settings}>
         <IMG_1 src="/images/porsche01.png/" />
-        <IMG_2 src="/images/porsche03.png/" />
-        <IMG_1 src="/images/porsche02.png/" />
-        <IMG_2 src="/images/porsche01.png/" />
-        <IMG_1 src="/images/porsche03.png/" />
         <IMG_2 src="/images/porsche02.png/" />
+        <IMG_1 src="/images/porsche03.png/" />
+        <IMG_2 src="/images/porsche01.png/" />
+        <IMG_1 src="/images/porsche02.png/" />
+        <IMG_2 src="/images/porsche03.png/" />
       </Slider>
     </Header>
   );

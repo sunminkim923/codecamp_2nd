@@ -1,35 +1,11 @@
-import {
-  PageWrapper,
-  Wrapper,
-  HeadWrapper,
-  ProfileImg,
-  ContentsWrapper,
-  TopWrapper,
-  Writer,
-  CommentButton,
-  Contents,
-  WritedDate,
-  UnderLine,
-} from "./commentlist.styles";
+import { PageWrapper, UnderLine } from "./commentlist.styles";
+import CommentListItem from "./commentlistitem";
 
 export default function CommentListUI(props) {
   return (
     <PageWrapper>
-      {props.data?.fetchUseditemQuestions.map((data) => (
-        <Wrapper>
-          <HeadWrapper>
-            <ProfileImg src="/images/profile.svg/" />
-            <ContentsWrapper>
-              <TopWrapper>
-                <Writer>{data.user.name}</Writer>
-                <CommentButton src="/images/commentButton.svg/" />
-              </TopWrapper>
-              <Contents>{data.contents}</Contents>
-            </ContentsWrapper>
-          </HeadWrapper>
-          <WritedDate>{data.user.createdAt}</WritedDate>
-          <UnderLine />
-        </Wrapper>
+      {props.data?.fetchUseditemQuestions.map((data, index) => (
+        <UnderLine />
       ))}
     </PageWrapper>
   );

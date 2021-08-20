@@ -40,7 +40,16 @@ export const Contents = styled.div`
   color: #4f4f4f;
 `;
 
-export const CommentButton = styled.img``;
+export const ButtonWrapper = styled.div``;
+
+export const CommentEdit = styled.img`
+  cursor: pointer;
+`;
+
+export const CommentDelete = styled.img`
+  cursor: pointer;
+  padding-left: 20px;
+`;
 
 export const WritedDate = styled.div`
   font-size: 12px;

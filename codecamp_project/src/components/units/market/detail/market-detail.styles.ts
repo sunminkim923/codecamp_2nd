@@ -95,7 +95,7 @@ export const ProductImageWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.img`
-  width: 504px;
+  width: 100%;
   height: 482px;
   margin: 15px 0px;
   background-color: #bdbdbd;

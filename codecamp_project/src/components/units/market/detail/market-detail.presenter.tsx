@@ -29,7 +29,7 @@ import {
 } from "./market-detail.styles";
 import CommentWrite from "../../../commons/comment/commentwrite/commentwrite.container";
 import CommentList from "../../../commons/comment/commentlist/commentlist.container";
-import ReComment from "../../../commons/comment/recomment/recomment.contatiner";
+import ReComment from "../../../commons/comment/recommentwrite/recomment.contatiner";
 import { Modal } from "antd";
 
 export default function ProductDetailUI(props) {

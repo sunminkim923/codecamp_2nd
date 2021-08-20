@@ -12,3 +12,17 @@ export const FETCH_USEDITEM_QUESTIONS = gql`
     }
   }
 `;
+
+export const UPDATE_USEDITEM_QUESTION = gql`
+  mutation updateUseditemQuestion(
+    $updateUsedutemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
+  ) {
+    updateUseditemQuestion(
+      updateUsedutemQuestionInput: $updateUsedutemQuestionInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+    }
+  }
+`;
