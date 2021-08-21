@@ -10,6 +10,7 @@ import {
   CommentDelete,
   Contents,
   WritedDate,
+  UnderLine,
 } from "./commentlist.styles";
 
 export default function CommentListItem(props) {
@@ -34,6 +35,7 @@ export default function CommentListItem(props) {
           </ContentsWrapper>
         </HeadWrapper>
         <WritedDate>{data.user.createdAt}</WritedDate>
+        <UnderLine />
       </Wrapper>
     </>
   );
