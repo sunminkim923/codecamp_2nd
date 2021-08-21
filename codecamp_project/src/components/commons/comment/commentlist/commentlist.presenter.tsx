@@ -5,7 +5,7 @@ export default function CommentListUI(props) {
   return (
     <PageWrapper>
       {props.data?.fetchUseditemQuestions.map((data, index) => (
-        <CommentListItem data={data} onClick={props.onClick} />
+        <CommentListItem data={data} />
       ))}
     </PageWrapper>
   );

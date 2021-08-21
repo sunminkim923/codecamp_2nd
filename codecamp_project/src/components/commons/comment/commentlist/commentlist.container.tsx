@@ -12,12 +12,10 @@ export default function CommentList() {
     variables: { useditemId: router.query.id },
   });
 
-  const onClickEdit = () => {
-    setIsEdit(true);
-    alert("수정!");
-  };
+  // const onClickEdit = () => {
+  //   setIsEdit(true);
+  //   alert("수정!");
+  // };
 
-  return (
-    <CommentListUI data={data} onClickEdit={onClickEdit} isEdit={isEdit} />
-  );
+  return <CommentListUI data={data} isEdit={isEdit} seitIsEdit={setIsEdit} />;
 }

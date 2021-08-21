@@ -63,3 +63,61 @@ export const UnderLine = styled.div`
   border-bottom: 1px solid #dbdbdb;
   padding-top: 20px;
 `;
+
+export const EditWrapper = styled.div`
+  padding-top: 15px;
+`;
+
+export const InputWrapper = styled.div`
+  width: 1200px;
+  height: 117px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const CommentInput = styled.input`
+  width: 100%;
+  height: 64px;
+  border: none;
+  padding-left: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #bdbdbd;
+`;
+
+export const SubmitWrapper = styled.div`
+  width: 1200px;
+  height: 52px;
+  border-top: 1px solid #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 3px;
+`;
+
+export const TextLength = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: #bdbdbd;
+`;
+
+export const SubmitButton = styled.button`
+  width: 91px;
+  height: 100%;
+  background-color: #bdbdbd;
+  border: 1px solid #bdbdbd;
+  :hover {
+    background-color: #ffd600;
+    transition: 0.25s;
+  }
+`;
+
+export const ExitWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+`;
+
+export const ExitButton = styled.img`
+  cursor: pointer;
+`;
