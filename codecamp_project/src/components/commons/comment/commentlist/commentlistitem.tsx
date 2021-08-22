@@ -41,25 +41,30 @@ export default function CommentListItem(props) {
   return (
     <>
       <Wrapper key={props.data._id}>
-        <HeadWrapper>
-          <ProfileImg src="/images/profile.svg/" />
-          <ContentsWrapper>
-            <TopWrapper>
-              <Writer>{props.data.user.name}</Writer>
-              <ButtonWrapper>
-                <CommentEdit
-                  id={props.data._id}
-                  src="/images/commentEdit.svg/"
-                  onClick={onClickEdit}
-                  // onClick={onClickAaa}
-                />
-                <CommentDelete src="/images/commentDelete.svg" />
-              </ButtonWrapper>
-            </TopWrapper>
-            <Contents>{props.data.contents}</Contents>
-          </ContentsWrapper>
-        </HeadWrapper>
-        <WritedDate>{props.data.user.createdAt}</WritedDate>
+        {!isEdit && (
+          <div>
+            <HeadWrapper>
+              <ProfileImg src="/images/profile.svg/" />
+              <ContentsWrapper>
+                <TopWrapper>
+                  <Writer>{props.data.user.name}</Writer>
+                  <ButtonWrapper>
+                    <CommentEdit
+                      id={props.data._id}
+                      src="/images/commentEdit.svg/"
+                      onClick={onClickEdit}
+                      // onClick={onClickAaa}
+                    />
+                    <CommentDelete src="/images/commentDelete.svg" />
+                  </ButtonWrapper>
+                </TopWrapper>
+                <Contents>{props.data.contents}</Contents>
+              </ContentsWrapper>
+            </HeadWrapper>
+            <WritedDate> {props.data.user.createdAt} </WritedDate>
+          </div>
+        )}
+
         {isEdit && (
           <EditWrapper>
             <ExitWrapper>
