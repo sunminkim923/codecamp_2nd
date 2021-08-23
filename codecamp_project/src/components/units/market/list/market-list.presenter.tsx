@@ -1,5 +1,5 @@
 import ViewedProduct from "../../../commons/viewed-product/viewedproduct";
-import PagenationPage from "../../../commons/pagenations/pagenations.container";
+import InfiniteScroll from "react-infinite-scroller";
 import {
   PageWrapper,
   Wrapper,
@@ -39,6 +39,7 @@ import {
   SubmitButtonWrapper,
   SubmitButton,
   StickyWrapper,
+  InfiniteScrollWrapper,
 } from "./market-list.styles";
 
 export default function MarketListUI(props) {
@@ -88,37 +89,50 @@ export default function MarketListUI(props) {
               <SearchButton>검색</SearchButton>
             </SearchWrapper>
           </TopWrapper>
-          {props.data?.fetchUseditems.map((data) => (
-            <ProductWrapper key={data._id}>
-              <ProductImg
-                src={
-                  data.images[0]
-                    ? `https://storage.googleapis.com/${data.images[0]}`
-                    : " "
-                }
-              />
-              <ProductExplanationWrapper
-                onClick={() => props.onClickProduct(data._id)}
-              >
-                <ContentsWrapper>
-                  <ProductName>{data.name}</ProductName>
-                  <ProductCharacter>{data.remarks}</ProductCharacter>
-                  <ProductTag>{data.tags}</ProductTag>
-                  <ProfileWrapper>
-                    <ProfileImg src="/images/profile-small.svg" />
-                    판매자
-                    <HeartPoint src="/images/heart-small.svg" />
-                    {data.pickedCount}
-                  </ProfileWrapper>
-                </ContentsWrapper>
-                <PriceWrapper>
-                  <Price>{data.price} 원</Price>
-                </PriceWrapper>
-              </ProductExplanationWrapper>
-            </ProductWrapper>
-          ))}
+          <InfiniteScrollWrapper>
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={props.onLoadMore}
+              hasMore={props.hasMore}
+              loader={
+                <div className="loader" key={0}>
+                  Loading ...
+                </div>
+              }
+              useWindow={false}
+            >
+              {props.data?.fetchUseditems.map((data) => (
+                <ProductWrapper key={data._id}>
+                  <ProductImg
+                    src={
+                      data.images[0]
+                        ? `https://storage.googleapis.com/${data.images[0]}`
+                        : " "
+                    }
+                  />
+                  <ProductExplanationWrapper
+                    onClick={() => props.onClickProduct(data._id)}
+                  >
+                    <ContentsWrapper>
+                      <ProductName>{data.name}</ProductName>
+                      <ProductCharacter>{data.remarks}</ProductCharacter>
+                      <ProductTag>{data.tags}</ProductTag>
+                      <ProfileWrapper>
+                        <ProfileImg src="/images/profile-small.svg" />
+                        판매자
+                        <HeartPoint src="/images/heart-small.svg" />
+                        {data.pickedCount}
+                      </ProfileWrapper>
+                    </ContentsWrapper>
+                    <PriceWrapper>
+                      <Price>{data.price} 원</Price>
+                    </PriceWrapper>
+                  </ProductExplanationWrapper>
+                </ProductWrapper>
+              ))}
+            </InfiniteScroll>
+          </InfiniteScrollWrapper>
           <SubmitButtonWrapper>
-            <PagenationPage refetch={props.refetch} />
             <SubmitButton onClick={props.onClickSubmit}>
               상품등록하기
             </SubmitButton>

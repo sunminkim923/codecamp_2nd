@@ -1,4 +1,7 @@
+import ReCommentList from "../recommentlist/recommentList.contatiner";
+import RecommentWrite from "../reccoment/recommentWrite.container";
 import { useState } from "react";
+
 import {
   Wrapper,
   HeadWrapper,
@@ -8,6 +11,7 @@ import {
   Writer,
   ButtonWrapper,
   CommentEdit,
+  ReComment,
   CommentDelete,
   Contents,
   WritedDate,
@@ -24,6 +28,7 @@ import {
 
 export default function CommentListItem(props) {
   const [isEdit, setIsEdit] = useState(false);
+  const [isRecomment, setIsRecomment] = useState(false);
   const [textLength, setTextLength] = useState(0);
 
   const onClickEdit = () => {
@@ -34,10 +39,14 @@ export default function CommentListItem(props) {
     setIsEdit(false);
   };
 
+  const onClickRecomment = () => {
+    setIsRecomment(true);
+  };
+
   const onChangeText = (event) => {
     setTextLength(event.target.value.length);
   };
-
+  console.log(props.data?._id, "2234");
   return (
     <>
       <Wrapper key={props.data._id}>
@@ -55,6 +64,10 @@ export default function CommentListItem(props) {
                       onClick={onClickEdit}
                       // onClick={onClickAaa}
                     />
+                    <ReComment
+                      src="/images/commentButton.svg/"
+                      onClick={onClickRecomment}
+                    />
                     <CommentDelete src="/images/commentDelete.svg" />
                   </ButtonWrapper>
                 </TopWrapper>
@@ -64,7 +77,6 @@ export default function CommentListItem(props) {
             <WritedDate> {props.data.user.createdAt} </WritedDate>
           </div>
         )}
-
         {isEdit && (
           <EditWrapper>
             <ExitWrapper>
@@ -85,6 +97,10 @@ export default function CommentListItem(props) {
             </InputWrapper>
           </EditWrapper>
         )}
+
+        <ReCommentList commentId={props.data?._id} />
+        {isRecomment && <RecommentWrite setIsRecomment={setIsRecomment} />}
+
         <UnderLine />
       </Wrapper>
     </>

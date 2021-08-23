@@ -247,3 +247,8 @@ export const StickyWrapper = styled.div`
   padding-top: 100px;
   height: 100%;
 `;
+
+export const InfiniteScrollWrapper = styled.div`
+  height: 1000px;
+  overflow: auto;
+`;

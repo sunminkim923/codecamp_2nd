@@ -8,14 +8,15 @@ export default function CommentList() {
   const [isEdit, setIsEdit] = useState(false);
 
   const router = useRouter();
-  const { data } = useQuery(FETCH_USEDITEM_QUESTIONS, {
+  const { data: commentData } = useQuery(FETCH_USEDITEM_QUESTIONS, {
     variables: { useditemId: router.query.id },
   });
 
-  // const onClickEdit = () => {
-  //   setIsEdit(true);
-  //   alert("수정!");
-  // };
-
-  return <CommentListUI data={data} isEdit={isEdit} seitIsEdit={setIsEdit} />;
+  return (
+    <CommentListUI
+      commentData={commentData}
+      isEdit={isEdit}
+      seitIsEdit={setIsEdit}
+    />
+  );
 }

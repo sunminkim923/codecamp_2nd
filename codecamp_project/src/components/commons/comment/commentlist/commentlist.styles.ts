@@ -9,7 +9,7 @@ export const PageWrapper = styled.div`
 
 export const Wrapper = styled.div`
   width: 1200px;
-  padding-top: 20px;
+  padding-top: 30px;
 `;
 
 export const HeadWrapper = styled.div`
@@ -46,6 +46,11 @@ export const CommentEdit = styled.img`
   cursor: pointer;
 `;
 
+export const ReComment = styled.img`
+  cursor: pointer;
+  padding-left: 20px;
+`;
+
 export const CommentDelete = styled.img`
   cursor: pointer;
   padding-left: 20px;
@@ -61,7 +66,7 @@ export const WritedDate = styled.div`
 
 export const UnderLine = styled.div`
   border-bottom: 1px solid #dbdbdb;
-  padding-top: 20px;
+  padding-top: 30px;
 `;
 
 export const EditWrapper = styled.div`
