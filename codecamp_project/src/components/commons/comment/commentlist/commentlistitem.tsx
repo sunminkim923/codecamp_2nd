@@ -46,7 +46,7 @@ export default function CommentListItem(props) {
   const onChangeText = (event) => {
     setTextLength(event.target.value.length);
   };
-  console.log(props.data?._id, "2234");
+
   return (
     <>
       <Wrapper key={props.data._id}>
@@ -97,10 +97,13 @@ export default function CommentListItem(props) {
             </InputWrapper>
           </EditWrapper>
         )}
-
+        {isRecomment && (
+          <RecommentWrite
+            data={props.data._id}
+            setIsRecomment={setIsRecomment}
+          />
+        )}
         <ReCommentList commentId={props.data?._id} />
-        {isRecomment && <RecommentWrite setIsRecomment={setIsRecomment} />}
-
         <UnderLine />
       </Wrapper>
     </>

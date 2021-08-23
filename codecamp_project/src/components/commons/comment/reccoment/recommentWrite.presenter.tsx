@@ -28,7 +28,7 @@ export default function RecommnetWriteUI(props) {
           />
           <BottomWrapper>
             <TextLength> {props.textLength} / 100</TextLength>
-            <SubmitButton>답글등록</SubmitButton>
+            <SubmitButton onClick={props.onClickSubmit}>답글등록</SubmitButton>
           </BottomWrapper>
         </InputWrapper>
       </Wrapper>
