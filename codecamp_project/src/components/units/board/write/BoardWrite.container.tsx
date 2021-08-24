@@ -1,57 +1,53 @@
-import { useState } from "react";
-import BoardWriteUI from "./BoardWrite.presenter";
+import BoardWriteUI from "./boardWrite.presenter";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { CREATE_BOARD } from "./boardWrite.queries";
+import { Modal } from "antd";
+
 export default function BoardWrite() {
-  const [writer, setWriter] = useState("");
-  const [writerError, setWriterError] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [title, setTitle] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [contents, setContents] = useState("");
-  const [contentsError, setContentsError] = useState("");
+  const [createBoard] = useMutation(CREATE_BOARD);
 
-  function onChangeWriter(event) {
-    setWriter(event.target.value);
-  }
+  const schema = yup.object().shape({
+    writer: yup.string().required("이름을 입력하세요"),
+    password: yup.string().required("비밀번호를 입력해주세요"),
+    title: yup.string().required("제목을 입력해주세요"),
+    contents: yup.string().required("내용을 입력해주세요"),
+    youtubeUr: yup.string(),
+  });
 
-  function onChangePassword(event) {
-    setPassword(event.target.value);
-  }
+  const { handleSubmit, register, formState } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
-  function onChangeTitle(event) {
-    setTitle(event.target.value);
-  }
-
-  function onChangeContents(event) {
-    setContents(event.target.value);
-  }
-
-  function onClickSubmit() {
-    if (writer === "") {
-      setWriterError("작성자를 입력하세요");
+  const onSubmit = async (data) => {
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: data.writer,
+            title: data.title,
+            password: data.password,
+            contents: data.contents,
+            youtubeUrl: data.youtubeUrl,
+          },
+        },
+      });
+      Modal.info({ content: "게시글을 등록합니다." });
+    } catch (error) {
+      Modal.error({ content: error.message });
     }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력하세요");
-    }
-    if (title === "") {
-      setTitleError("제목을 입력하세요");
-    }
-    if (contents === "") {
-      setContentsError("내용을 입력하세요");
-    }
-  }
+  };
 
   return (
     <BoardWriteUI
-      onChangeWriter={onChangeWriter}
-      writerError={writerError}
-      onChangePassword={onChangePassword}
-      passwordError={passwordError}
-      onChangeTitle={onChangeTitle}
-      titleError={titleError}
-      onChangeContents={onChangeContents}
-      contentsError={contentsError}
-      onClickSubmit={onClickSubmit}
+      handleSubmit={handleSubmit}
+      register={register}
+      errors={formState.errors}
+      onSubmit={onSubmit}
+      isActive={formState.isValid}
     />
   );
 }

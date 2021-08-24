@@ -26,6 +26,7 @@ import {
   SubmitButton,
 } from "./commentlist.styles";
 
+//@ts-ignore
 export default function CommentListItem(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [isRecomment, setIsRecomment] = useState(false);
@@ -43,6 +44,7 @@ export default function CommentListItem(props) {
     setIsRecomment(true);
   };
 
+  //@ts-ignore
   const onChangeText = (event) => {
     setTextLength(event.target.value.length);
   };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PagenationsPageUI from "./pagenations.presenter";
 
-export default function PagenationPage(props) {
+export default function Pagenation(props) {
   const [startPage, setStartPage] = useState(1);
 
   function onClickPage(event) {

@@ -40,7 +40,7 @@ import {
   SubmitButton,
   StickyWrapper,
   InfiniteScrollWrapper,
-} from "./market-list.styles";
+} from "./marketList.styles";
 
 export default function MarketListUI(props) {
   return (

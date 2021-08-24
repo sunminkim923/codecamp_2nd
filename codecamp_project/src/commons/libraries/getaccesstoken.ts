@@ -10,6 +10,7 @@ const RESORE_ACCESSTOKEN = gql`
 `;
 
 //1. refreshToken으로 새로운 accessToken발급 받기
+//@ts-ignore
 export const getAccessToken = async (setAccessToken) => {
   try {
     const graphQLClient = new GraphQLClient(

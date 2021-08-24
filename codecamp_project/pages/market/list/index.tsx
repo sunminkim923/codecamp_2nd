@@ -1,4 +1,4 @@
-import MarketList from "../../../src/components/units/market/list/market-list.container";
+import MarketList from "../../../src/components/units/market/list/marketList.container";
 
 export default function MarketListPage() {
   return <MarketList />;

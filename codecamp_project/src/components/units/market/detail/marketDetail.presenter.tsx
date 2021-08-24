@@ -26,13 +26,14 @@ import {
   ListButton,
   EditButton,
   DeleteButton,
-} from "./market-detail.styles";
-import CommentWrite from "../../../commons/comment/commentwrite/commentwrite.container";
-import CommentList from "../../../commons/comment/commentlist/commentlist.container";
-import ReComment from "../../../commons/comment/recommentlist/recommentList.contatiner";
+} from "./marketDetail.styles";
+import CommentWrite from "./comment/commentwrite/commentwrite.container";
+import CommentList from "./comment/commentlist/commentlist.container";
+import ReComment from "./comment/recommentlist/recommentList.contatiner";
 import { Modal } from "antd";
 
-export default function ProductDetailUI(props) {
+//@ts-ignore
+export default function MarketDetailUI(props) {
   return (
     <>
       <PageWrapper>
@@ -66,6 +67,7 @@ export default function ProductDetailUI(props) {
           </ProductTitleWrapper>
           <Price>{props.data?.fetchUseditem.price}원</Price>
           <ProductImageWrapper>
+            {/* @ts-ignore */}
             {props.data?.fetchUseditem.images.map((data) => (
               <ImageWrapper
                 key={data}

@@ -51,11 +51,13 @@ export const LoginButton = styled.button`
   border: 0.5px solid lightgray;
   background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
 `;
+
 export const UnderLine = styled.div`
   padding-top: 40px;
   width: 100%;
   border-bottom: 1px solid lightgray;
 `;
+
 export const OnclickWrapper = styled.div`
   padding-top: 25px;
   display: flex;
@@ -70,13 +72,16 @@ export const FindPassword = styled.div``;
 export const Join = styled.div`
   cursor: pointer;
 `;
+
 export const Error = styled.div`
   padding-left: 16px;
   padding-top: 5px;
   color: red;
   font-size: 12px;
 `;
+
 export const Checkbox = styled.input``;
+
 export const CheckboxWrapper = styled.div`
   padding-top: 20px;
 `;

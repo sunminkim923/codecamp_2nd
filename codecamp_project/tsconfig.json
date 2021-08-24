@@ -19,7 +19,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/units/board/write/BoardWrite.containers.tsx",
-    "pages/boards/[boardId]/edit/index.js"
+    "pages/board/[boardId]/edit/index.js"
   ],
   "exclude": ["node_modules"]
 }

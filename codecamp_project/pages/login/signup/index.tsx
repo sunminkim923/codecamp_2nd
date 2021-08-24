@@ -1,6 +1,5 @@
-import Signup from "../../../src/components/units/login/signup/signup.container";
+import SignUp from "../../../src/components/units/login/signup/signUp.container";
 
-export default function SignupPage (){
-
-    return <Signup />
+export default function SignupPage() {
+  return <SignUp />;
 }

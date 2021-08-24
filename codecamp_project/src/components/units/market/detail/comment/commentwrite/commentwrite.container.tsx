@@ -9,11 +9,15 @@ export default function CommentWrite() {
   const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION);
   const router = useRouter();
   const [contents, setContents] = useState("");
+  const [contentsLength, setContentsLength] = useState(0);
 
+  //@ts-ignore
   const onChangeContents = (event) => {
     setContents(event.target.value);
+    setContentsLength(event.target.value.length);
   };
 
+  //@ts-ignore
   const onClickRegister = async (data) => {
     try {
       const result = await createUseditemQuestion({
@@ -28,9 +32,8 @@ export default function CommentWrite() {
           },
         ],
       });
-      console.log(result.data.createUseditemQuestion.contents);
       alert("댓글을 등록합니다.");
-      console.log(data);
+      setContents("");
     } catch (error) {
       alert(error.message);
     }
@@ -40,6 +43,8 @@ export default function CommentWrite() {
     <CommentWriteUI
       onClickRegister={onClickRegister}
       onChangeContents={onChangeContents}
+      contentsLength={contentsLength}
+      contents={contents}
     />
   );
 }

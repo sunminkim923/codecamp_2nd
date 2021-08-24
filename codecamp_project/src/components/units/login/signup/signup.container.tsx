@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import router from "next/router";
-import SignupUI from "./signup.presenter";
-import { CREATE_USER } from "./signup.queries";
+import SignUpUI from "./signUp.presenter";
+import { CREATE_USER } from "./signUp.queries";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal } from "antd";
@@ -28,14 +28,14 @@ const schema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "비밀번호를 확인해주세요"),
 });
 
-export default function Signup() {
+export default function SignUp() {
   const [createUser] = useMutation(CREATE_USER);
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-
+  // @ts-ignore
   async function onSubmit(data) {
     try {
       const result = await createUser({
@@ -54,7 +54,7 @@ export default function Signup() {
     }
   }
   return (
-    <SignupUI
+    <SignUpUI
       onSubmit={onSubmit}
       register={register}
       handleSubmit={handleSubmit}

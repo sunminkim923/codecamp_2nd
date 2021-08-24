@@ -1,9 +1,9 @@
-import ProductDetail from "../../../../src/components/units/market/detail/market-detail.container";
+import MarketDetail from "../../../../src/components/units/market/detail/marketDetail.container";
 
-export default function ProductDetailPage() {
+export default function MarketDetailPage() {
   return (
     <>
-      <ProductDetail />
+      <MarketDetail />
     </>
   );
 }

@@ -26,9 +26,10 @@ import {
   SubmitButton,
   EditButton,
   Error,
-} from "./market-write.styles";
+} from "./marketWrite.styles";
 
-export default function RegisterUI(props) {
+// @ts-ignore
+export default function MarketWriteUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
@@ -120,11 +121,13 @@ export default function RegisterUI(props) {
           </RadioWrapper>
           <SubmitWrapper>
             {!props.isEdit && (
+              //@ts-ignore
               <SubmitButton type="submit" isActive={props.isActive}>
                 등록하기
               </SubmitButton>
             )}
             {props.isEdit && (
+              //@ts-ignore
               <EditButton type="submit" isActive={props.isActive}>
                 수정하기
               </EditButton>

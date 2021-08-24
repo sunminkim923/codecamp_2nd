@@ -1,3 +1,4 @@
+import Pagenation from "../../../commons/pagenations/pagenations.container";
 import {
   PageWrapper,
   Wrapper,
@@ -33,83 +34,43 @@ import {
   ListDate,
   ListBottomWrapper,
   SubmitButton,
-} from "./BoardList.styles";
+  PagenationWrapper,
+} from "./boardList.styles";
 
-export default function BoardListUI() {
+//@ts-ignore
+export default function BoardListUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
         <HeadWrapper>
           <Title>베스트 게시글</Title>
           <BestBoardsWrapper>
-            <BestBoardWrapper>
-              <BestBoardImg src="/images/bestboard.png/" />
-              <BestBoardTitle>게시물 제목입니다.</BestBoardTitle>
-              <BottomWrapper>
-                <WriterWrapper>
-                  <Writer>
-                    <ProfileImg src="/images/profile.svg" />
-                    <WriterName>노원두</WriterName>
-                  </Writer>
-                  <WriteDate>2020.09.23</WriteDate>
-                </WriterWrapper>
-                <LikeBoardWrapper>
-                  <LikeBoardImg src="/images/likeboard.png/" />
-                  <LikeBoardPoint>1800</LikeBoardPoint>
-                </LikeBoardWrapper>
-              </BottomWrapper>
-            </BestBoardWrapper>
-            <BestBoardWrapper>
-              <BestBoardImg src="/images/bestboard.png/" />
-              <BestBoardTitle>게시물 제목입니다.</BestBoardTitle>
-              <BottomWrapper>
-                <WriterWrapper>
-                  <Writer>
-                    <ProfileImg src="/images/profile.svg" />
-                    <WriterName>노원두</WriterName>
-                  </Writer>
-                  <WriteDate>2020.09.23</WriteDate>
-                </WriterWrapper>
-                <LikeBoardWrapper>
-                  <LikeBoardImg src="/images/likeboard.png/" />
-                  <LikeBoardPoint>1800</LikeBoardPoint>
-                </LikeBoardWrapper>
-              </BottomWrapper>
-            </BestBoardWrapper>
-            <BestBoardWrapper>
-              <BestBoardImg src="/images/bestboard.png/" />
-              <BestBoardTitle>게시물 제목입니다.</BestBoardTitle>
-              <BottomWrapper>
-                <WriterWrapper>
-                  <Writer>
-                    <ProfileImg src="/images/profile.svg" />
-                    <WriterName>노원두</WriterName>
-                  </Writer>
-                  <WriteDate>2020.09.23</WriteDate>
-                </WriterWrapper>
-                <LikeBoardWrapper>
-                  <LikeBoardImg src="/images/likeboard.png/" />
-                  <LikeBoardPoint>1800</LikeBoardPoint>
-                </LikeBoardWrapper>
-              </BottomWrapper>
-            </BestBoardWrapper>
-            <BestBoardWrapper>
-              <BestBoardImg src="/images/bestboard.png/" />
-              <BestBoardTitle>게시물 제목입니다.</BestBoardTitle>
-              <BottomWrapper>
-                <WriterWrapper>
-                  <Writer>
-                    <ProfileImg src="/images/profile.svg" />
-                    <WriterName>노원두</WriterName>
-                  </Writer>
-                  <WriteDate>2020.09.23</WriteDate>
-                </WriterWrapper>
-                <LikeBoardWrapper>
-                  <LikeBoardImg src="/images/likeboard.png/" />
-                  <LikeBoardPoint>1800</LikeBoardPoint>
-                </LikeBoardWrapper>
-              </BottomWrapper>
-            </BestBoardWrapper>
+            {/* @ts-ignore */}
+            {props.bestData?.fetchBoardsOfTheBest.map((data) => (
+              <BestBoardWrapper>
+                <BestBoardImg
+                  src={
+                    data.images[0]
+                      ? `https://storage.googleapis.com/${data.images[0]}`
+                      : "/images/porsche01.png/"
+                  }
+                />
+                <BestBoardTitle>{data.title}</BestBoardTitle>
+                <BottomWrapper>
+                  <WriterWrapper>
+                    <Writer>
+                      <ProfileImg src="/images/profile.svg" />
+                      <WriterName>{data.writer}</WriterName>
+                    </Writer>
+                    <WriteDate>{data.createdAt}</WriteDate>
+                  </WriterWrapper>
+                  <LikeBoardWrapper>
+                    <LikeBoardImg src="/images/likeboard.png/" />
+                    <LikeBoardPoint>{data.likeCount}</LikeBoardPoint>
+                  </LikeBoardWrapper>
+                </BottomWrapper>
+              </BestBoardWrapper>
+            ))}
           </BestBoardsWrapper>
         </HeadWrapper>
         <SearchWrapper>
@@ -124,40 +85,24 @@ export default function BoardListUI() {
             <HeadWriter>작성자</HeadWriter>
             <HeadDate>날짜</HeadDate>
           </ListHeadWrapper>
-          <ListBodyWrapper>
-            <ListNumber>1</ListNumber>
-            <ListTitle>게시물 제목입니다.</ListTitle>
-            <ListWriter>작성자</ListWriter>
-            <ListDate>2020.09.23</ListDate>
-          </ListBodyWrapper>
-          <ListBodyWrapper>
-            <ListNumber>1</ListNumber>
-            <ListTitle>게시물 제목입니다.</ListTitle>
-            <ListWriter>작성자</ListWriter>
-            <ListDate>2020.09.23</ListDate>
-          </ListBodyWrapper>
-          <ListBodyWrapper>
-            <ListNumber>1</ListNumber>
-            <ListTitle>게시물 제목입니다.</ListTitle>
-            <ListWriter>작성자</ListWriter>
-            <ListDate>2020.09.23</ListDate>
-          </ListBodyWrapper>
-          <ListBodyWrapper>
-            <ListNumber>1</ListNumber>
-            <ListTitle>게시물 제목입니다.</ListTitle>
-            <ListWriter>작성자</ListWriter>
-            <ListDate>2020.09.23</ListDate>
-          </ListBodyWrapper>
-          <ListBodyWrapper>
-            <ListNumber>1</ListNumber>
-            <ListTitle>게시물 제목입니다.</ListTitle>
-            <ListWriter>작성자</ListWriter>
-            <ListDate>2020.09.23</ListDate>
-          </ListBodyWrapper>
+          {/* @ts-ignore */}
+          {props.data?.fetchBoards.map((data, index) => (
+            <ListBodyWrapper key={data._id}>
+              <ListNumber>{index + 1}</ListNumber>
+              <ListTitle>{data.title}</ListTitle>
+              <ListWriter>{data.writer}</ListWriter>
+              <ListDate>{data.createdAt}</ListDate>
+            </ListBodyWrapper>
+          ))}
         </BoardListWrapper>
         <ListBottomWrapper>
-          <SubmitButton>게시물 등록하기</SubmitButton>
+          <SubmitButton onClick={props.onClickSubmit}>
+            게시물 등록하기
+          </SubmitButton>
         </ListBottomWrapper>
+        <PagenationWrapper>
+          <Pagenation />
+        </PagenationWrapper>
       </Wrapper>
     </PageWrapper>
   );

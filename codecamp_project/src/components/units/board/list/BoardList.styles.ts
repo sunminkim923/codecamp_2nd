@@ -30,11 +30,16 @@ export const BestBoardWrapper = styled.div`
   height: 257px;
   border: 1px solid #bdbdbd;
   border-radius: 20px;
+  cursor: pointer;
+  :hover {
+    background-color: #ffd600;
+  }
 `;
 
 export const BestBoardImg = styled.img`
   width: 100%;
   height: 120px;
+  border-radius: 10px;
 `;
 
 export const BestBoardTitle = styled.div`
@@ -60,6 +65,7 @@ export const LikeBoardWrapper = styled.div`
 
 export const Writer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const ProfileImg = styled.img`
@@ -173,6 +179,7 @@ export const ListBodyWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const ListNumber = styled.div`
@@ -225,5 +232,12 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   :hover {
     background-color: #ffd600;
+    transition: 0.5s;
   }
+`;
+
+export const PagenationWrapper = styled.div`
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
 `;

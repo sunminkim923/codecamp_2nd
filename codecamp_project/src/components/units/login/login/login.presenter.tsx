@@ -16,8 +16,8 @@ import {
   CheckboxWrapper,
 } from "./login.styles";
 import Payment from "../../../commons/payment/payment";
-import ImageUpload from "../../../commons/imageupload/imageupload";
 
+//@ts-ignore
 export default function LoginUI(props) {
   return (
     <>
@@ -41,6 +41,7 @@ export default function LoginUI(props) {
               <Checkbox type="checkbox" />
               <KeepLogin>로그인상태 유지</KeepLogin>
             </CheckboxWrapper>
+            {/* @ts-ignore */}
             <LoginButton type="submit" isActive={props.isActive}>
               로그인하기
             </LoginButton>

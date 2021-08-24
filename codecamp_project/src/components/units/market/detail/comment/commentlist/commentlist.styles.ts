@@ -69,9 +69,7 @@ export const UnderLine = styled.div`
   padding-top: 30px;
 `;
 
-export const EditWrapper = styled.div`
-  padding-top: 15px;
-`;
+export const EditWrapper = styled.div``;
 
 export const InputWrapper = styled.div`
   width: 1200px;

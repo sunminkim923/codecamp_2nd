@@ -1,15 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import ProductDetailUI from "./market-detail.presenter";
+import ProductDetailUI from "./marketDetail.presenter";
 import { Modal } from "antd";
 import {
   DELETE_USEDITEM,
   FETCH_USEDITEM,
   TOGGLE_USEDITEM_PICK,
-} from "./market-detail.queries";
+} from "./marketDetail.queries";
 
-export default function productDetail() {
+export default function MarketDetail() {
   const router = useRouter();
 
   const { data } = useQuery(FETCH_USEDITEM, {
@@ -21,6 +21,7 @@ export default function productDetail() {
   const [isModal, setIsModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  //@ts-ignore
   const onClickToggle = (pickedCount) => {
     try {
       toggleUseditemPick({

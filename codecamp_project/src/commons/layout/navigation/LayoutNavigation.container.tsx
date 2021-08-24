@@ -9,7 +9,7 @@ export default function LayoutNavigation() {
   };
 
   const onClickBoard = () => {
-    router.push("/boards/");
+    router.push("/board/list");
   };
 
   const onClickUsedMarket = () => {

@@ -7,6 +7,7 @@ const FETCH_USEDITEM = gql`
     fetchUseditem(useditemId: $useditemId) {
       name
       remarks
+      images
     }
   }
 `;
@@ -34,10 +35,7 @@ export const getServerSideProps = async (context) => {
   const result = await request(
     "https://backend02.codebootcamp.co.kr/graphql",
     FETCH_USEDITEM,
-    {
-      uesditemId: context.query.uesditemId,
-    }
+    { useditemId: context.query.useditemId }
   );
-
   return { props: { fetchUseditem: result.fetchUseditem } };
 };

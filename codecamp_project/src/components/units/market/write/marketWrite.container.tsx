@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import RegisterUI from "./market-write.presenter";
+import MarketWriteUI from "./marketWrite.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQuery } from "@apollo/client";
@@ -7,10 +7,10 @@ import {
   CREATE_USEDITEM,
   UPDATE_USEDITEM,
   UPLOAD_FILE,
-} from "./market-write.queries";
+} from "./marketWrite.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { FETCH_USEDITEM } from "../detail/market-detail.queries";
+import { FETCH_USEDITEM } from "../detail/marketDetail.queries";
 import { useState } from "react";
 
 const schema = yup.object().shape({
@@ -28,7 +28,8 @@ const schema = yup.object().shape({
   addressDetail: yup.string().required("상세주소를 입력하세요"),
 });
 
-export default function Register(props) {
+// @ts-ignore
+export default function MarketWrite(props) {
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USEDITEM);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
@@ -44,6 +45,7 @@ export default function Register(props) {
     resolver: yupResolver(schema),
   });
 
+  //@ts-ignore
   async function onSubmit(data) {
     try {
       const resultFiles = await Promise.all(
@@ -74,6 +76,7 @@ export default function Register(props) {
     }
   }
 
+  //@ts-ignore
   const onEdit = async (data) => {
     try {
       const result = await updateUseditem({
@@ -94,6 +97,7 @@ export default function Register(props) {
     }
   };
 
+  //@ts-ignore
   const onChangeExplanation = (value) => {
     const isBlank = "<p><br></p>";
     setValue("productExplanation", value === isBlank ? "" : value);
@@ -101,7 +105,7 @@ export default function Register(props) {
   };
 
   return (
-    <RegisterUI
+    <MarketWriteUI
       handleSubmit={handleSubmit}
       register={register}
       onSubmit={onSubmit}

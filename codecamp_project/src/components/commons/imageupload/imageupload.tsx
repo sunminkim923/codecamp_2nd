@@ -1,4 +1,5 @@
-import { gql, useMutation } from "@apollo/client";
+//@ts-nocheck
+
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { useRef } from "react";

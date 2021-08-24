@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
@@ -158,7 +160,8 @@ export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-  background-color: #ffd600;
+  cursor: pointer;
+  background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
 `;
 
 export const Error = styled.div`

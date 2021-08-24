@@ -18,6 +18,7 @@ const schema = yup.object().shape({
 });
 
 export default function Login() {
+  //@ts-ignore
   const { setAccessToken } = useContext(GlobalContext);
 
   const { handleSubmit, register, formState } = useForm({
@@ -25,7 +26,7 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
   const [loginUser] = useMutation(LOGIN_USER);
-
+  //@ts-ignore
   async function onSubmit(data) {
     try {
       const result = await loginUser({

@@ -6,9 +6,10 @@ import {
   InputBox,
   JoinButton,
   Error,
-} from "./signup.styles";
+} from "./signUp.styles";
 
-export default function SignupUI(props) {
+// @ts-ignore
+export default function SignUpUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
@@ -42,6 +43,7 @@ export default function SignupUI(props) {
             {...props.register("confirmPassword")}
           />
           <Error>{props.errors.confirmPassword?.message}</Error>
+          {/* @ts-ignore */}
           <JoinButton type="submit" isActive={props.isActive}>
             회원가입하기
           </JoinButton>
