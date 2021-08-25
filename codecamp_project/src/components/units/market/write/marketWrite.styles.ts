@@ -40,6 +40,10 @@ export const TextInput = styled.input`
   font-size: 16px;
 `;
 
+export const PriceWrapper = styled.div`
+  padding-top: 40px;
+`;
+
 export const ProductExplanation = styled.textarea`
   width: 100%;
   height: 320px;
@@ -96,7 +100,9 @@ export const AdressWrapper = styled.div`
   width: 558px;
 `;
 
-export const ImageWrapper = styled.div``;
+export const ImageWrapper = styled.div`
+  padding-top: 40px;
+`;
 
 export const RadioWrapper = styled.div`
   padding-top: 40px;

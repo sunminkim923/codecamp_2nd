@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { FETCH_USEDITEM_QUESTION_ANSWERS } from "../recommentlist/recommentList.queries";
@@ -22,20 +23,22 @@ export default function RecommentWrite(props) {
   };
 
   const onClickSubmit = async (data) => {
+    console.log("props.data._id", props.data._id);
+    console.log("data", data);
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {
           createUseditemQuestionAnswerInput: { contents: contents },
-          useditemQuestionId: props.data._id,
+          useditemQuestionId: props.data,
         },
         refetchQueries: [
           {
             query: FETCH_USEDITEM_QUESTION_ANSWERS,
-            variables: { useditemQuestionId: props.data._id },
+            variables: { useditemQuestionId: props.data },
           },
         ],
       });
-      console.log(result.data, "등록");
+      setContents("");
       alert("댓글을 등록합니다.");
     } catch (error) {
       alert(error.message);
@@ -46,6 +49,7 @@ export default function RecommentWrite(props) {
     <RecommnetWriteUI
       onChangeInput={onChangeInput}
       textLength={textLength}
+      contents={contents}
       onClickExit={onClickExit}
       onClickSubmit={onClickSubmit}
     />

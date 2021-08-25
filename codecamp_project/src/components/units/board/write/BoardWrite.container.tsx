@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import BoardWriteUI from "./boardWrite.presenter";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -5,9 +7,11 @@ import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD } from "./boardWrite.queries";
 import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 export default function BoardWrite() {
   const [createBoard] = useMutation(CREATE_BOARD);
+  const router = useRouter();
 
   const schema = yup.object().shape({
     writer: yup.string().required("이름을 입력하세요"),
@@ -36,6 +40,7 @@ export default function BoardWrite() {
         },
       });
       Modal.info({ content: "게시글을 등록합니다." });
+      router.push(`/board/detail/${result.data?.createBoard._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }

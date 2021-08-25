@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ViewedProduct from "../../../commons/viewed-product/viewedproduct";
 import InfiniteScroll from "react-infinite-scroller";
 import {
@@ -49,7 +50,10 @@ export default function MarketListUI(props) {
         <Title>베스트상품</Title>
         <BestProductWrapper>
           {props.newData?.fetchUseditemsOfTheBest.map((data, index) => (
-            <BestProduct key={data._id}>
+            <BestProduct
+              key={data._id}
+              onClick={() => props.onClickBestProduct(data._id)}
+            >
               <BestProductImg
                 src={
                   data.images[0]
@@ -57,9 +61,7 @@ export default function MarketListUI(props) {
                     : " "
                 }
               />
-              <BestProductInfoWrapper
-                onClick={() => props.onClickBestProduct(data._id)}
-              >
+              <BestProductInfoWrapper>
                 <BestProductName>{data.name}</BestProductName>
                 <BestProductInfoBottomWrapper>
                   <BestProductCharacterWrapper>
@@ -102,7 +104,10 @@ export default function MarketListUI(props) {
               useWindow={false}
             >
               {props.data?.fetchUseditems.map((data) => (
-                <ProductWrapper key={data._id}>
+                <ProductWrapper
+                  key={data._id}
+                  onClick={() => props.onClickProduct(data._id)}
+                >
                   <ProductImg
                     src={
                       data.images[0]
@@ -110,9 +115,7 @@ export default function MarketListUI(props) {
                         : " "
                     }
                   />
-                  <ProductExplanationWrapper
-                    onClick={() => props.onClickProduct(data._id)}
-                  >
+                  <ProductExplanationWrapper>
                     <ContentsWrapper>
                       <ProductName>{data.name}</ProductName>
                       <ProductCharacter>{data.remarks}</ProductCharacter>
@@ -145,5 +148,3 @@ export default function MarketListUI(props) {
     </PageWrapper>
   );
 }
-
-// export default withAuth(MarketListUI);

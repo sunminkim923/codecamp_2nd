@@ -8,7 +8,7 @@ import {
   InputWrapper,
   Text,
   TextInput,
-  ProductExplanation,
+  PriceWrapper,
   PositionWrapper,
   MapWrapper,
   Map,
@@ -66,15 +66,17 @@ export default function MarketWriteUI(props) {
             />
             <Error>{props.errors.productExplanation?.message}</Error>
           </InputWrapper>
-          <InputWrapper>
-            <Text>판매가격</Text>
-            <InputFullSize
-              type="text"
-              placeholder="가격을 입력하세요"
-              register={{ ...props.register("price") }}
-              errorMessage={props.errors.price?.message}
-            />
-          </InputWrapper>
+          <PriceWrapper>
+            <InputWrapper>
+              <Text>판매가격</Text>
+              <InputFullSize
+                type="text"
+                placeholder="가격을 입력하세요"
+                register={{ ...props.register("price") }}
+                errorMessage={props.errors.price?.message}
+              />
+            </InputWrapper>
+          </PriceWrapper>
           <InputWrapper>
             <Text>태그입력</Text>
             <TextInput type="text" placeholder="#태그 #태그 #태그" />
@@ -108,17 +110,17 @@ export default function MarketWriteUI(props) {
               </AdressWrapper>
             </GpsAdressWrapper>
           </PositionWrapper>
-          <Text>사진첨부</Text>
           <ImageWrapper>
+            <Text>사진첨부</Text>
             <ImageUpload setImageFile={props.setImageFile} />
           </ImageWrapper>
-          <RadioWrapper>
+          {/* <RadioWrapper>
             <Text>메인사진 설정</Text>
             <Radio type="radio" name="image" />
             <Text02>사진 1</Text02>
             <Radio type="radio" name="image" />
             <Text02>사진 2</Text02>
-          </RadioWrapper>
+          </RadioWrapper> */}
           <SubmitWrapper>
             {!props.isEdit && (
               //@ts-ignore

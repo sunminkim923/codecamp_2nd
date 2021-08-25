@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -14,7 +15,7 @@ export default function MarketList() {
   const [hasMore, setHasMore] = useState(true);
 
   const onClickSubmit = () => {
-    router.push("./register/");
+    router.push("./write/");
   };
 
   const onClickBestProduct = (data) => {

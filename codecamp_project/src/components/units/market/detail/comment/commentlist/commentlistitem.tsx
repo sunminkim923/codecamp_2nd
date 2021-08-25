@@ -1,5 +1,5 @@
 import ReCommentList from "../recommentlist/recommentList.contatiner";
-import RecommentWrite from "../reccoment/recommentWrite.container";
+import RecommentWrite from "../reccomentWrite/recommentWrite.container";
 import { useState } from "react";
 
 import {

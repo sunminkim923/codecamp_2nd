@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   Wrapper,
   Arrow,
@@ -25,6 +26,7 @@ export default function RecommnetWriteUI(props) {
           <RecommentInput
             placeholder="답글을 입력해주세요"
             onChange={props.onChangeInput}
+            value={props.contents}
           />
           <BottomWrapper>
             <TextLength> {props.textLength} / 100</TextLength>

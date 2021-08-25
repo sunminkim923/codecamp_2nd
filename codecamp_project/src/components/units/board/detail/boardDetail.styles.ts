@@ -50,7 +50,7 @@ export const Location = styled.img`
   padding-left: 30px;
 `;
 
-export const UnderLine = styled.div`
+export const UnderLine01 = styled.div`
   width: 100%;
   height: 1px;
   border-top: 1px solid #bdbdbd;
@@ -173,4 +173,10 @@ export const DeleteButton = styled.button`
     background-color: #ffd600;
     transition: 0.5s;
   }
+`;
+
+export const UnderLine02 = styled.div`
+  width: 1199px;
+  height: 1px;
+  border-top: 1px solid #bdbdbd;
 `;

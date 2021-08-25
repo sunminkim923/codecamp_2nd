@@ -1,3 +1,6 @@
+// @ts-nocheck
+import CommentWrite from "./comment/commentWrite/commentWrite.container";
+import CommentList from "./comment/commentList/commentList.container";
 import {
   PageWrapper,
   Wrapper,
@@ -10,7 +13,7 @@ import {
   IconWrapper,
   Link,
   Location,
-  UnderLine,
+  UnderLine01,
   Title,
   ImageBox,
   Contents,
@@ -27,9 +30,10 @@ import {
   ListButton,
   EditButton,
   DeleteButton,
+  UnderLine02,
 } from "./boardDetail.styles";
 
-export default function BoardDetailUI() {
+export default function BoardDetailUI(props) {
   return (
     <>
       <PageWrapper>
@@ -38,8 +42,8 @@ export default function BoardDetailUI() {
             <ProfileWrapper>
               <ProfileImg src="/images/profile.svg/" />
               <WriterWrapper>
-                <Writer>작성자</Writer>
-                <Date>Date:2020.09.23</Date>
+                <Writer> {props.data?.fetchBoard.writer} </Writer>
+                <Date> Date: {props.data?.fetchBoard.createdAt} </Date>
               </WriterWrapper>
             </ProfileWrapper>
             <IconWrapper>
@@ -47,30 +51,32 @@ export default function BoardDetailUI() {
               <Location src="/images/location.png" />
             </IconWrapper>
           </HeadWrapper>
-          <UnderLine />
-          <Title>게시글 제목입니다.</Title>
+          <UnderLine01 />
+          <Title> {props.data?.fetchBoard.title} </Title>
           <ImageBox />
-          <Contents>가다나라마바사</Contents>
+          <Contents> {props.data?.fetchBoard.contents}</Contents>
           <YoutubeWrapper>
-            <YoutubeBox></YoutubeBox>
+            <YoutubeBox> {props.data?.fetchBoard.youtubeUrl} </YoutubeBox>
           </YoutubeWrapper>
           <LikeCountWrapper>
             <LikeWrapper>
               <LikeButton src="/images/likeButton.png/" />
-              <LikeCount>2000</LikeCount>
+              <LikeCount> {props.data?.fetchBoard.likeCount} </LikeCount>
             </LikeWrapper>
             <DisLikeWrapper>
               <DisLikeButton src="/images/disLikeButton.png/" />
-              <DisLikeCount>2000</DisLikeCount>
+              <DisLikeCount>{props.data?.fetchBoard.dislikeCount}</DisLikeCount>
             </DisLikeWrapper>
           </LikeCountWrapper>
         </Wrapper>
         <ButtonWrapper>
-          <ListButton>목록으로 </ListButton>
+          <ListButton onClick={props.onClickList}>목록으로 </ListButton>
           <EditButton>수정하기</EditButton>
           <DeleteButton>삭제하기</DeleteButton>
         </ButtonWrapper>
-        <UnderLine />
+        <UnderLine02 />
+        <CommentWrite />
+        <CommentList />
       </PageWrapper>
     </>
   );

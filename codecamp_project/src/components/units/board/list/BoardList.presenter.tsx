@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Pagenation from "../../../commons/pagenations/pagenations.container";
 import {
   PageWrapper,
@@ -47,7 +48,9 @@ export default function BoardListUI(props) {
           <BestBoardsWrapper>
             {/* @ts-ignore */}
             {props.bestData?.fetchBoardsOfTheBest.map((data) => (
-              <BestBoardWrapper>
+              <BestBoardWrapper
+                onClick={() => props.onClickBestBoard(data._id)}
+              >
                 <BestBoardImg
                   src={
                     data.images[0]
@@ -87,7 +90,10 @@ export default function BoardListUI(props) {
           </ListHeadWrapper>
           {/* @ts-ignore */}
           {props.data?.fetchBoards.map((data, index) => (
-            <ListBodyWrapper key={data._id}>
+            <ListBodyWrapper
+              key={data._id}
+              onClick={() => props.onClickBoard(data._id)}
+            >
               <ListNumber>{index + 1}</ListNumber>
               <ListTitle>{data.title}</ListTitle>
               <ListWriter>{data.writer}</ListWriter>

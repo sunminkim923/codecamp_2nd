@@ -9,7 +9,7 @@ export default function CommentList() {
 
   const router = useRouter();
   const { data: commentData } = useQuery(FETCH_USEDITEM_QUESTIONS, {
-    variables: { useditemId: router.query.id },
+    variables: { boardId: router.query.Id },
   });
 
   return (
