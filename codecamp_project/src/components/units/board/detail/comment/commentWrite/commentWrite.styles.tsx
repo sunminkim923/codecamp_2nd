@@ -26,6 +26,20 @@ export const Title = styled.div`
   font-weight: 500;
 `;
 
+export const WriterWrapper = styled.div`
+  width: 526px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const WriterInput = styled.input`
+  width: 180px;
+  height: 52px;
+  border: 1px solid #f2f2f2;
+  padding-left: 20px;
+`;
+
 export const StarPoint = styled(Rate)``;
 
 export const InputWrapper = styled.div`

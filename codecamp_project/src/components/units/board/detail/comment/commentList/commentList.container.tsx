@@ -9,7 +9,5 @@ export default function CommentList() {
     variables: { boardId: router.query.Id },
   });
 
-  console.log(commentData, "c98098098");
-
   return <CommentListUI commentData={commentData} />;
 }
