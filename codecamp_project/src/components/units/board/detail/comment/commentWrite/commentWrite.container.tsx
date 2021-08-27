@@ -30,6 +30,7 @@ export default function CommentWrite() {
             writer: data.writer,
             password: data.password,
             contents: data.contents,
+            rating: 3,
           },
           boardId: router.query.Id,
         },
