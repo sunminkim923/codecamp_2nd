@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BAORD_COMMENT } from "./commentWrite.queries";
+import { FETCH_BOARD_COMMENTS } from "../commentList/commentList.queries";
 
 export default function CommentWrite() {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
@@ -34,7 +35,14 @@ export default function CommentWrite() {
           },
           boardId: router.query.Id,
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.Id },
+          },
+        ],
       });
+      alert("댓글을 등록합니다.");
     } catch (error) {
       alert(error.message);
     }
