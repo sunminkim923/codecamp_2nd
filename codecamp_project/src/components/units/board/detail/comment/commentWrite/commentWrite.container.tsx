@@ -12,21 +12,27 @@ import { useState } from "react";
 export default function CommentWrite() {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
   const router = useRouter();
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [contents, setContents] = useState("");
+  const [inputWriter, setInputWriter] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
+  const [inputContents, setInputContents] = useState("");
+  const [inputRating, setInputRating] = useState(0);
 
-  // const onChangeWriter = (event) => {
-  //   setWriter(event.target.value);
-  // };
+  const onChangeInputWriter = (event) => {
+    setInputWriter(event.target.value);
+  };
 
-  // const onChangePassword = (event) => {
-  //   setPassword(event.target.value);
-  // };
+  const onChangeInputPassword = (event) => {
+    setInputPassword(event.target.value);
+  };
 
-  // const onChangeContents = (event) => {
-  //   setContents(event.target.value);
-  // };
+  const onChangeInPutContents = (event) => {
+    setInputContents(event.target.value);
+  };
+
+  const onChangeRating = (event) => {
+    console.log(event);
+    setInputRating(event);
+  };
 
   const schema = yup.object().shape({
     writer: yup.string().required("이름을 입력해주세요"),
@@ -47,7 +53,7 @@ export default function CommentWrite() {
             writer: data.writer,
             password: data.password,
             contents: data.contents,
-            rating: 3,
+            rating: inputRating,
           },
           boardId: router.query.Id,
         },
@@ -59,9 +65,10 @@ export default function CommentWrite() {
         ],
       });
       alert("댓글을 등록합니다.");
-      setWriter("");
-      setPassword("");
-      setContents("");
+      setInputWriter("");
+      setInputPassword("");
+      setInputContents("");
+      setInputRating(0);
     } catch (error) {
       alert(error.message);
     }
@@ -72,12 +79,15 @@ export default function CommentWrite() {
       handleSubmit={handleSubmit}
       register={register}
       onSubmit={onSubmit}
-      // onChangeWriter={onChangeWriter}
-      // onChangePassword={onChangePassword}
-      // onChangeContents={onChangeContents}
-      Writer={writer}
-      password={password}
-      contents={contents}
+      inputWriter={inputWriter}
+      onChangeInputWriter={onChangeInputWriter}
+      onChangeInputPassword={onChangeInputPassword}
+      onChangeInPutContents={onChangeInPutContents}
+      onChangeRating={onChangeRating}
+      inputWriter={inputWriter}
+      inputPassword={inputPassword}
+      inputContents={inputContents}
+      inputRating={inputRating}
     />
   );
 }
