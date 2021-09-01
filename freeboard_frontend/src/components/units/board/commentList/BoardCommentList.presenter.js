@@ -26,10 +26,7 @@ export default function BoardCommentListUI(props) {
           placeholder="비밀번호"
         ></CommentPassword>
         <CommentEditBox>
-          <CommentEdit
-            type="text"
-            placeholder="수정할 내용을 작성해주세요"
-          ></CommentEdit>
+          <CommentEdit type="text" placeholder="안녕하세요"></CommentEdit>
           <CommentEditButton>수정하기</CommentEditButton>
         </CommentEditBox>
       </CommentEditWrapper>
