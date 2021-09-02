@@ -5,7 +5,7 @@ const TopBar = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>오산가:</Text>
-      <Text style={styles.text}>오늘도 산책 가까? </Text>
+      <Text style={styles.text}>오늘도 산책 가까?</Text>
     </View>
   );
 };
