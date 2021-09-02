@@ -39,7 +39,7 @@ export default function BoardWrite() {
           },
         },
       });
-      Modal.info({ content: "게시글을 등록합니다." });
+      Modal.info({ content: "게시글을 등록하겠습니다." });
       router.push(`/board/detail/${result.data?.createBoard._id}`);
     } catch (error) {
       Modal.error({ content: error.message });

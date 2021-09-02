@@ -1,7 +1,7 @@
-package com.chat_test;
-
-import com.facebook.react.ReactActivity;
 import android.os.Bundle;
+package com.chat_test;
+import com.facebook.react.ReactActivity;
+
 
 public class MainActivity extends ReactActivity {
 
