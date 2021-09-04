@@ -34,6 +34,7 @@ export default function LoginScreen({navigation}) {
         uppercase={false}
         labelStyle={styles.navButtonText}
         onPress={() => navigation.navigate('Signup')}
+        ㅈ
       />
     </View>
   );
