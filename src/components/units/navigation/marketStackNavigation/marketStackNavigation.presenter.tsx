@@ -11,8 +11,8 @@ const MarketStackNavigationUI = () => {
             screenOptions={()=>({headerShown: false, })}
             >
 
-                <Stack.Screen name='List' component={MarketListPage}/>
-                <Stack.Screen name='Detail' component={MarketDetailPage}/>
+                <Stack.Screen name='List' component={MarketListPage}  />
+                <Stack.Screen name='Detail' component={MarketDetailPage} />
                 <Stack.Screen name='Write' component={MarketWritePage}/>
             </Stack.Navigator>
         </>

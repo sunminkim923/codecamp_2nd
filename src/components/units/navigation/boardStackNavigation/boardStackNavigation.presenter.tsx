@@ -9,10 +9,9 @@ const BoardStackNavigationUI = () => {
         <Stack.Navigator
         screenOptions={()=>({headerShown: false, })}
         >
-
+            <Stack.Screen name='List' component={BoardListPage}/>
             <Stack.Screen name='Comments' component={CommentsPage}/>
             <Stack.Screen name='Write' component={BoardWritePage}/>
-            <Stack.Screen name='List' component={BoardListPage}/>
         </Stack.Navigator>
     )
 }

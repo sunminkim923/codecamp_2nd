@@ -19,10 +19,8 @@ export const ListItemWrapper = styled.View`
     border-bottom-color: #eaeaea;
 `
 export const UserImage = styled.View`
-    width: 50px;
-    height: 50px;
-    background-color: gray;
-    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
 `
 export const ListItemInfoWrapper = styled.View`
     flex: 1;
@@ -32,7 +30,7 @@ export const ListItemInfoWrapper = styled.View`
 `
 export const ListItemLeftWrapper = styled.View`
     /* justify-content: space-between; */
-    padding-left: 15px;
+    /* padding-left: 15px; */
 `
 export const UserName =styled.Text`
     font-size: 16px;

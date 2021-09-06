@@ -19,10 +19,8 @@ export const UserInfoWrapper = styled.View`
     justify-content: space-between;
 `
 export const UserImage= styled.View`
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `
 export const UserInfoLeftWrapper = styled.View`
     flex-direction: row;
@@ -30,7 +28,6 @@ export const UserInfoLeftWrapper = styled.View`
 `
 export const UserName = styled.Text`
     font-size: 18px;
-    padding-left: 10px;
 `
 export const UserInfoRightWrapper = styled.View`
     
@@ -51,7 +48,6 @@ export const ListItemTitle = styled.Text`
     font-size: 16px;
 `
 export const ListItemButton = styled.View`
-    width: 20px;
-    height: 20px;
-    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `

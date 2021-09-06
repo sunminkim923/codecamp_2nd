@@ -21,6 +21,8 @@ export const AddImageWrapper = styled.View`
 export const AddImage = styled.View`
     width: 100px;
     height: 100px;
+    align-items: center;
+    justify-content: center;
     background-color: gray;
     border-radius: 10px;
 `
@@ -54,6 +56,7 @@ export const SubmitButton = styled.View`
     height: 55px;
     background-color: #26eba6;
     border-radius: 10px;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 `

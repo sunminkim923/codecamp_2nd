@@ -1,5 +1,6 @@
 import React from 'react'
 import { ChatContents, Container, ListItemInfoWrapper, ListItemLeftWrapper, ListItemRightWrapper, ListItemWrapper, MessageCount, Title, TitleWrapper, UserImage, UserName, Wrapper } from './chatList.stye'
+import Icon from 'react-native-vector-icons/Ionicons';
 const ChatListUI = () => {
     return(
         <>
@@ -10,7 +11,7 @@ const ChatListUI = () => {
                     </TitleWrapper>
 
                     <ListItemWrapper>
-                        <UserImage></UserImage>
+                        <UserImage><Icon size={55} color={'#bdbdbd'}  name='person-circle-sharp'/></UserImage>
                         <ListItemInfoWrapper>
                             <ListItemLeftWrapper>
                                 <UserName>유저이름</UserName>

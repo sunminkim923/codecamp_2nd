@@ -14,19 +14,16 @@ export const UserWrapper = styled.View`
     border-bottom-color: #eaeaea;
 `
 export const UserImage = styled.View`
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: gray;
+    align-items: center;
+    justify-content: center;
 `
 export const UserInfoWrapper = styled.View`
     flex:1;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: 10px;
 `
 export const UserInfoLeftContents = styled.View`
-    justify-content: space-around;
+    justify-content: space-evenly;
 `
 export const UserName = styled.Text`
     font-size: 18px;
@@ -43,11 +40,11 @@ export const UserLikeCount = styled.Text`
     font-size: 18px;
     font-weight: bold;
     color: #26EBA6;
+    padding-right: 10px;
 `
 export const UserLikeLogo = styled.View`
-    width: 40px;
-    height: 40px;
-    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `
 export const ItemInfoWrapper = styled.View`
     padding: 30px;
@@ -71,6 +68,7 @@ export const ChatButton = styled.View`
     border-radius: 10px;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
 `
 export const ButtonText = styled.Text`
     color: #fff;
