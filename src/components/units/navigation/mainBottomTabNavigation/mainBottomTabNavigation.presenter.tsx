@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import TempScreen from '../../screens/temp';
 import MarketStackNavigationPage from '../../../../../pages/navigation/MarketStackNavigation';
 import BoardStackNavigationPage from '../../../../../pages/navigation/BoardStackNavigation';
+import MyPageStackNavigationPage from '../../../../../pages/navigation/MyPageStackNavigation';
 const Tab = createBottomTabNavigator()
 const MainBottomTabNavigationUI = () => {
     return(
@@ -34,7 +35,7 @@ const MainBottomTabNavigationUI = () => {
                 <Tab.Screen name='홈' component={BoardStackNavigationPage}/>
                 <Tab.Screen name='채팅' component={TempScreen}/>
                 <Tab.Screen name='중고장터' component={MarketStackNavigationPage}/>
-                <Tab.Screen name='더보기' component={TempScreen}/>
+                <Tab.Screen name='더보기' component={MyPageStackNavigationPage}/>
             </Tab.Navigator>
         </NavigationContainer>
     )
