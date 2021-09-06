@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "873382444696",
+    "project_id": "gifted-chat-33fc0",
+    "storage_bucket": "gifted-chat-33fc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873382444696:android:a4e2cf17db82be9de7daed",
+        "android_client_info": {
+          "package_name": "com.gifted_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873382444696-bbdgskt1ri77p6g0kjjie36fqj20tr9i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuj4NMkfxZL9N-4AwXI2sCx_06PhZnp1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873382444696-bbdgskt1ri77p6g0kjjie36fqj20tr9i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

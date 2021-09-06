@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+//@ts-nocheck
+import React, {useState, useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Title, IconButton} from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import {Icon} from 'react-native-vector-icons';
+import {AuthContext} from '../navigation/AuthProvider';
 
 export default function SignupScreen({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const {register} = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>회원가입</Title>
@@ -28,6 +30,7 @@ export default function SignupScreen({navigation}) {
         title="Signup"
         modeValue="contatined"
         labelStyle={styles.loginButtonLabel}
+        onPress={() => register(email, password)}
       />
       <IconButton
         icon="keyboard-backspace"
