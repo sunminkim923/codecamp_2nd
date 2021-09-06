@@ -14,10 +14,10 @@ const MarketWriteUI = () => {
                     <AddImageText>상품 사진을 첨부해주세요</AddImageText>
                 </AddImageWrapper>
                 <InputWrapper>
-                    <TitleInput placeholder="글 제목을 입력해주세요"></TitleInput>
-                    <PriceInput placeholder="상품 가격을 입력해주세요"></PriceInput>
-                    <AddressInput placeholder="거래 장소를 입력해주세요"></AddressInput>
-                    <ContentsInput multiline placeholder="내용을 입력해주세요"></ContentsInput>
+                    <TitleInput placeholder="글 제목을 입력해주세요."></TitleInput>
+                    <PriceInput placeholder="상품 가격을 입력해주세요."></PriceInput>
+                    <AddressInput placeholder="거래 장소를 입력해주세요."></AddressInput>
+                    <ContentsInput multiline placeholder="내용을 입력해주세요."></ContentsInput>
                 </InputWrapper>
                 <SubmitButton>
                     <Icon size={30} color={'#fff'}  name='md-brush-sharp'/><ButtonText>등록하기</ButtonText>
