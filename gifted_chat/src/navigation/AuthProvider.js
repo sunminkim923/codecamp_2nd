@@ -18,16 +18,22 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
-        register: async (email, password) => {
+        register: async (email, password, navigation) => {
           try {
-            await auth().createUserWithEmailAndPassword(email, password);
+            const result = await auth().createUserWithEmailAndPassword(
+              email,
+              password,
+            );
+            console.log(result);
+            navigation.navigate('Home');
           } catch (e) {
             console.log(e);
           }
         },
-        logout: async () => {
+        logout: async (navigation) => {
           try {
             await auth().signOut();
+            navigation.navigate('Auth');
           } catch (e) {
             console.log(e);
           }

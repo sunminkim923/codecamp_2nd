@@ -11,7 +11,7 @@ export default function HomeScreen() {
     <View style={styles.contatiner}>
       <Title>Home Screen</Title>
       <Title>All chat rooms wille be listed here</Title>
-      <Title> {user.uid} </Title>
+      <Title> 123123 </Title>
       <FormButton
         modeValue="contained"
         title="Logout"

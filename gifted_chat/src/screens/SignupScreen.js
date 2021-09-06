@@ -11,6 +11,7 @@ export default function SignupScreen({navigation}) {
   const [password, setPassword] = useState('');
 
   const {register} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>회원가입</Title>
@@ -30,7 +31,7 @@ export default function SignupScreen({navigation}) {
         title="Signup"
         modeValue="contatined"
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(email, password)}
+        onPress={() => register(email, password, navigation)}
       />
       <IconButton
         icon="keyboard-backspace"
