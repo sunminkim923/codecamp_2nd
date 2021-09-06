@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TempScreen from '../../screens/temp';
+import MarketStackNavigationPage from '../../../../../pages/navigation/MarketStackNavigation';
+import BoardStackNavigationPage from '../../../../../pages/navigation/BoardStackNavigation';
 const Tab = createBottomTabNavigator()
 const MainBottomTabNavigationUI = () => {
     return(
@@ -29,9 +31,9 @@ const MainBottomTabNavigationUI = () => {
                 tabBarLabelStyle:{fontWeight:'bold'},
               })}
             >
-                <Tab.Screen name='홈' component={TempScreen}/>
+                <Tab.Screen name='홈' component={BoardStackNavigationPage}/>
                 <Tab.Screen name='채팅' component={TempScreen}/>
-                <Tab.Screen name='중고장터' component={TempScreen}/>
+                <Tab.Screen name='중고장터' component={MarketStackNavigationPage}/>
                 <Tab.Screen name='더보기' component={TempScreen}/>
             </Tab.Navigator>
         </NavigationContainer>
