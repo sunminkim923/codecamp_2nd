@@ -35,8 +35,11 @@ export const AddImageButton = styled.View`
     height: 70px;
     border-radius: 10px;
     background-color: gray;
+    justify-content: center;
+    align-items: center;
 `
 export const SubmitButton = styled.View`
+    flex-direction: row;
     margin:30px;
     height: 55px;
     background-color: #26eba6;
@@ -45,7 +48,10 @@ export const SubmitButton = styled.View`
     justify-content: center;
 `
 export const ButtonText = styled.Text`
+    text-align: center;
     color: #fff;
     font-size: 18px;
     font-weight: bold;
+    justify-content: center;
+    align-items: center;
 `

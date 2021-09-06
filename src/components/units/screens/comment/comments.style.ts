@@ -16,15 +16,14 @@ export const Title = styled.Text`
 `
 export const CommentsWrapper = styled.View`
     flex-direction: row;
+    align-items: center;
     padding: 10px 15px;
     border-bottom-width: 1px;
     border-bottom-color: #eaeaea;
 `
 export const UserImage = styled.View`
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `
 export const CommentsLeftWrapper = styled.View`
     padding-left: 10px;
@@ -51,18 +50,14 @@ export const WriteCommentWrapper = styled.View`
     height: 70px;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 `
 export const WriteUserImage = styled.View`
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `
 export const CommentsInput = styled.TextInput`
     width: 80%;
-    padding-left: 10px;
-    /* border-bottom-width: 0.5px; */
 `
 export const CommentsSubmit = styled.View`
     

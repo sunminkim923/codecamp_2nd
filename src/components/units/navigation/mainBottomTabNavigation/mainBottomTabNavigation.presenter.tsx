@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import TempScreen from '../../screens/temp';
 import MarketStackNavigationPage from '../../../../../pages/navigation/MarketStackNavigation';
 import BoardStackNavigationPage from '../../../../../pages/navigation/BoardStackNavigation';
 import MyPageStackNavigationPage from '../../../../../pages/navigation/MyPageStackNavigation';

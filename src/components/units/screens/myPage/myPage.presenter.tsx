@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, ListItemButton, ListItemTitle, ListItemWrapper, Title, TitleWrapper, UserImage, UserInfoEdit, UserInfoLeftWrapper, UserInfoRightWrapper, UserInfoWrapper, UserName, Wrapper } from './myPage.style'
+import Icon from 'react-native-vector-icons/Ionicons';
 const MyPageUI = () => {
     return(
         <>
@@ -12,7 +13,7 @@ const MyPageUI = () => {
                     <UserInfoWrapper>
                         
                         <UserInfoLeftWrapper>
-                            <UserImage></UserImage>
+                            <UserImage><Icon size={60} color={'#bdbdbd'}  name='person-circle-sharp'/></UserImage>
                             <UserName>유저이름</UserName>
                         </UserInfoLeftWrapper>
                         <UserInfoRightWrapper>
@@ -22,23 +23,23 @@ const MyPageUI = () => {
 
                     <ListItemWrapper>
                         <ListItemTitle>공지사항</ListItemTitle>
-                        <ListItemButton></ListItemButton>
+                        <ListItemButton><Icon size={30} color={'#bdbdbd'}  name='md-chevron-forward-sharp'/></ListItemButton>
                     </ListItemWrapper>
                     <ListItemWrapper>
                         <ListItemTitle>이벤트</ListItemTitle>
-                        <ListItemButton></ListItemButton>
+                        <ListItemButton><Icon size={30} color={'#bdbdbd'}  name='md-chevron-forward-sharp'/></ListItemButton>
                     </ListItemWrapper>
                     <ListItemWrapper>
                         <ListItemTitle>Q&A</ListItemTitle>
-                        <ListItemButton></ListItemButton>
+                        <ListItemButton><Icon size={30} color={'#bdbdbd'}  name='md-chevron-forward-sharp'/></ListItemButton>
                     </ListItemWrapper>
                     <ListItemWrapper>
                         <ListItemTitle>내가 받은 리뷰</ListItemTitle>
-                        <ListItemButton></ListItemButton>
+                        <ListItemButton><Icon size={30} color={'#bdbdbd'}  name='md-chevron-forward-sharp'/></ListItemButton>
                     </ListItemWrapper>
                     <ListItemWrapper>
                         <ListItemTitle>나의 활동기록</ListItemTitle>
-                        <ListItemButton></ListItemButton>
+                        <ListItemButton><Icon size={30} color={'#bdbdbd'}  name='md-chevron-forward-sharp'/></ListItemButton>
                     </ListItemWrapper>
                 </Wrapper>
             </Container>

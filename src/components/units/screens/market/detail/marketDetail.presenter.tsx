@@ -1,5 +1,6 @@
 import React from 'react'
 import { ButtonText, ChatButton, Container, ItemContents, ItemCreatedAt, ItemImage, ItemInfoWrapper, ItemTitle, UserAddress, UserImage, UserInfoLeftContents, UserInfoRightContents, UserInfoWrapper, UserLikeCount, UserLikeLogo, UserName, UserWrapper, Wrapper } from './marketDetail.style'
+import Icon from 'react-native-vector-icons/Ionicons';
 const MarketDetailUI = () => {
     return(
         <>
@@ -7,7 +8,7 @@ const MarketDetailUI = () => {
                 <ItemImage></ItemImage>
                 <Wrapper>
                     <UserWrapper>
-                        <UserImage></UserImage>
+                        <UserImage><Icon size={60} color={'#bdbdbd'}  name='person-circle-sharp'/></UserImage>
                         <UserInfoWrapper>
                             <UserInfoLeftContents>
                                 <UserName>유저이름</UserName>
@@ -15,7 +16,7 @@ const MarketDetailUI = () => {
                             </UserInfoLeftContents>
                             <UserInfoRightContents>
                                 <UserLikeCount>12</UserLikeCount>
-                                <UserLikeLogo></UserLikeLogo>
+                                <UserLikeLogo><Icon size={40} color={'#26EBA6'}  name='md-paw'/></UserLikeLogo>
                             </UserInfoRightContents>
                         </UserInfoWrapper>
                     </UserWrapper>
@@ -25,7 +26,7 @@ const MarketDetailUI = () => {
                         <ItemContents>상품 상세설명</ItemContents>
                     </ItemInfoWrapper>
                     <ChatButton>
-                        <ButtonText>채팅으로 거래신청</ButtonText>
+                    <Icon size={30} color={'#fff'}  name='md-chatbubble-ellipses'/><ButtonText>채팅으로 거래신청</ButtonText>
                     </ChatButton>
                 </Wrapper>
             </Container>
