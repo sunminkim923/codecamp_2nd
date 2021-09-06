@@ -1,7 +1,8 @@
 import React from 'react'
+import { TouchableOpacity} from 'react-native'
 import { BoardComments, BoardContentsText, BoardContentsWrapper, CommentsText, CommentsUserImage, CommentsWrapper, Container, CreatedAt, ImageWrapper, LikeText, MoreButton, NewCommentsText, NewCommentsWrapper, UserImage, UserInfoLeftContents, UserInfoRightContents, UserInfoWrapper, UserName, UserWrapper, Wrapper, WriteButton } from './boardList.style'
 import Icon from 'react-native-vector-icons/Ionicons';
-const BoardListUI = () => {
+const BoardListUI = ({navigation}:any) => {
     return(
         <>
             <Container>
@@ -22,7 +23,7 @@ const BoardListUI = () => {
                     <BoardContentsWrapper>
                         <BoardContentsText>게시글 내용</BoardContentsText>
                     </BoardContentsWrapper>
-
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Comments')}}>
                     <CommentsWrapper>
                         <BoardComments>
                             <CommentsText>댓글 @개 모두보기</CommentsText>
@@ -33,6 +34,7 @@ const BoardListUI = () => {
                             <NewCommentsText>댓글 달기 ...</NewCommentsText>
                         </NewCommentsWrapper>
                     </CommentsWrapper>
+                    </TouchableOpacity>
                 </Wrapper>
 
                 

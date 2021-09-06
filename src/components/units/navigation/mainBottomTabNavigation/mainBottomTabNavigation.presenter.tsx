@@ -6,6 +6,7 @@ import MarketStackNavigationPage from '../../../../../pages/navigation/MarketSta
 import BoardStackNavigationPage from '../../../../../pages/navigation/BoardStackNavigation';
 import MyPageStackNavigationPage from '../../../../../pages/navigation/MyPageStackNavigation';
 import ChatStackNavigationPage from '../../../../../pages/navigation/ChatStackNavigation';
+import BoardStackNavigationUI from '../boardStackNavigation/boardStackNavigation.presenter';
 const Tab = createBottomTabNavigator()
 const MainBottomTabNavigationUI = () => {
     return(

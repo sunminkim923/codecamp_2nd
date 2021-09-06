@@ -1,8 +1,10 @@
 import React from 'react'
 import MarketListUI from './marketList.presenter'
-const MarketList = () => {
+const MarketList = (props:any) => {
     return(
-        <MarketListUI/>
+        <MarketListUI
+        navigation={props.navigation}
+        />
     )
 }
 export default MarketList
