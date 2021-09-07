@@ -6,6 +6,8 @@ import SignupScreen from './src/screens/SignupScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import {AuthProvider} from './src/navigation/AuthProvider';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import HomeStack from './src/navigation/HomeStack';
+import AuthStack from './src/navigation/AuthStack';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -14,19 +16,18 @@ const App = () => {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={() => ({headerShown: false})}>
           <Tab.Screen name="Auth">
             {() => (
-              <Stack.Navigator>
-                <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Signup" component={SignupScreen} />
+              <Stack.Navigator screenOptions={() => ({headerShown: false})}>
+                <Stack.Screen name="Login" component={AuthStack} />
               </Stack.Navigator>
             )}
           </Tab.Screen>
           <Tab.Screen name="Home">
             {() => (
-              <Stack.Navigator>
-                <Stack.Screen name="Home2" component={HomeScreen} />
+              <Stack.Navigator screenOptions={() => ({headerShown: false})}>
+                <Stack.Screen name="Home02" component={HomeStack} />
               </Stack.Navigator>
             )}
           </Tab.Screen>

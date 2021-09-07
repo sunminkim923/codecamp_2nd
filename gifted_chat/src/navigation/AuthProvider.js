@@ -24,7 +24,6 @@ export const AuthProvider = ({children}) => {
               email,
               password,
             );
-            console.log(result);
             navigation.navigate('Home');
           } catch (e) {
             console.log(e);
