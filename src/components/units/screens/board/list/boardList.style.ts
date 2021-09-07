@@ -78,14 +78,20 @@ export const NewCommentsText = styled.Text`
     font-size: 12px;
     color: #828282;
 `
-export const WriteButton = styled.View`
+export const ButtonWrapper = styled.View`
     justify-content: center;
     align-items: center;
     width: 65px;
     height: 65px;
-    border-radius: 65px;
-    background-color: #26EBA6;
     position: absolute;
     bottom: 15px;
     right: 15px;
+`
+export const WriteButton = styled.View`
+    width: 65px;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 65px;
+    background-color: #26EBA6;
 `

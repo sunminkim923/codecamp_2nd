@@ -1,6 +1,6 @@
 import React from 'react'
-import { TouchableOpacity} from 'react-native'
-import { Container, ContentsWrapper, ImageWrapper, ItemAddress, ItemLike, ItemPrice, ItemTitle, Wrapper, WriteButton } from './marketList.style'
+import { TouchableOpacity, View} from 'react-native'
+import { Container, ContentsWrapper, ImageWrapper, ItemAddress, ItemLike, ItemPrice, ItemTitle, Wrapper, WriteButton, ButtonWrapper } from './marketList.style'
 import Icon from 'react-native-vector-icons/Ionicons';
 const MarketListUI = ({navigation}:any) => {
     return(
@@ -20,9 +20,15 @@ const MarketListUI = ({navigation}:any) => {
                 </TouchableOpacity>
 
             </Container>
+ 
+                <ButtonWrapper>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Write')}}>
+                        <WriteButton>
+                            <Icon size={30} color={'#fff'} name='brush'/>
+                        </WriteButton>
+                    </TouchableOpacity>   
+                </ButtonWrapper> 
             
-                <WriteButton><Icon size={30} color={'#fff'} name='brush'/></WriteButton>
-                
         </>
     )
 }
