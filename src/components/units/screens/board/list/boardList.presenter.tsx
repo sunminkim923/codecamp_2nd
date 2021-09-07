@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity} from 'react-native'
-import { BoardComments, BoardContentsText, BoardContentsWrapper, CommentsText, CommentsUserImage, CommentsWrapper, Container, CreatedAt, ImageWrapper, LikeText, MoreButton, NewCommentsText, NewCommentsWrapper, UserImage, UserInfoLeftContents, UserInfoRightContents, UserInfoWrapper, UserName, UserWrapper, Wrapper, WriteButton } from './boardList.style'
+import { BoardComments, BoardContentsText, BoardContentsWrapper, CommentsText, CommentsUserImage, CommentsWrapper, Container, CreatedAt, ImageWrapper, LikeText, MoreButton, NewCommentsText, NewCommentsWrapper, UserImage, UserInfoLeftContents, UserInfoRightContents, UserInfoWrapper, UserName, UserWrapper, Wrapper, WriteButton, ButtonWrapper } from './boardList.style'
 import Icon from 'react-native-vector-icons/Ionicons';
 const BoardListUI = ({navigation}:any) => {
     return(
@@ -39,7 +39,13 @@ const BoardListUI = ({navigation}:any) => {
 
                 
             </Container>
-            <WriteButton><Icon size={30} color={'#fff'} name='brush'/></WriteButton>
+            <ButtonWrapper>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Write')}}>
+                        <WriteButton>
+                            <Icon size={30} color={'#fff'} name='brush'/>
+                        </WriteButton>
+                    </TouchableOpacity>   
+            </ButtonWrapper> 
         </>
     )
 }
