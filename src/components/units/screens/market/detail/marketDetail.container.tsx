@@ -1,8 +1,6 @@
-import React from 'react'
-import MarketDetailUI from './marketDetail.presenter'
+import React from 'react';
+import MarketDetailUI from './marketDetail.presenter';
 const MarketDetail = () => {
-    return(
-        <MarketDetailUI/>
-    )
-}
-export default MarketDetail
+  return <MarketDetailUI />;
+};
+export default MarketDetail;
