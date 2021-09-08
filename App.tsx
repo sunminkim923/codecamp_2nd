@@ -1,40 +1,18 @@
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { ApolloClient, ApolloProvider, ApolloLink, InMemoryCache} from '@apollo/client'
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
 
-
-function HomeScreen({navigation}: any) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen({navigation}: any) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
-
+const client = new ApolloClient({
+  uri: 'http://backend02.codebootcamp.co.kr/graphql',
+  // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+  cache: new InMemoryCache()
+})
 function App() {
   return (
     <>
+    <ApolloProvider client = {client}>
       <MainBottomTabNavigationPage/>
+    </ApolloProvider>
     </>
   );
 }

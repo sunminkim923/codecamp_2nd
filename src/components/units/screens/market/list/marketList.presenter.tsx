@@ -20,7 +20,7 @@ const MarketListUI = ({navigation}:any) => {
                 </TouchableOpacity>
 
             </Container>
- 
+
                 <ButtonWrapper>
                     <TouchableOpacity onPress={()=>{navigation.navigate('Write')}}>
                         <WriteButton>
