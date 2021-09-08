@@ -10,14 +10,13 @@ export default function AddRoomScreen({navigation}) {
 
   // ...Firestore query will come here later
 
-  function handleButtonPress() {
-    if (roomName.length > 0) {
-      firestore()
-        .collection('THREADS')
-        .add({
-          name: roomName,
-        })
-        .then(() => navigation.navigate('Home'));
+  async function handleButtonPress() {
+    if (roomName.length > 1) {
+      await firestore().collection('THREADS').add({
+        name: roomName,
+      });
+      // .then(() => navigation.navigate('Home'));
+      navigation.navigate('Home');
     }
   }
 

@@ -3,8 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import AddRoomScreen from '../screens/AddRoomScreen';
 import {IconButton} from 'react-native-paper';
+import RoomScreen from '../screens/RoomScreen';
 
-const Stack = createNativeStackNavigator();
 const ChatAppStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 
@@ -32,6 +32,13 @@ function ChatApp() {
               onPress={() => navigation.navigate('AddRoom')}
             />
           ),
+        })}
+      />
+      <ChatAppStack.Screen
+        name="Room"
+        component={RoomScreen}
+        options={({route}) => ({
+          title: route.params.thread.name,
         })}
       />
     </ChatAppStack.Navigator>
