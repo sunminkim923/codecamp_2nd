@@ -1,5 +1,4 @@
 import React from 'react';
-import {TouchableHighlight, View} from 'react-native';
 import {
   ButtonText,
   ChatButton,
