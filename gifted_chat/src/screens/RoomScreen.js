@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
 import {IconButton} from 'react-native-paper';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {AuthContext, AuthProvider} from '../navigation/AuthProvider';
+import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 
 export default function RoomScreen({route}) {
@@ -10,23 +10,23 @@ export default function RoomScreen({route}) {
   // const currentUser = user.toJSON();
   const {thread} = route.params;
 
-  const [messages, setMessages] = useState([
-    {
-      _id: 0,
-      text: 'New room created',
-      createdAt: new Date().getTime(),
-      system: true,
-    },
-    {
-      _id: 1,
-      text: 'Hello',
-      createdAt: new Date().getTime(),
-      user: {
-        _id: 2,
-        name: 'Test User',
-      },
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
+  //   {
+  //     _id: 0,
+  //     text: 'New room created',
+  //     createdAt: new Date().getTime(),
+  //     system: true,
+  //   },
+  //   {
+  //     _id: 1,
+  //     text: 'Hello',
+  //     createdAt: new Date().getTime(),
+  //     user: {
+  //       _id: 2,
+  //       name: 'Test User',
+  //     },
+  //   },
+  // ]);
 
   async function handleSend(messages) {
     const text = messages[0].text;
@@ -39,13 +39,57 @@ export default function RoomScreen({route}) {
         text,
         createdAt: new Date().getTime(),
         user: {
-          _id: uer.uid,
+          _id: user.uid,
           email: user.email,
         },
-      })
-      .then((res) => console.log('success', res))
-      .catch((err) => console.log('fail', err));
+      });
+
+    await firestore()
+      .collection('THREADS')
+      .doc(thread._id)
+      .set(
+        {
+          latestMessage: {
+            text,
+            createdAt: new Date().getTime(),
+          },
+        },
+        {merge: true},
+      );
   }
+
+  useEffect(() => {
+    const messagesListener = firestore()
+      .collection('THREADS')
+      .doc(thread._id)
+      .collection('MESSAGES')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((querySnapshot) => {
+        const messages = querySnapshot.docs.map((doc) => {
+          const firebaseData = doc.data();
+
+          const data = {
+            _id: doc.id,
+            text: '',
+            createdAt: new Date().getTime(),
+            ...firebaseData,
+          };
+
+          if (!firebaseData.system) {
+            data.user = {
+              ...firebaseData.user,
+              name: firebaseData.user.email,
+            };
+          }
+
+          return data;
+        });
+
+        setMessages(messages);
+      });
+    // Stop listening for updates whenever the component unmounts
+    return () => messagesListener();
+  }, []);
 
   function renderBubble(props) {
     return (
@@ -96,15 +140,11 @@ export default function RoomScreen({route}) {
     );
   }
 
-  useEffect(() => {
-    console.log({user});
-  }, []);
-
   return (
     <GiftedChat
       messages={messages}
-      onSend={(newMessage) => handleSend(newMessage)}
-      user={{_id: 1, name: '선민'}}
+      onSend={handleSend}
+      user={{_id: user.uid}}
       renderBubble={renderBubble}
       placeholder="메세지를 입력해주세요"
       showUserAvatar

@@ -10,7 +10,6 @@ export const AuthProvider = ({children}) => {
     <AuthContext.Provider
       value={{
         user,
-        setUser,
         login: async (email, password, navigation) => {
           try {
             const result = await auth().signInWithEmailAndPassword(

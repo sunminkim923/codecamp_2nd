@@ -10,17 +10,25 @@ export default function AddRoomScreen({navigation}) {
 
   // ...Firestore query will come here later
 
-  async function handleButtonPress() {
-    try {
-      if (roomName.length > 1) {
-        await firestore().collection('THREADS').add({
+  function handleButtonPress() {
+    if (roomName.length > 1) {
+      firestore()
+        .collection('THREADS')
+        .add({
           name: roomName,
+          lastMessage: {
+            text: `You have join the room ${roomName}`,
+            createdAt: new Date().getTime(),
+          },
+        })
+        .then((docRef) => {
+          docRef.collection('MESSAGES').add({
+            text: `You have joined the room ${roomName}`,
+            createdAt: new Date().getTime(),
+            system: true,
+          });
+          navigation.navigate('Home02');
         });
-        navigation.navigate('ChatList');
-        // .then(() => navigation.navigate('Home'));
-      }
-    } catch (error) {
-      console.log(error.message);
     }
   }
 
