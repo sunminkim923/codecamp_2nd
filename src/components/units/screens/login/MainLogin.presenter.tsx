@@ -5,12 +5,10 @@ import {
   LogoWrapper,
   LogoImg,
   UserInput,
-  ButtonWrapper,
   LoginButtonWrapper,
   LoginButton,
 } from './MainLogin.style';
-import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
-import {Button} from 'react-native';
+import SocialLogin from './socialLogin/socialLogin.container';
 
 const MainLoginPageUi = (props: any) => {
   return (
@@ -45,25 +43,10 @@ const MainLoginPageUi = (props: any) => {
           />
         )}
       />
-      <ButtonWrapper>
-        <LoginButtonWrapper onPress={props.handleSubmit(props.onSubmit)}>
-          <LoginButton>{'로그인'}</LoginButton>
-        </LoginButtonWrapper>
-        {/* <SocialLoginButton onPress={props.onGoogleLogin} /> */}
-        <GoogleSigninButton
-          style={{height: 45}}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-          onPress={props.onGoogleLogin}
-        />
-        {props.loggedIn && (
-          <Button
-            onPress={props.onGoogleLogout}
-            title="logout"
-            color="#bdbdbd"
-          /> // 임시 로그아웃 버튼
-        )}
-      </ButtonWrapper>
+      <LoginButtonWrapper onPress={props.handleSubmit(props.onSubmit)}>
+        <LoginButton>{'로그인'}</LoginButton>
+      </LoginButtonWrapper>
+      <SocialLogin />
     </Wrapper>
   );
 };
