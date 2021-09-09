@@ -2,18 +2,6 @@ import React, {useRef, useEffect} from 'react';
 import {Animated} from 'react-native';
 import {Container, Wrapper} from './landingPage.style';
 
-// const LandingUI = () => {
-
-//   return (
-//     <>
-//       <Container>
-//         <Wrapper source={require('../../../../imgs/landing.png')} />
-//       </Container>
-//     </>
-//   );
-// };
-// export default LandingUI;
-
 const FadeInView = (props: any) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
