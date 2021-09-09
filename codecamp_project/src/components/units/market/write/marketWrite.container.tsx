@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useForm } from "react-hook-form";
 import MarketWriteUI from "./marketWrite.presenter";
 import * as yup from "yup";
@@ -28,7 +29,6 @@ const schema = yup.object().shape({
   addressDetail: yup.string().required("상세주소를 입력하세요"),
 });
 
-// @ts-ignore
 export default function MarketWrite(props) {
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USEDITEM);
@@ -45,7 +45,6 @@ export default function MarketWrite(props) {
     resolver: yupResolver(schema),
   });
 
-  //@ts-ignore
   async function onSubmit(data) {
     try {
       const resultFiles = await Promise.all(

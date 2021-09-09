@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactPlayer from "react-player";
 
 export const PageWrapper = styled.div`
   padding-top: 80px;
@@ -82,10 +83,9 @@ export const YoutubeWrapper = styled.div`
   justify-content: center;
 `;
 
-export const YoutubeBox = styled.div`
+export const YoutubeBox = styled(ReactPlayer)`
   width: 486px;
   height: 240px;
-  background-color: green;
 `;
 
 export const LikeCountWrapper = styled.div`

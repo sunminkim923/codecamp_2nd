@@ -30,7 +30,3 @@ export const UPLOAD_FILE = gql`
     }
   }
 `;
-
-//fetch
-
-// router.query.id

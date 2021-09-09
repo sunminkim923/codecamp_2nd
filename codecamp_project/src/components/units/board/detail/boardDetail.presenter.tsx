@@ -1,6 +1,7 @@
 // @ts-nocheck
 import CommentWrite from "./comment/commentWrite/commentWrite.container";
 import CommentList from "./comment/commentList/commentList.container";
+import ReactPlayer from "react-player";
 import {
   PageWrapper,
   Wrapper,
@@ -53,10 +54,22 @@ export default function BoardDetailUI(props) {
           </HeadWrapper>
           <UnderLine01 />
           <Title> {props.data?.fetchBoard.title} </Title>
-          <ImageBox />
+          {props.data?.fetchBoard.images.map((data) => (
+            <ImageBox
+              key={data}
+              src={data ? `https://storage.googleapis.com/${data}` : ""}
+            />
+          ))}
+
           <Contents> {props.data?.fetchBoard.contents}</Contents>
           <YoutubeWrapper>
-            <YoutubeBox> {props.data?.fetchBoard.youtubeUrl} </YoutubeBox>
+            <YoutubeBox
+              url={
+                props.data?.fetchBoard.youtubeUrl
+                  ? props.data?.fetchBoard.youtubeUrl
+                  : ""
+              }
+            />
           </YoutubeWrapper>
           <LikeCountWrapper>
             <LikeWrapper>

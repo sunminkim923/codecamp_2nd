@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   PageWrapper,
   Wrapper,
@@ -67,7 +68,6 @@ export default function MarketDetailUI(props) {
           </ProductTitleWrapper>
           <Price>{props.data?.fetchUseditem.price}원</Price>
           <ProductImageWrapper>
-            {/* @ts-ignore */}
             {props.data?.fetchUseditem.images.map((data) => (
               <ImageWrapper
                 key={data}

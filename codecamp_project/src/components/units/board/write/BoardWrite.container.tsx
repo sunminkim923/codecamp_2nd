@@ -5,12 +5,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
-import { CREATE_BOARD } from "./boardWrite.queries";
+import { CREATE_BOARD, UPLOAD_FILE } from "./boardWrite.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function BoardWrite() {
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [imageFile, setImageFile] = useState([]);
+
   const router = useRouter();
 
   const schema = yup.object().shape({
@@ -28,6 +32,16 @@ export default function BoardWrite() {
 
   const onSubmit = async (data) => {
     try {
+      const resultFiles = await Promise.all(
+        imageFile.map((fileData) =>
+          uploadFile({ variables: { file: fileData } })
+        )
+      );
+
+      const finalUrl = resultFiles.map(
+        (resultUrl) => resultUrl.data.uploadFile.url
+      );
+
       const result = await createBoard({
         variables: {
           createBoardInput: {
@@ -36,6 +50,7 @@ export default function BoardWrite() {
             password: data.password,
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
+            images: finalUrl,
           },
         },
       });
@@ -53,6 +68,7 @@ export default function BoardWrite() {
       errors={formState.errors}
       onSubmit={onSubmit}
       isActive={formState.isValid}
+      setImageFile={setImageFile}
     />
   );
 }

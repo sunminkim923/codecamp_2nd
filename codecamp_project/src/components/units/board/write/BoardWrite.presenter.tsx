@@ -1,4 +1,5 @@
 //@ts-nocheck
+import ImageUpload from "../../../commons/imageupload/imageupload";
 import {
   Wrapper,
   PageWrapper,
@@ -93,18 +94,7 @@ export default function BoardWriteUI(props) {
             </YoutubeWrapper>
             <Text>사진첨부</Text>
             <UploadWrapper>
-              <Upload>
-                <div>+</div>
-                <div>Upload</div>
-              </Upload>
-              <Upload>
-                <div>+</div>
-                <div>Upload</div>
-              </Upload>
-              <Upload>
-                <div>+</div>
-                <div>Upload</div>
-              </Upload>
+              <ImageUpload setImageFile={props.setImageFile} />
             </UploadWrapper>
             {/* <RadioWrapper>
               <Text>메인설정</Text>
