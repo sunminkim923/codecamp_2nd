@@ -10,7 +10,7 @@ import {
   Title,
   Wrapper,
 } from './registPage01.style';
-const Regist01UI = () => {
+const Regist01UI = ({navigation}: any) => {
   return (
     <>
       <Container>
@@ -23,7 +23,12 @@ const Regist01UI = () => {
           </InputWrapper>
           <ButtonWrapper>
             <SubmitButton>
-              <ButtonText>다 음</ButtonText>
+              <ButtonText
+                onPress={() => {
+                  navigation.navigate('Regist02');
+                }}>
+                다 음
+              </ButtonText>
             </SubmitButton>
           </ButtonWrapper>
         </Wrapper>
