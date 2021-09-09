@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Title} from 'react-native-paper';
 import FormInput from '../components/FormInput';
@@ -29,7 +29,7 @@ export default function LoginScreen({navigation}) {
         title="Login"
         modeValue="contained"
         labelStyle={styles.loginButtonLabel}
-        onPress={() => login(email, password)}
+        onPress={() => login(email, password, navigation)}
       />
       <FormButton
         title="처음오셨습니까?"

@@ -38,6 +38,7 @@ export default function HomeScreen({navigation}) {
   return (
     <View style={styles.contatiner}>
       <FlatList
+        key={threads}
         data={threads}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <Divider />}

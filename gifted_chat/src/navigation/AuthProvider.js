@@ -4,27 +4,29 @@ import auth from '@react-native-firebase/auth';
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({children}) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
 
   return (
     <AuthContext.Provider
       value={{
         user,
         setUser,
-        login: async (email, password) => {
+        login: async (email, password, navigation) => {
           try {
-            await auth().signInWithEmailAndPassword(email, password);
+            const result = await auth().signInWithEmailAndPassword(
+              email,
+              password,
+            );
+            setUser(result.user);
+            navigation.navigate('Home');
           } catch (e) {
             console.log(e);
           }
         },
         register: async (email, password, navigation) => {
           try {
-            const result = await auth().createUserWithEmailAndPassword(
-              email,
-              password,
-            );
-            navigation.navigate('Home');
+            await auth().createUserWithEmailAndPassword(email, password);
+            navigation.navigate('Login');
           } catch (e) {
             console.log(e);
           }

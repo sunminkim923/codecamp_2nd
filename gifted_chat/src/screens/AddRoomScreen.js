@@ -11,12 +11,16 @@ export default function AddRoomScreen({navigation}) {
   // ...Firestore query will come here later
 
   async function handleButtonPress() {
-    if (roomName.length > 1) {
-      await firestore().collection('THREADS').add({
-        name: roomName,
-      });
-      // .then(() => navigation.navigate('Home'));
-      navigation.navigate('Home');
+    try {
+      if (roomName.length > 1) {
+        await firestore().collection('THREADS').add({
+          name: roomName,
+        });
+        navigation.navigate('ChatList');
+        // .then(() => navigation.navigate('Home'));
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 

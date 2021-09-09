@@ -20,7 +20,7 @@ const App = () => {
           <Tab.Screen name="Auth">
             {() => (
               <Stack.Navigator screenOptions={() => ({headerShown: false})}>
-                <Stack.Screen name="Login" component={AuthStack} />
+                <Stack.Screen name="Login222" component={AuthStack} />
               </Stack.Navigator>
             )}
           </Tab.Screen>

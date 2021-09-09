@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
 import {IconButton} from 'react-native-paper';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {AuthContext, AuthProvider} from '../navigation/AuthProvider';
+import firestore from '@react-native-firebase/firestore';
 
-export default function RoomScreen() {
+export default function RoomScreen({route}) {
+  const {user} = useContext(AuthContext);
+  // const currentUser = user.toJSON();
+  const {thread} = route.params;
+
   const [messages, setMessages] = useState([
     {
       _id: 0,
@@ -22,8 +28,23 @@ export default function RoomScreen() {
     },
   ]);
 
-  function handleSend(newMessage = []) {
-    setMessages(GiftedChat.append(messages, newMessage));
+  async function handleSend(messages) {
+    const text = messages[0].text;
+
+    firestore()
+      .collection('THREADS')
+      .doc(thread._id)
+      .collection('MESSAGES')
+      .add({
+        text,
+        createdAt: new Date().getTime(),
+        user: {
+          _id: uer.uid,
+          email: user.email,
+        },
+      })
+      .then((res) => console.log('success', res))
+      .catch((err) => console.log('fail', err));
   }
 
   function renderBubble(props) {
@@ -74,6 +95,10 @@ export default function RoomScreen() {
       </View>
     );
   }
+
+  useEffect(() => {
+    console.log({user});
+  }, []);
 
   return (
     <GiftedChat

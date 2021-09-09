@@ -53,6 +53,8 @@ export default function HomeStack() {
       screenOptions={() => ({headerShown: false})}>
       <ModalStack.Screen name="ChatApp" component={ChatApp} />
       <ModalStack.Screen name="AddRoom" component={AddRoomScreen} />
+      <ModalStack.Screen name="ChatList" component={HomeScreen} />
+      <ModalStack.Screen name="ChatRoom" component={RoomScreen} />
     </ModalStack.Navigator>
   );
 }
