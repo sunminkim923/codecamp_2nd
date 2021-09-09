@@ -18,6 +18,7 @@ function App() {
     <>
       <ApolloProvider client={client}>
         
+        
         <MainBottomTabNavigationPage />
       </ApolloProvider>
     </>

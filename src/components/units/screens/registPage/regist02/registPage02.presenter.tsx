@@ -18,7 +18,7 @@ import {
   Kinds,
 } from './registPage02.style';
 import Icon from 'react-native-vector-icons/Ionicons';
-const Regist02UI = (props) => {
+const Regist02UI = (props: any) => {
   return (
     <>
       <Container>
@@ -49,7 +49,12 @@ const Regist02UI = (props) => {
           </InputWrapper>
           <ButtonWrapper>
             <SubmitButton>
-              <ButtonText>다 음</ButtonText>
+              <ButtonText
+                onPress={() => {
+                  props.navigation.navigate('Regist03');
+                }}>
+                다 음
+              </ButtonText>
             </SubmitButton>
           </ButtonWrapper>
         </Wrapper>
