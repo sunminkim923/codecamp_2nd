@@ -15,7 +15,8 @@ import {
   Wrapper,
 } from './boardWrite.style';
 import Icon from 'react-native-vector-icons/Ionicons';
-const BoardWriteUI = () => {
+import {Controller} from 'react-hook-form';
+const BoardWriteUI = (props: any) => {
   return (
     <>
       <Container>
@@ -30,7 +31,20 @@ const BoardWriteUI = () => {
               value={true}
             />
           </ButtonWrapper>
-          <BoardContents multiline placeholder="내용을 입력하세요" />
+          <Controller
+            control={props.control}
+            name="contents"
+            rules={{required: true}}
+            render={({field: {onChange, onBlur, value}}) => (
+              <BoardContents
+                onBlur={onBlur}
+                onChangeText={(text) => onChange(text)}
+                value={value}
+                multiline
+                placeholder="내용을 입력하세요"
+              />
+            )}
+          />
           <AddImageWrapper>
             <AddImageText>사진 첨부하기</AddImageText>
             <AddImageButton>

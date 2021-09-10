@@ -38,7 +38,7 @@ export const AddImageButton = styled.View`
   justify-content: center;
   align-items: center;
 `;
-export const SubmitButton = styled.View`
+export const SubmitButton = styled.TouchableOpacity`
   flex-direction: row;
   margin: 30px;
   height: 55px;
