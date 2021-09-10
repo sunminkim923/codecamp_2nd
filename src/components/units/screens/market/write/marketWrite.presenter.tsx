@@ -16,7 +16,8 @@ import {
   Wrapper,
 } from './marketWrite.style';
 import Icon from 'react-native-vector-icons/Ionicons';
-const MarketWriteUI = () => {
+import {Controller} from 'react-hook-form';
+const MarketWriteUI = (props) => {
   return (
     <>
       <Container>
@@ -30,14 +31,19 @@ const MarketWriteUI = () => {
             </AddImage>
             <AddImageText>상품 사진을 첨부해주세요</AddImageText>
           </AddImageWrapper>
-          <InputWrapper>
-            <TitleInput placeholder="글 제목을 입력해주세요"></TitleInput>
-            <PriceInput placeholder="상품 가격을 입력해주세요"></PriceInput>
-            <AddressInput placeholder="거래 장소를 입력해주세요"></AddressInput>
-            <ContentsInput
-              multiline
-              placeholder="내용을 입력해주세요"></ContentsInput>
-          </InputWrapper>
+          <Controller
+            control={props.ccontrol}
+            name={}
+            render={({field: {onChange, value, onBlur}}) => {
+              <InputWrapper>
+                <TitleInput placeholder="글 제목을 입력해주세요" />
+                <PriceInput placeholder="상품 가격을 입력해주세요" />
+                <AddressInput placeholder="거래 장소를 입력해주세요" />
+                <ContentsInput multiline placeholder="내용을 입력해주세요" />
+              </InputWrapper>;
+            }}
+          />
+
           <SubmitButton>
             <Icon size={30} color={'#fff'} name="md-brush-sharp" />
             <ButtonText>등록하기</ButtonText>
