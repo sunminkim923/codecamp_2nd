@@ -1,5 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
+import {
+  GiftedChat,
+  Bubble,
+  Send,
+  SystemMessage,
+} from 'react-native-gifted-chat';
 import {IconButton} from 'react-native-paper';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {AuthContext} from '../navigation/AuthProvider';
@@ -140,6 +145,16 @@ export default function RoomScreen({route}) {
     );
   }
 
+  function renderSystemMessage(props) {
+    return (
+      <SystemMessage
+        {...props}
+        wrapperStyle={styles.systemMessageWrapper}
+        textStyle={styles.systemMessageText}
+      />
+    );
+  }
+
   return (
     <GiftedChat
       messages={messages}
@@ -153,6 +168,7 @@ export default function RoomScreen({route}) {
       scrollToBottom
       scrollToBottomComponent={scrollToBottomComponent}
       renderLoading={renderLoading}
+      renderSystemMessage={renderSystemMessage}
     />
   );
 }
@@ -170,5 +186,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  systemMessageWrapper: {
+    backgroundColor: '#6646ee',
+    borderRadius: 4,
+    padding: 5,
+  },
+  systemMessageText: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });

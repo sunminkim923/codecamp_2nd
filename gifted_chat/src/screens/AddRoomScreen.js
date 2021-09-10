@@ -4,19 +4,21 @@ import {IconButton, Title} from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import firestore from '@react-native-firebase/firestore';
+import useStatusBar from '../utills/useStatusBar';
 
 export default function AddRoomScreen({navigation}) {
+  useStatusBar('dark-content');
   const [roomName, setRoomName] = useState('');
 
   // ...Firestore query will come here later
 
   function handleButtonPress() {
-    if (roomName.length > 1) {
+    if (roomName.length > 0) {
       firestore()
         .collection('THREADS')
         .add({
           name: roomName,
-          lastMessage: {
+          latestMessage: {
             text: `You have join the room ${roomName}`,
             createdAt: new Date().getTime(),
           },
@@ -27,7 +29,7 @@ export default function AddRoomScreen({navigation}) {
             createdAt: new Date().getTime(),
             system: true,
           });
-          navigation.navigate('Home02');
+          navigation.navigate('ChatList');
         });
     }
   }

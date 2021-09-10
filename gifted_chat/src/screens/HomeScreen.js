@@ -5,22 +5,26 @@ import firestore from '@react-native-firebase/firestore';
 import FormButton from '../components/FormButton';
 import {AuthContext} from '../navigation/AuthProvider';
 import Loading from '../components/Loading';
+import useStatusBar from '../utills/useStatusBar';
 
 export default function HomeScreen({navigation}) {
-  const {user, logout} = useContext(AuthContext);
-
+  useStatusBar('light-content');
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = firestore()
       .collection('THREADS')
+      .orderBy('latestMessage.createdAt', 'desc')
       .onSnapshot((querySnapshot) => {
         const threads = querySnapshot.docs.map((documentSnapshot) => {
           return {
             _id: documentSnapshot.id,
             //give defaults
             name: '',
+            latestMessage: {
+              text: '',
+            },
             ...documentSnapshot.data(),
           };
         });
@@ -31,6 +35,7 @@ export default function HomeScreen({navigation}) {
       });
     return () => unsubscribe();
   }, []);
+
   if (loading) {
     return <Loading />;
   }
@@ -52,6 +57,7 @@ export default function HomeScreen({navigation}) {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={1}
+              description={item.latestMessage.text}
             />
           </TouchableOpacity>
         )}
