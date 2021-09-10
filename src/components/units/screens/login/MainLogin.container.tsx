@@ -36,7 +36,7 @@ const MainLoginPage = () => {
     return (
       <MainLoginPageUi
         control={control}
-        register={register}
+        // register={register}
         loggedIn={loggedIn}
         handleSubmit={handleSubmit}
       />
