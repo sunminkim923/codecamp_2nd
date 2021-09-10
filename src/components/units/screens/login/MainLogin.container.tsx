@@ -21,24 +21,22 @@ const MainLoginPage = () => {
     },
   });
 
-  console.log(errors);
-  // const {userInfo, setUserInfo} = useContext(GlobalContext);
   const onAuthStateChanged = (user) => {
     setUserInfo(user);
     if (loggedIn) setLoggedIn(true);
   };
-  
+
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    console.log("ddddd",userInfo);
     return subscriber; // unsubscribe on unmount
   }, []);
-  
+
   if (loggedIn) return null;
   if (!userInfo) {
     return (
       <MainLoginPageUi
         control={control}
+        register={register}
         loggedIn={loggedIn}
         handleSubmit={handleSubmit}
       />
