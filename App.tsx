@@ -1,19 +1,19 @@
 import * as React from 'react';
-// import {
-//   ApolloClient,
-//   ApolloProvider,
-//   ApolloLink,
-//   InMemoryCache,
-// } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  ApolloLink,
+  InMemoryCache,
+} from '@apollo/client';
 import MainBottomTabNavigationPage from './pages/navigation/MainBottomTabNavigation';
 import {useState, createContext} from 'react';
-import StartPageStackNAvigationPage from './pages/navigation/StartPageStackNavigation';
+import StartPageStackNavigationPage from './pages/navigation/StartPageStackNavigation';
 
-// const client = new ApolloClient({
-//   uri: 'http://backend02.codebootcamp.co.kr/graphql',
-//   // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  uri: 'http://34.68.72.16:4000/graphql',
+  // link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+  cache: new InMemoryCache(),
+});
 
 export const GlobalContext = createContext({});
 
@@ -30,17 +30,17 @@ function App() {
   return (
     <>
       <GlobalContext.Provider value={value}>
-        {/* <ApolloProvider client={client}> */}
-        {userInfo ? (
-          <>
-            <MainBottomTabNavigationPage />
-          </>
-        ) : (
-          <>
-            <StartPageStackNAvigationPage />
-          </>
-        )}
-        {/* </ApolloProvider> */}
+        <ApolloProvider client={client}>
+          {userInfo ? (
+            <>
+              <MainBottomTabNavigationPage />
+            </>
+          ) : (
+            <>
+              <StartPageStackNavigationPage />
+            </>
+          )}
+        </ApolloProvider>
       </GlobalContext.Provider>
     </>
   );
