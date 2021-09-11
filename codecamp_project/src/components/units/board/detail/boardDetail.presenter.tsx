@@ -73,7 +73,10 @@ export default function BoardDetailUI(props) {
           </YoutubeWrapper>
           <LikeCountWrapper>
             <LikeWrapper>
-              <LikeButton src="/images/likeButton.png/" />
+              <LikeButton
+                src="/images/likeButton.png/"
+                onClick={props.onClickLike}
+              />
               <LikeCount> {props.data?.fetchBoard.likeCount} </LikeCount>
             </LikeWrapper>
             <DisLikeWrapper>
