@@ -1,7 +1,7 @@
 // @ts-nocheck
 import CommentWrite from "./comment/commentWrite/commentWrite.container";
 import CommentList from "./comment/commentList/commentList.container";
-import ReactPlayer from "react-player";
+import { Modal } from "antd";
 import {
   PageWrapper,
   Wrapper,
@@ -84,8 +84,18 @@ export default function BoardDetailUI(props) {
         </Wrapper>
         <ButtonWrapper>
           <ListButton onClick={props.onClickList}>목록으로 </ListButton>
-          <EditButton>수정하기</EditButton>
-          <DeleteButton>삭제하기</DeleteButton>
+          <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
+          <DeleteButton onClick={props.onClickDelete}>삭제하기</DeleteButton>
+          {props.isModal && (
+            <Modal
+              title="게시글 삭제"
+              visible={props.isOpen}
+              onOk={props.onClickOk}
+              onCancel={props.onClickCancel}
+            >
+              <div>게시글을 삭제하시겠습니까?</div>
+            </Modal>
+          )}
         </ButtonWrapper>
         <UnderLine02 />
         <CommentWrite />

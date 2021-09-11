@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";

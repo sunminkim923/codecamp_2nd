@@ -37,7 +37,11 @@ export default function BoardWriteUI(props) {
     <>
       <PageWrapper>
         <Wrapper>
-          <form onSubmit={props.handleSubmit(props.onSubmit)}>
+          <form
+            onSubmit={props.handleSubmit(
+              !props.isEdit ? props.onSubmit : props.onEdit
+            )}
+          >
             <BoardTitle>게시물 등록</BoardTitle>
             <TopWrapper>
               <WriterWrapper>

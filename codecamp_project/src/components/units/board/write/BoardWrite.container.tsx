@@ -5,14 +5,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useMutation } from "@apollo/client";
-import { CREATE_BOARD, UPLOAD_FILE } from "./boardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./boardWrite.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
   const [imageFile, setImageFile] = useState([]);
 
   const router = useRouter();
@@ -54,8 +55,29 @@ export default function BoardWrite() {
           },
         },
       });
-      Modal.info({ content: "게시글을 등록하겠습니다." });
+      Modal.info({ content: "게시글을 등록합니다." });
       router.push(`/board/detail/${result.data?.createBoard._id}`);
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+
+  const onEdit = async (data) => {
+    try {
+      const result = await updateBoard({
+        variables: {
+          boardId: router.query.Id,
+          password: data.password,
+          updateBoardInput: {
+            title: data.title,
+            contents: data.contents,
+            youtubeUrl: data.youtubeUrl,
+            // images: finalUrl,
+          },
+        },
+      });
+      Modal.info({ content: "게시글이 수정되었습니다." });
+      router.push(`/board/detail/${result.data?.updateBoard._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
@@ -69,6 +91,8 @@ export default function BoardWrite() {
       onSubmit={onSubmit}
       isActive={formState.isValid}
       setImageFile={setImageFile}
+      isEdit={props.isEdit}
+      onEdit={onEdit}
     />
   );
 }
