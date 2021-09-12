@@ -6,7 +6,7 @@ import CommentListItem from "./commentlistitem";
 export default function CommentListUI(props) {
   return (
     <PageWrapper>
-      {props.commentData?.fetchUseditemQuestions.map((data, index) => (
+      {props.commentData?.fetchUseditemQuestions.map((data) => (
         <CommentListItem data={data} />
       ))}
     </PageWrapper>

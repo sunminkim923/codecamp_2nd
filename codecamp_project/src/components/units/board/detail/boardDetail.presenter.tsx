@@ -80,7 +80,10 @@ export default function BoardDetailUI(props) {
               <LikeCount> {props.data?.fetchBoard.likeCount} </LikeCount>
             </LikeWrapper>
             <DisLikeWrapper>
-              <DisLikeButton src="/images/disLikeButton.png/" />
+              <DisLikeButton
+                src="/images/disLikeButton.png/"
+                onClick={props.onClickDislike}
+              />
               <DisLikeCount>{props.data?.fetchBoard.dislikeCount}</DisLikeCount>
             </DisLikeWrapper>
           </LikeCountWrapper>

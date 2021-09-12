@@ -3,19 +3,27 @@ import { useForm } from "react-hook-form";
 import CommentWriteUI from "./commentWrite.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BAORD_COMMENT } from "./commentWrite.queries";
+import {
+  CREATE_BAORD_COMMENT,
+  UPDATE_BOARD_COMMENT,
+} from "./commentWrite.queries";
 import { FETCH_BOARD_COMMENTS } from "../commentList/commentList.queries";
 import { useState } from "react";
 
-export default function CommentWrite() {
+export default function CommentWrite(props) {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
+  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const router = useRouter();
   const [inputWriter, setInputWriter] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [inputContents, setInputContents] = useState("");
   const [inputRating, setInputRating] = useState(0);
+
+  const { data: commentData } = useQuery(FETCH_BOARD_COMMENTS, {
+    variables: { boardId: router.query.Id },
+  });
 
   const onChangeInputWriter = (event) => {
     setInputWriter(event.target.value);
@@ -64,11 +72,30 @@ export default function CommentWrite() {
           },
         ],
       });
+      console.log("result", result);
       alert("댓글을 등록합니다.");
       setInputWriter("");
       setInputPassword("");
       setInputContents("");
       setInputRating(0);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onEdit = async (data) => {
+    try {
+      await updateBoardComment({
+        variables: {
+          updateBoardCommentInput: {
+            contents: data.contents,
+            rating: inputRating,
+          },
+          password: data.password,
+          boardCommentId: data.createBoardComment._id,
+        },
+      });
+      alert("댓글을 수정합니다");
     } catch (error) {
       alert(error.message);
     }
@@ -88,6 +115,8 @@ export default function CommentWrite() {
       inputPassword={inputPassword}
       inputContents={inputContents}
       inputRating={inputRating}
+      isEdit={props.isEdit}
+      onEdit={onEdit}
     />
   );
 }

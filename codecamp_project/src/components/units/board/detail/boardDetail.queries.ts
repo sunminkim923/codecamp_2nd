@@ -26,3 +26,9 @@ export const LIKE_BOARD = gql`
     likeBoard(boardId: $boardId)
   }
 `;
+
+export const DISLIKE_BOARD = gql`
+  mutation dislikeBoard($boardId: ID!) {
+    dislikeBoard(boardId: $boardId)
+  }
+`;

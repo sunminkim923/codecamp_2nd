@@ -2,7 +2,12 @@
 
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { DELETE_BOARD, FETCH_BOARD, LIKE_BOARD } from "./boardDetail.queries";
+import {
+  DELETE_BOARD,
+  DISLIKE_BOARD,
+  FETCH_BOARD,
+  LIKE_BOARD,
+} from "./boardDetail.queries";
 import BoardDetailUI from "./boardDetail.presenter";
 import { Modal } from "antd";
 import { useState } from "react";
@@ -11,6 +16,7 @@ export default function BoardDetail() {
   const router = useRouter();
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
+  const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
   const [isModal, setIsModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +61,26 @@ export default function BoardDetail() {
       variables: {
         boardId: router.query.Id,
       },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.Id },
+        },
+      ],
+    });
+  };
+
+  const onClickDislike = () => {
+    dislikeBoard({
+      variables: {
+        boardId: router.query.Id,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.Id },
+        },
+      ],
     });
   };
 
@@ -69,6 +95,7 @@ export default function BoardDetail() {
       isModal={isModal}
       isOpen={isOpen}
       onClickLike={onClickLike}
+      onClickDislike={onClickDislike}
     />
   );
 }
