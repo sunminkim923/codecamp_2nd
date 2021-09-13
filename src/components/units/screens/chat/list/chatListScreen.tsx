@@ -28,8 +28,7 @@ export default function ChatListScreen({navigation}) {
       .onSnapshot((querySnapshot) => {
         const threads = querySnapshot.docs.map((documentSnapshot) => {
           return {
-            _id: 'test',
-            // _id: documentSnapshot.id,
+            _id: documentSnapshot.id,
             //give defaults
             name: '',
             latestMessage: {
@@ -67,7 +66,7 @@ export default function ChatListScreen({navigation}) {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={1}
-              description={item.latestMessage.text}
+              // description={item.latestMessage.text}
             />
           </TouchableOpacity>
         )}
