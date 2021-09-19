@@ -92,7 +92,7 @@ export default function CommentWrite(props) {
             rating: inputRating,
           },
           password: data.password,
-          boardCommentId: data.createBoardComment._id,
+          boardCommentId: router.query.Id,
         },
       });
       alert("댓글을 수정합니다");
