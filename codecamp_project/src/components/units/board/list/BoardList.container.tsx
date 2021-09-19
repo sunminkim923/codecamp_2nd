@@ -7,7 +7,7 @@ import { FETCH_BOARDS, FETCH_BOARDS_OF_THE_BEST } from "./boardList.queries";
 
 export default function BoardList() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARDS);
+  const { data, refetch } = useQuery(FETCH_BOARDS);
   const { data: bestData } = useQuery(FETCH_BOARDS_OF_THE_BEST);
 
   const onClickBestBoard = (data) => {
@@ -29,6 +29,7 @@ export default function BoardList() {
       onClickBestBoard={onClickBestBoard}
       onClickBoard={onClickBoard}
       onClickSubmit={onClickSubmit}
+      refetch={refetch}
     />
   );
 }
