@@ -15,6 +15,7 @@ export default function BoardWrite(props) {
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [imageFile, setImageFile] = useState([]);
+  const [isModal, setIsModal] = useState(false);
 
   const router = useRouter();
 
@@ -83,6 +84,10 @@ export default function BoardWrite(props) {
     }
   };
 
+  const onClicksearchAdress = () => {
+    setIsModal(true);
+  };
+
   return (
     <BoardWriteUI
       handleSubmit={handleSubmit}
@@ -93,6 +98,8 @@ export default function BoardWrite(props) {
       setImageFile={setImageFile}
       isEdit={props.isEdit}
       onEdit={onEdit}
+      onClicksearchAdress={onClicksearchAdress}
+      isModal={isModal}
     />
   );
 }

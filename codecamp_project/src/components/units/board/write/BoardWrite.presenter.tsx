@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { Modal } from "antd";
 import ImageUpload from "../../../commons/imageupload/imageupload";
 import {
   Wrapper,
@@ -84,9 +85,19 @@ export default function BoardWriteUI(props) {
             <AdressWrapper>
               <Text>주소</Text>
               <ZoneCode type="text" placeholder="우편번호" readOnly></ZoneCode>
-              <SearchAdress type="button">주소 검색하기</SearchAdress>
-              <Adress placeholder="주소를 검색해주세요" readOnly />
-              <AdressDetail type="text" placeholder="상세주소를 입력하세요" />
+              <SearchAdress type="button" onClick={props.onClicksearchAdress}>
+                주소 검색하기
+              </SearchAdress>
+              {props.isModal && (
+                <Modal
+                  text="주소를 입력하세요"
+                  visible={props.isModal}
+                  onOk={props.onClickCancel}
+                  onCancel={props.onClickCancel}
+                >
+                  {/* <DaumPostcode onComplete={props.onComplete} /> */}
+                </Modal>
+              )}
             </AdressWrapper>
             <YoutubeWrapper>
               <Text>유튜브</Text>
