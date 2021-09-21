@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 import ImageUpload from "../../../commons/imageupload/imageupload";
 import {
   Wrapper,
@@ -15,11 +16,12 @@ import {
   Title,
   ContentsWrapper,
   Contents,
-  AdressWrapper,
-  ZoneCode,
-  SearchAdress,
-  Adress,
-  AdressDetail,
+  AddressWrapper,
+  ZipCodeWrapper,
+  ZipCode,
+  SearchAddress,
+  Address,
+  AddressDetail,
   YoutubeWrapper,
   Youtube,
   UploadWrapper,
@@ -82,12 +84,19 @@ export default function BoardWriteUI(props) {
               />
               <Error>{props.errors.contents?.message}</Error>
             </ContentsWrapper>
-            <AdressWrapper>
+            <AddressWrapper>
               <Text>주소</Text>
-              <ZoneCode type="text" placeholder="우편번호" readOnly></ZoneCode>
-              <SearchAdress type="button" onClick={props.onClicksearchAdress}>
-                주소 검색하기
-              </SearchAdress>
+              <ZipCodeWrapper>
+                <ZipCode address={props.address}>
+                  {props.address ? props.zipCode : "우편번호"}
+                </ZipCode>
+                <SearchAddress
+                  type="button"
+                  onClick={props.onClicksearchAdress}
+                >
+                  주소 검색하기
+                </SearchAddress>
+              </ZipCodeWrapper>
               {props.isModal && (
                 <Modal
                   text="주소를 입력하세요"
@@ -95,10 +104,17 @@ export default function BoardWriteUI(props) {
                   onOk={props.onClickCancel}
                   onCancel={props.onClickCancel}
                 >
-                  {/* <DaumPostcode onComplete={props.onComplete} /> */}
+                  <DaumPostcode onComplete={props.onComplete} />
                 </Modal>
               )}
-            </AdressWrapper>
+              <Address address={props.address}>
+                {props.address ? props.address : "주소를 검색해주세요"}
+              </Address>
+              <AddressDetail
+                onChange={props.onChangeAddressDetail}
+                placeholder="상세주소를 입력해주세요"
+              />
+            </AddressWrapper>
             <YoutubeWrapper>
               <Text>유튜브</Text>
               <Youtube

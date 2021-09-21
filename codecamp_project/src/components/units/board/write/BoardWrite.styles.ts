@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
@@ -76,35 +74,47 @@ export const Contents = styled.textarea`
   font-size: 16px;
   border: 1px solid #bdbdbd;
 `;
-export const AdressWrapper = styled.div`
+export const AddressWrapper = styled.div`
   padding-top: 40px;
 `;
 
-export const ZoneCode = styled.input`
-  margin-top: 16px;
+export const ZipCodeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 16px;
+`;
+
+export const ZipCode = styled.div`
   margin-right: 16px;
   width: 77px;
   height: 52px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #bdbdbd;
   font-size: 16px;
+  color: ${(props) => (props.address ? "" : "#bdbdbd")};
 `;
-export const SearchAdress = styled.button`
+export const SearchAddress = styled.button`
   background-color: black;
   width: 124px;
   height: 52px;
   color: white;
   font-size: 16px;
 `;
-export const Adress = styled.input`
+export const Address = styled.div`
   width: 100%;
   height: 52px;
   border: 1px solid #bdbdbd;
   margin-top: 16px;
   padding-left: 16px;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: ${(props) => (props.address ? "" : "#bdbdbd")};
 `;
-export const AdressDetail = styled.input`
+export const AddressDetail = styled.input`
   width: 100%;
   height: 52px;
   border: 1px solid #bdbdbd;

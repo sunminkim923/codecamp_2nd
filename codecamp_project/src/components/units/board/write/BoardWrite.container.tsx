@@ -14,8 +14,12 @@ export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+
   const [imageFile, setImageFile] = useState([]);
   const [isModal, setIsModal] = useState(false);
+  const [address, setAddress] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const router = useRouter();
 
@@ -88,6 +92,20 @@ export default function BoardWrite(props) {
     setIsModal(true);
   };
 
+  const onClickCancel = () => {
+    setIsModal(false);
+  };
+
+  const onComplete = (data) => {
+    console.log(data);
+    setAddress(data.address);
+    setZipCode(data.zonecode);
+  };
+
+  const onChangeAddressDetail = (event) => {
+    setAddressDetail(event.target.value);
+  };
+
   return (
     <BoardWriteUI
       handleSubmit={handleSubmit}
@@ -100,6 +118,11 @@ export default function BoardWrite(props) {
       onEdit={onEdit}
       onClicksearchAdress={onClicksearchAdress}
       isModal={isModal}
+      onClickCancel={onClickCancel}
+      onComplete={onComplete}
+      address={address}
+      zipCode={zipCode}
+      onChangeAddressDetail={onChangeAddressDetail}
     />
   );
 }
