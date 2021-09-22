@@ -6,5 +6,12 @@ export default function LayoutHeader() {
   const onClickLogin = () => {
     router.push("/login/");
   };
-  return <LayoutHeaderUI onClickLogin={onClickLogin} />;
+
+  const onClickLogo = () => {
+    router.push("/login/");
+  };
+
+  return (
+    <LayoutHeaderUI onClickLogin={onClickLogin} onClickLogo={onClickLogo} />
+  );
 }

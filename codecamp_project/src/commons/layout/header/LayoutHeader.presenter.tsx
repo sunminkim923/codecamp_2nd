@@ -10,7 +10,7 @@ import {
 export default function LayoutHeaderUI(props) {
   return (
     <Header>
-      <BrandLogo src="/images/porschelogo.png" />
+      <BrandLogo onClick={props.onClickLogo} src="/images/porschelogo.png" />
       <UserWrapper>
         <ProfileImg src="/images/profile.svg" />
         <Text onClick={props.onClickLogin}>로그인</Text>

@@ -14,6 +14,7 @@ export const Header = styled.div`
 export const BrandLogo = styled.img`
   width: 120px;
   height: 120px;
+  cursor: pointer;
 `;
 
 export const UserWrapper = styled.div`
