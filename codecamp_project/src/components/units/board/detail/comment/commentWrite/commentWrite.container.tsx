@@ -93,6 +93,7 @@ export default function CommentWrite(props) {
           },
           password: data.password,
           boardCommentId: router.query.Id,
+          //(event.tartget as Element).Id
         },
       });
       alert("댓글을 수정합니다");
