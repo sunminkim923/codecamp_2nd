@@ -32,7 +32,7 @@ import {
   SubmitButtonWrapper,
   SubmitButton,
   Error,
-} from "./boardWrite.styles";
+} from "./BoardWrite.styles";
 
 // @ts-ignore
 export default function BoardWriteUI(props) {
