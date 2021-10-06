@@ -48,7 +48,9 @@ export default function CommentListItem(props) {
       </HeadWrapper>
       <CreateDate>{props.data?.createdAt}</CreateDate>
 
-      {isEdit && <CommentWrite isEdit={isEdit} />}
+      {isEdit && (
+        <CommentWrite isEdit={isEdit} data={props.data} setIsEdit={setIsEdit} />
+      )}
 
       <UnderLine />
     </Wrapper>

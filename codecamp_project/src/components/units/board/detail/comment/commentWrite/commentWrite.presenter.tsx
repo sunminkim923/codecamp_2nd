@@ -16,6 +16,7 @@ import {
 } from "./commentWrite.styles";
 
 export default function CommentWriteUI(props) {
+  console.log(props.data, "ddd");
   return (
     <PageWrapper>
       <form
@@ -64,7 +65,7 @@ export default function CommentWriteUI(props) {
             />
             <BottomWrapper>
               <TextLength>0 / 100</TextLength>
-              <SubmitButton type="submit">
+              <SubmitButton type="submit" id={props.data?._id}>
                 {props.isEdit ? "수정하기" : "등록하기"}
               </SubmitButton>
             </BottomWrapper>

@@ -11,6 +11,7 @@ import {
 } from "./commentWrite.queries";
 import { FETCH_BOARD_COMMENTS } from "../commentList/commentList.queries";
 import { useState } from "react";
+import { FETCH_BOARD } from "../../boardDetail.queries";
 
 export default function CommentWrite(props) {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
@@ -92,10 +93,16 @@ export default function CommentWrite(props) {
             rating: inputRating,
           },
           password: data.password,
-          boardCommentId: router.query.Id,
-          //(event.tartget as Element).Id
+          boardCommentId: props.data._id,
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.Id },
+          },
+        ],
       });
+      props.setIsEdit(false);
       alert("댓글을 수정합니다");
     } catch (error) {
       alert(error.message);
@@ -118,6 +125,7 @@ export default function CommentWrite(props) {
       inputRating={inputRating}
       isEdit={props.isEdit}
       onEdit={onEdit}
+      data={props.data}
     />
   );
 }
