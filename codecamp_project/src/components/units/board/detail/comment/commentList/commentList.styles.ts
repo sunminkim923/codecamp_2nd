@@ -74,3 +74,8 @@ export const UnderLine = styled.div`
   width: 100%;
   border-top: 1px solid #bdbdbd;
 `;
+
+export const ModalInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

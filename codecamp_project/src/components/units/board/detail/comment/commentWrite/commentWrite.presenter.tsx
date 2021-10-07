@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { Modal } from "antd";
 import {
   PageWrapper,
   Wrapper,

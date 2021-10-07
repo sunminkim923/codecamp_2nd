@@ -16,6 +16,7 @@ import {
   CheckboxWrapper,
 } from "./login.styles";
 import Payment from "../../../commons/payment/payment";
+import KakaoLogin from "react-kakao-login";
 
 //@ts-ignore
 export default function LoginUI(props) {
@@ -56,6 +57,12 @@ export default function LoginUI(props) {
           </OnclickWrapper>
           <Payment />
         </Wrapper>
+        <KakaoLogin
+          token={"fe853892c0427192f5e132563ab9f6aa"}
+          onSuccess={console.log}
+          onFail={console.error}
+          onLogout={console.info}
+        />
       </PageWrapper>
     </>
   );

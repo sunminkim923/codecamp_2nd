@@ -11,7 +11,6 @@ import {
 } from "./commentWrite.queries";
 import { FETCH_BOARD_COMMENTS } from "../commentList/commentList.queries";
 import { useState } from "react";
-import { FETCH_BOARD } from "../../boardDetail.queries";
 
 export default function CommentWrite(props) {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
@@ -21,10 +20,6 @@ export default function CommentWrite(props) {
   const [inputPassword, setInputPassword] = useState("");
   const [inputContents, setInputContents] = useState("");
   const [inputRating, setInputRating] = useState(0);
-
-  const { data: commentData } = useQuery(FETCH_BOARD_COMMENTS, {
-    variables: { boardId: router.query.Id },
-  });
 
   const onChangeInputWriter = (event) => {
     setInputWriter(event.target.value);
