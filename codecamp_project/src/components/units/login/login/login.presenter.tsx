@@ -20,6 +20,10 @@ import KakaoLogin from "react-kakao-login";
 
 //@ts-ignore
 export default function LoginUI(props) {
+  const aaa = (data: any) => {
+    console.log("aaa", data);
+  };
+
   return (
     <>
       <PageWrapper>
@@ -59,7 +63,7 @@ export default function LoginUI(props) {
         </Wrapper>
         <KakaoLogin
           token={"fe853892c0427192f5e132563ab9f6aa"}
-          onSuccess={console.log}
+          onSuccess={aaa}
           onFail={console.error}
           onLogout={console.info}
         />
