@@ -65,7 +65,7 @@ export default function CommentWriteUI(props) {
               value={props.inputContents}
             />
             <BottomWrapper>
-              <TextLength>0 / 100</TextLength>
+              <TextLength> {props.commentLength} / 100</TextLength>
               <SubmitButton type="submit" id={props.data?._id}>
                 {props.isEdit ? "수정하기" : "등록하기"}
               </SubmitButton>

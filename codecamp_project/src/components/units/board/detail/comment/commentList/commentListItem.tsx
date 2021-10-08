@@ -1,9 +1,13 @@
 //@ts-nocheck
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
 import CommentWrite from "../commentWrite/commentWrite.container";
-import { DELETE_BOARD_COMMENT } from "./commentList.queries";
+import {
+  DELETE_BOARD_COMMENT,
+  FETCH_BOARD_COMMENTS,
+} from "./commentList.queries";
 import {
   Wrapper,
   HeadWrapper,
@@ -26,9 +30,12 @@ export default function CommentListItem(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [password, setPassword] = useState("");
   const [onCancel, setOnCancel] = useState(false);
   const [onOk, setOnOk] = useState(false);
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+
+  const router = useRouter();
 
   const onClickEdit = () => {
     setIsEdit(true);
@@ -37,12 +44,35 @@ export default function CommentListItem(props) {
   const onClickDelete = () => {
     setIsModal(true);
     setIsOpen(true);
+  };
 
-    // deleteBoardComment({
-    //   variables: {
-    //     boardCommentId: props.data._id,
-    //   },
-    // });
+  const onClickCancel = () => {
+    setIsOpen(false);
+  };
+
+  const onClickOk = async () => {
+    try {
+      await deleteBoardComment({
+        variables: {
+          password: password,
+          boardCommentId: props.data._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.Id },
+          },
+        ],
+      });
+      setIsOpen(false);
+      alert("댓글이 삭제되었습니다.");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onChangePassword = (event: ChangeEvent) => {
+    setPassword(event.target.value);
   };
 
   return (
@@ -65,10 +95,15 @@ export default function CommentListItem(props) {
                 onClick={onClickDelete}
               />
               {isModal && (
-                <Modal title="댓글삭제" visible={isOpen}>
+                <Modal
+                  title="댓글삭제"
+                  visible={isOpen}
+                  onCancel={onClickCancel}
+                  onOk={onClickOk}
+                >
                   <ModalInputWrapper>
                     <div>비밀번호를 입력해주세요</div>
-                    <input type="password" />
+                    <input type="password" onChange={onChangePassword} />
                   </ModalInputWrapper>
                 </Modal>
               )}

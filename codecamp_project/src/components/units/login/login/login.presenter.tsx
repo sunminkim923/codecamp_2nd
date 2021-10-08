@@ -14,14 +14,22 @@ import {
   Error,
   Checkbox,
   CheckboxWrapper,
+  SocialLogin,
 } from "./login.styles";
 import Payment from "../../../commons/payment/payment";
 import KakaoLogin from "react-kakao-login";
+import { useRef } from "react";
 
 //@ts-ignore
 export default function LoginUI(props) {
   const aaa = (data: any) => {
-    console.log("aaa", data);
+    console.log("aaa", data.profile.properties.nickname);
+  };
+
+  const kakaoRef = useRef(null);
+
+  const onKakaoLogin = () => {
+    kakaoRef.current?.onButtonClick();
   };
 
   return (
@@ -50,6 +58,18 @@ export default function LoginUI(props) {
             <LoginButton type="submit" isActive={props.isActive}>
               로그인하기
             </LoginButton>
+            <SocialLogin
+              src="/images/kakao_login_medium_wide.png"
+              onClick={onKakaoLogin}
+            />
+            <KakaoLogin
+              token={"fe853892c0427192f5e132563ab9f6aa"}
+              onSuccess={aaa}
+              onFail={console.error}
+              onLogout={console.info}
+              ref={kakaoRef}
+              style={{ display: "none" }}
+            />
           </form>
           <UnderLine></UnderLine>
           <OnclickWrapper>
@@ -61,12 +81,6 @@ export default function LoginUI(props) {
           </OnclickWrapper>
           <Payment />
         </Wrapper>
-        <KakaoLogin
-          token={"fe853892c0427192f5e132563ab9f6aa"}
-          onSuccess={aaa}
-          onFail={console.error}
-          onLogout={console.info}
-        />
       </PageWrapper>
     </>
   );

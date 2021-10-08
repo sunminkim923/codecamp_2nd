@@ -50,6 +50,7 @@ export const LoginButton = styled.button`
   border-radius: 15px;
   border: 0.5px solid lightgray;
   background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
+  font-size: 18px;
 `;
 
 export const UnderLine = styled.div`
@@ -84,4 +85,11 @@ export const Checkbox = styled.input``;
 
 export const CheckboxWrapper = styled.div`
   padding-top: 20px;
+`;
+
+export const SocialLogin = styled.img`
+  margin-top: 20px;
+  width: 100%;
+  height: 64px;
+  border-radius: 15px;
 `;

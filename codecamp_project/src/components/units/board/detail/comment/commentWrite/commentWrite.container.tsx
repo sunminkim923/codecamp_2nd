@@ -20,6 +20,7 @@ export default function CommentWrite(props) {
   const [inputPassword, setInputPassword] = useState("");
   const [inputContents, setInputContents] = useState("");
   const [inputRating, setInputRating] = useState(0);
+  const [commentLength, setCommentLength] = useState(0);
 
   const onChangeInputWriter = (event) => {
     setInputWriter(event.target.value);
@@ -31,6 +32,7 @@ export default function CommentWrite(props) {
 
   const onChangeInPutContents = (event) => {
     setInputContents(event.target.value);
+    setCommentLength(event.target.value.length);
   };
 
   const onChangeRating = (event) => {
@@ -121,6 +123,7 @@ export default function CommentWrite(props) {
       isEdit={props.isEdit}
       onEdit={onEdit}
       data={props.data}
+      commentLength={commentLength}
     />
   );
 }
