@@ -20,15 +20,15 @@ import Payment from "../../../commons/payment/payment";
 import KakaoLogin from "react-kakao-login";
 import { useRef } from "react";
 
-//@ts-ignore
-export default function LoginUI(props) {
+export default function LoginUI(props: any) {
   const aaa = (data: any) => {
-    console.log("aaa", data.profile.properties.nickname);
+    console.log("aaa", data);
   };
 
   const kakaoRef = useRef(null);
 
   const onKakaoLogin = () => {
+    //@ts-ignore
     kakaoRef.current?.onButtonClick();
   };
 

@@ -21,7 +21,7 @@ export default function CommentWrite(props) {
   const [inputContents, setInputContents] = useState("");
   const [inputRating, setInputRating] = useState(0);
   const [commentLength, setCommentLength] = useState(0);
-
+  //@ts-ignore
   const onChangeInputWriter = (event) => {
     setInputWriter(event.target.value);
   };
