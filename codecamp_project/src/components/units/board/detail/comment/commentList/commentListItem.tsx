@@ -102,7 +102,7 @@ export default function CommentListItem(props) {
                   onOk={onClickOk}
                 >
                   <ModalInputWrapper>
-                    <div>비밀번호를 입력해주세요</div>
+                    <div>비밀번호를 입력해주세요.</div>
                     <input type="password" onChange={onChangePassword} />
                   </ModalInputWrapper>
                 </Modal>
