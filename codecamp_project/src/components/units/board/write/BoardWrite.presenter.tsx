@@ -136,7 +136,7 @@ export default function BoardWriteUI(props) {
             </RadioWrapper> */}
             <SubmitButtonWrapper>
               <SubmitButton type="submit" isActive={props.isActive}>
-                등록하기
+                {props.isEdit ? "수정하기" : "등록하기"}
               </SubmitButton>
             </SubmitButtonWrapper>
           </form>

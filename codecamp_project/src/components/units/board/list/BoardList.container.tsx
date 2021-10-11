@@ -2,7 +2,7 @@
 
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import BoardListUI from "./boardList.presenter";
+import BoardListUI from "./BoardList.presenter";
 import { FETCH_BOARDS, FETCH_BOARDS_OF_THE_BEST } from "./boardList.queries";
 
 export default function BoardList() {

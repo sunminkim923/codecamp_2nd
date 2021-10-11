@@ -11,6 +11,10 @@ export const FETCH_USEDITEM = gql`
       tags
       images
       pickedCount
+      seller {
+        _id
+        name
+      }
     }
   }
 `;
@@ -24,5 +28,15 @@ export const TOGGLE_USEDITEM_PICK = gql`
 export const DELETE_USEDITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {
     deleteUseditem(useditemId: $useditemId)
+  }
+`;
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+    }
   }
 `;

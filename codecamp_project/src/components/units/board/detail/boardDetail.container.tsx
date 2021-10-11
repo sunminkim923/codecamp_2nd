@@ -29,6 +29,8 @@ export default function BoardDetail() {
     variables: { boardId: router.query.Id },
   });
 
+  console.log(data);
+
   const onClickEdit = () => {
     router.push(`/board/detail/${router.query.Id}/edit`);
   };

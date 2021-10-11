@@ -1,26 +1,47 @@
 //@ts-nocheck
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductDetailUI from "./marketDetail.presenter";
 import { Modal } from "antd";
 import {
   DELETE_USEDITEM,
   FETCH_USEDITEM,
+  FETCH_USER_LOGGED_IN,
   TOGGLE_USEDITEM_PICK,
 } from "./marketDetail.queries";
 
 export default function MarketDetail() {
+  const [isModal, setIsModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
+
+  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [deleteUseditem] = useMutation(DELETE_USEDITEM);
+
   const router = useRouter();
 
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
   });
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
-  const [deleteUseditem] = useMutation(DELETE_USEDITEM);
 
-  const [isModal, setIsModal] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
+
+  const marketSeller = data?.fetchUseditem.seller._id;
+  const loggedInUser = userData?.fetchUserLoggedIn._id;
+
+  console.log("셀러", marketSeller);
+  console.log("유저", loggedInUser);
+
+  console.log("qqq", isSeller);
+
+  useEffect(() => {
+    if (marketSeller !== loggedInUser) {
+      setIsSeller(false);
+    } else if (marketSeller === loggedInUser) {
+      setIsSeller(true);
+    }
+  }, []);
 
   //@ts-ignore
   const onClickToggle = (pickedCount) => {
@@ -104,6 +125,7 @@ export default function MarketDetail() {
       onClickCancel={onClickCancel}
       isModal={isModal}
       isOpen={isOpen}
+      isSeller={isSeller}
     />
   );
 }
