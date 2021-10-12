@@ -24,9 +24,12 @@ import {
   ProductTag,
   Map,
   ButtonWrapper,
+  BuyerButtonWrapper,
+  ButtonWrapperBuyer,
   ListButton,
   EditButton,
   DeleteButton,
+  BuyButton,
 } from "./marketDetail.styles";
 import CommentWrite from "./comment/commentwrite/commentwrite.container";
 import CommentList from "./comment/commentlist/commentlist.container";
@@ -60,7 +63,7 @@ export default function MarketDetailUI(props) {
             </TitleWrapper>
             <LikePointWrapper>
               <LikeHeart
-                src="/images/heart.svg"
+                src="/images/toggle_icon_filled.png"
                 onClick={props.onClickToggle}
               />
               <LikePoint>{props.data?.fetchUseditem.pickedCount}</LikePoint>
@@ -84,7 +87,7 @@ export default function MarketDetailUI(props) {
           <UnderLine />
           <Map />
           <UnderLine />
-          {props.isSeller && (
+          {props.marketSeller === props.loggedInUser && (
             <ButtonWrapper>
               <ListButton onClick={props.onClickList}>목록으로</ListButton>
               <EditButton onClick={props.onClickEdit}>수정하기</EditButton>
@@ -102,6 +105,14 @@ export default function MarketDetailUI(props) {
                 삭제하기
               </DeleteButton>
             </ButtonWrapper>
+          )}
+          {props.marketSeller !== props.loggedInUser && (
+            <BuyerButtonWrapper>
+              <ButtonWrapperBuyer>
+                <ListButton onClick={props.onClickList}>목록으로</ListButton>
+                <BuyButton>구매하기</BuyButton>
+              </ButtonWrapperBuyer>
+            </BuyerButtonWrapper>
           )}
         </Wrapper>
       </PageWrapper>

@@ -73,8 +73,8 @@ export const LikePointWrapper = styled.div`
 
 export const LikeHeart = styled.img`
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 `;
 
 export const LikePoint = styled.div`
@@ -131,6 +131,18 @@ export const ButtonWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
+export const BuyerButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ButtonWrapperBuyer = styled.div`
+  width: 70%;
+  padding-top: 85px;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 export const ListButton = styled.button`
   width: 179px;
   height: 52px;
@@ -146,7 +158,6 @@ export const EditButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-
   background-color: #bdbdbd;
   cursor: pointer;
   :hover {
@@ -155,6 +166,17 @@ export const EditButton = styled.button`
 `;
 
 export const DeleteButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  background-color: #bdbdbd;
+  cursor: pointer;
+  :hover {
+    background-color: #ffd600;
+  }
+`;
+
+export const BuyButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;

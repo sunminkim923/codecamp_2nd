@@ -9,5 +9,11 @@ const Quill = styled(ReactQuill)`
 `;
 
 export default function TextAreaQuill(props) {
-  return <Quill onChange={props.onChange} placeholder={props.placeholder} />;
+  return (
+    <Quill
+      onChange={props.onChange}
+      placeholder={props.placeholder}
+      defaultValue={props.defaultValue}
+    />
+  );
 }

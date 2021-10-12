@@ -7,6 +7,7 @@ import { Modal } from "antd";
 import {
   DELETE_USEDITEM,
   FETCH_USEDITEM,
+  FETCH_USEDITEMS_I_PICKED,
   FETCH_USER_LOGGED_IN,
   TOGGLE_USEDITEM_PICK,
 } from "./marketDetail.queries";
@@ -14,7 +15,7 @@ import {
 export default function MarketDetail() {
   const [isModal, setIsModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isSeller, setIsSeller] = useState(false);
+  const [isToggle, setIsToggle] = useState(false);
 
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USEDITEM);
@@ -27,24 +28,15 @@ export default function MarketDetail() {
 
   const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
 
+  const { data: pickedItems } = useQuery(FETCH_USEDITEMS_I_PICKED);
+
+  console.log("찜한상품", pickedItems);
+
   const marketSeller = data?.fetchUseditem.seller._id;
   const loggedInUser = userData?.fetchUserLoggedIn._id;
 
-  console.log("셀러", marketSeller);
-  console.log("유저", loggedInUser);
-
-  console.log("qqq", isSeller);
-
-  useEffect(() => {
-    if (marketSeller !== loggedInUser) {
-      setIsSeller(false);
-    } else if (marketSeller === loggedInUser) {
-      setIsSeller(true);
-    }
-  }, []);
-
   //@ts-ignore
-  const onClickToggle = (pickedCount) => {
+  const onClickToggle = (event) => {
     try {
       toggleUseditemPick({
         variables: {
@@ -125,7 +117,8 @@ export default function MarketDetail() {
       onClickCancel={onClickCancel}
       isModal={isModal}
       isOpen={isOpen}
-      isSeller={isSeller}
+      marketSeller={marketSeller}
+      loggedInUser={loggedInUser}
     />
   );
 }

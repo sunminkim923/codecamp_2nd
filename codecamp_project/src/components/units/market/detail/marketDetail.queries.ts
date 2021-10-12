@@ -25,6 +25,18 @@ export const TOGGLE_USEDITEM_PICK = gql`
   }
 `;
 
+export const FETCH_USEDITEMS_I_PICKED = gql`
+  query fetchUseditemsIPicked($page: Int, $search: String) {
+    fetchUseditemsIPicked(page: $page, search: $search) {
+      _id
+      name
+      remarks
+      contents
+      price
+    }
+  }
+`;
+
 export const DELETE_USEDITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {
     deleteUseditem(useditemId: $useditemId)

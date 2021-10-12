@@ -46,7 +46,7 @@ export default function MarketWriteUI(props) {
               type="text"
               register={{ ...props.register("productName") }}
               errorMessage={props.errors.productName?.message}
-              defaultvalue={props.isEdit ? props.data?.fetchUseditem.name : ""}
+              defaultValue={props.data?.fetchUseditem.name}
             />
           </InputWrapper>
           <InputWrapper>
@@ -56,6 +56,7 @@ export default function MarketWriteUI(props) {
               tpye="text"
               register={{ ...props.register("productCharacter") }}
               errorMessage={props.errors.productCharacter?.message}
+              defaultValue={props.data?.fetchUseditem.remarks}
             />
           </InputWrapper>
           <InputWrapper>
@@ -63,6 +64,7 @@ export default function MarketWriteUI(props) {
             <TextAreaQuill
               onChange={props.onChangeExplanation}
               placeholder="상품을 설명해주세요"
+              defaultValue={props.data?.fetchUseditem.contents}
             />
             <Error>{props.errors.productExplanation?.message}</Error>
           </InputWrapper>
@@ -74,12 +76,17 @@ export default function MarketWriteUI(props) {
                 placeholder="가격을 입력하세요"
                 register={{ ...props.register("price") }}
                 errorMessage={props.errors.price?.message}
+                defaultValue={props.data?.fetchUseditem.price}
               />
             </InputWrapper>
           </PriceWrapper>
           <InputWrapper>
             <Text>태그입력</Text>
-            <TextInput type="text" placeholder="#태그 #태그 #태그" />
+            <TextInput
+              type="text"
+              placeholder="#태그 #태그 #태그"
+              defaultValue={props.data?.fetchUseditem.tags}
+            />
           </InputWrapper>
           <PositionWrapper>
             <MapWrapper>

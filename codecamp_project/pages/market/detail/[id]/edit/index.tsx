@@ -23,5 +23,7 @@ export default function EditPage() {
     variables: { useditemId: router.query.id },
   });
 
+  console.log("수정", data);
+
   return <Register isEdit={isEdit} data={data} />;
 }

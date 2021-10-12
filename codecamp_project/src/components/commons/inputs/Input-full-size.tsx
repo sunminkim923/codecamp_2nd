@@ -22,6 +22,7 @@ export default function InputFullSize(props) {
         type={props.type}
         {...props.register}
         placeholder={props.placeholder}
+        defaultValue={props.defaultValue}
       />
       <ErrorMessage>{props.errorMessage}</ErrorMessage>
     </>
