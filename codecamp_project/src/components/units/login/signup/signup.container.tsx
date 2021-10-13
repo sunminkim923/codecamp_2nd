@@ -49,7 +49,7 @@ export default function SignUp() {
       });
       Modal.info({ content: "회원가입을 축하합니다." });
       router.push("/login");
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   }

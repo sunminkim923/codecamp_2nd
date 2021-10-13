@@ -48,3 +48,11 @@ export const ChangeButton = styled.button`
   font-size: 16px;
   font-weight: 700;
 `;
+
+export const InputBox = styled.div``;
+
+export const Error = styled.div`
+  color: red;
+  padding-left: 20px;
+  padding-top: 5px;
+`;

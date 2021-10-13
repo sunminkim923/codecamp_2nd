@@ -19,17 +19,17 @@ import {
   MyProfile,
 } from "./mypage.styles";
 
-export default function SideMenuUI() {
+export default function SideMenuUI(props: any) {
   return (
     <>
       <PageWrapper>
         <UserInfoWrapper>
           <Title>MYPAGE</Title>
           <ProfileImg src="/images/profile.svg/" />
-          <UserName>노원두</UserName>
+          <UserName>{props.data?.fetchUserLoggedIn.name}</UserName>
           <PointWrapper>
             <PigIcon src="/images/pig.png/" />
-            <Point>10,000P</Point>
+            <Point>{props.data?.fetchUserLoggedIn.userPoint.amount} P</Point>
           </PointWrapper>
           <MyBasketWrapper>
             <BasketIcon src="/images/basket.png/" />

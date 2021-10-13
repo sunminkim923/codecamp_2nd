@@ -46,7 +46,7 @@ export default function Login() {
       localStorage.setItem("refreshToken", "true");
 
       router.push("./market/list/");
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   }
