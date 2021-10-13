@@ -21,7 +21,8 @@ import {
   TopWrapper,
   TextWrapper,
   SearchWrapper,
-  Text,
+  Text01,
+  Text02,
   SearchInput,
   SearchDate,
   SearchButton,
@@ -82,8 +83,12 @@ export default function MarketListUI(props) {
         <ProductListWrapper>
           <TopWrapper>
             <TextWrapper>
-              <Text>판매중상품</Text>
-              <Text>판매된상품</Text>
+              <Text01 onClick={props.onClickSelling} soldItem={props.soldItem}>
+                판매중상품
+              </Text01>
+              <Text02 onClick={props.onClickSold} soldItem={props.soldItem}>
+                판매된상품
+              </Text02>
             </TextWrapper>
             <SearchWrapper>
               <SearchInput placeholder="제품을 검색해주세요" />
@@ -92,48 +97,94 @@ export default function MarketListUI(props) {
             </SearchWrapper>
           </TopWrapper>
           <InfiniteScrollWrapper>
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={props.onLoadMore}
-              hasMore={props.hasMore}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-                </div>
-              }
-              useWindow={false}
-            >
-              {props.data?.fetchUseditems.map((data) => (
-                <ProductWrapper
-                  key={data._id}
-                  onClick={() => props.onClickProduct(data._id)}
-                >
-                  <ProductImg
-                    src={
-                      data.images[0]
-                        ? `https://storage.googleapis.com/${data.images[0]}`
-                        : " "
-                    }
-                  />
-                  <ProductExplanationWrapper>
-                    <ContentsWrapper>
-                      <ProductName>{data.name}</ProductName>
-                      <ProductCharacter>{data.remarks}</ProductCharacter>
-                      <ProductTag>{data.tags}</ProductTag>
-                      <ProfileWrapper>
-                        <ProfileImg src="/images/profile-small.svg" />
-                        판매자
-                        <HeartPoint src="/images/heart-small.svg" />
-                        {data.pickedCount}
-                      </ProfileWrapper>
-                    </ContentsWrapper>
-                    <PriceWrapper>
-                      <Price>{data.price} 원</Price>
-                    </PriceWrapper>
-                  </ProductExplanationWrapper>
-                </ProductWrapper>
-              ))}
-            </InfiniteScroll>
+            {!props.soldItem && (
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={props.onLoadMore}
+                hasMore={props.hasMore}
+                loader={
+                  <div className="loader" key={0}>
+                    Loading ...
+                  </div>
+                }
+                useWindow={false}
+              >
+                {props.data?.fetchUseditems.map((data) => (
+                  <ProductWrapper
+                    key={data._id}
+                    onClick={() => props.onClickProduct(data._id)}
+                  >
+                    <ProductImg
+                      src={
+                        data.images[0]
+                          ? `https://storage.googleapis.com/${data.images[0]}`
+                          : " "
+                      }
+                    />
+                    <ProductExplanationWrapper>
+                      <ContentsWrapper>
+                        <ProductName>{data.name}</ProductName>
+                        <ProductCharacter>{data.remarks}</ProductCharacter>
+                        <ProductTag>{data.tags}</ProductTag>
+                        <ProfileWrapper>
+                          <ProfileImg src="/images/profile-small.svg" />
+                          판매자
+                          <HeartPoint src="/images/heart-small.svg" />
+                          {data.pickedCount}
+                        </ProfileWrapper>
+                      </ContentsWrapper>
+                      <PriceWrapper>
+                        <Price>{data.price} 원</Price>
+                      </PriceWrapper>
+                    </ProductExplanationWrapper>
+                  </ProductWrapper>
+                ))}
+              </InfiniteScroll>
+            )}
+            {props.soldItem && (
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={props.onLoadMore}
+                hasMore={props.hasMore}
+                loader={
+                  <div className="loader" key={0}>
+                    Loading ...
+                  </div>
+                }
+                useWindow={false}
+              >
+                {props.data?.fetchUseditems.map((data) => (
+                  <ProductWrapper
+                    key={data._id}
+                    onClick={() => props.onClickProduct(data._id)}
+                  >
+                    <ProductImg
+                      src={
+                        data.images[0]
+                          ? `https://storage.googleapis.com/${data.images[0]}`
+                          : " "
+                      }
+                    />
+                    <ProductExplanationWrapper>
+                      <ContentsWrapper>
+                        <ProductName>{data.name}</ProductName>
+                        <ProductCharacter>{data.remarks}</ProductCharacter>
+                        <ProductTag>{data.tags}</ProductTag>
+                        <ProfileWrapper>
+                          <ProfileImg src="/images/profile-small.svg" />
+                          판매자
+                          <HeartPoint src="/images/heart-small.svg" />
+                          {data.pickedCount}
+                        </ProfileWrapper>
+                      </ContentsWrapper>
+                      <PriceWrapper>
+                        <Price>{data.price} 원</Price>
+                      </PriceWrapper>
+                    </ProductExplanationWrapper>
+                  </ProductWrapper>
+                ))}
+              </InfiniteScroll>
+            )}
           </InfiniteScrollWrapper>
           <SubmitButtonWrapper>
             <SubmitButton onClick={props.onClickSubmit}>

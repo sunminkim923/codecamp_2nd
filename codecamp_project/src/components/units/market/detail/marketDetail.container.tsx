@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ProductDetailUI from "./marketDetail.presenter";
 import { Modal } from "antd";
 import {
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
   DELETE_USEDITEM,
   FETCH_USEDITEM,
   FETCH_USEDITEMS_I_PICKED,
@@ -15,11 +16,12 @@ import {
 export default function MarketDetail() {
   const [isModal, setIsModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isToggle, setIsToggle] = useState(false);
 
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USEDITEM);
-
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
   const router = useRouter();
 
   const { data } = useQuery(FETCH_USEDITEM, {
@@ -27,10 +29,6 @@ export default function MarketDetail() {
   });
 
   const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
-
-  const { data: pickedItems } = useQuery(FETCH_USEDITEMS_I_PICKED);
-
-  console.log("찜한상품", pickedItems);
 
   const marketSeller = data?.fetchUseditem.seller._id;
   const loggedInUser = userData?.fetchUserLoggedIn._id;
@@ -106,6 +104,20 @@ export default function MarketDetail() {
     setIsOpen(false);
   };
 
+  const onClickBuyItem = async () => {
+    try {
+      await createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: router.query.id,
+        },
+      });
+      router.push("/market/list");
+      Modal.info({ content: "상품구매가 완료되었습니다." });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+
   return (
     <ProductDetailUI
       data={data}
@@ -119,6 +131,7 @@ export default function MarketDetail() {
       isOpen={isOpen}
       marketSeller={marketSeller}
       loggedInUser={loggedInUser}
+      onClickBuyItem={onClickBuyItem}
     />
   );
 }

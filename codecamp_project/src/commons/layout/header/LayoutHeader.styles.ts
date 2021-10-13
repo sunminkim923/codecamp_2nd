@@ -49,4 +49,5 @@ export const UserPoint = styled.div`
   font-weight: 800;
   letter-spacing: 2px;
   color: #ffd600;
+  cursor: pointer;
 `;

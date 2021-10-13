@@ -8,6 +8,9 @@ import {
   UserPoint,
 } from "./LayoutHeader.styles";
 
+import { Modal } from "antd";
+import { useState } from "react";
+
 export default function LayoutHeaderUI(props: any) {
   return (
     <Header>
@@ -23,7 +26,7 @@ export default function LayoutHeaderUI(props: any) {
           <ProfileImg src="/images/profile.svg" />
           <Text>{props.data?.fetchUserLoggedIn.name}님</Text>
           <HeightLine />
-          <UserPoint>
+          <UserPoint onClick={props.onClickPoint}>
             {props.data?.fetchUserLoggedIn.userPoint.amount} Point
           </UserPoint>
           <HeightLine />

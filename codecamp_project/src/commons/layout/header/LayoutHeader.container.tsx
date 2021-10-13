@@ -47,6 +47,10 @@ export default function LayoutHeader() {
     }
   };
 
+  const onClickPoint = () => {
+    router.push("/mypage/");
+  };
+
   return (
     <LayoutHeaderUI
       onClickLogin={onClickLogin}
@@ -55,6 +59,7 @@ export default function LayoutHeader() {
       data={data}
       onClickLogout={onClickLogout}
       userLoggedIn={userLoggedIn}
+      onClickPoint={onClickPoint}
     />
   );
 }

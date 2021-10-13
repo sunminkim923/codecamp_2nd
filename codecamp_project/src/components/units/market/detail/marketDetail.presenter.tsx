@@ -110,7 +110,7 @@ export default function MarketDetailUI(props) {
             <BuyerButtonWrapper>
               <ButtonWrapperBuyer>
                 <ListButton onClick={props.onClickList}>목록으로</ListButton>
-                <BuyButton>구매하기</BuyButton>
+                <BuyButton onClick={props.onClickBuyItem}>구매하기</BuyButton>
               </ButtonWrapperBuyer>
             </BuyerButtonWrapper>
           )}

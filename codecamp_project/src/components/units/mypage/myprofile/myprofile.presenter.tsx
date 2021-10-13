@@ -54,7 +54,6 @@ export default function MyProfilePageUI(props: any) {
           <ButtonWrapper>
             <ChangeButton
               type="submit"
-              onClick={props.onClickChangePassword}
               //@ts-ignore
               isActive={props.isActive}
             >

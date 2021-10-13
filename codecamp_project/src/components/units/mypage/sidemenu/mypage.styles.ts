@@ -51,7 +51,7 @@ export const Point = styled.div`
 `;
 
 export const MyBasketWrapper = styled.div`
-  padding-top: 69px;
+  padding-top: 35px;
   display: flex;
   align-items: center;
 `;
@@ -94,4 +94,69 @@ export const MyProfile = styled.div`
   padding-left: 10px;
   font-size: 18px;
   font-weight: 500;
+`;
+
+export const ChargeButton = styled.button`
+  width: 100%;
+  height: 35px;
+  margin-top: 15px;
+  background-color: #ffd600;
+  border: none;
+  cursor: pointer;
+`;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalUserName = styled.div`
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const ModalUserInfoWrapper = styled.div``;
+
+export const ModalPaymentWrapper = styled.div`
+  padding-top: 20px;
+`;
+
+export const ModalContentsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ModalUserPoint = styled.div`
+  font-size: 25px;
+  font-weight: 500;
+  padding-top: 10px;
+  text-align: center;
+`;
+
+export const ModalChargeInfo = styled.div`
+  text-align: center;
+  padding-top: 10px;
+  font-size: 18px;
+`;
+
+export const ModalChargeInfoTest = styled.div`
+  text-align: center;
+  padding-top: 10px;
+  font-size: 15px;
+  color: red;
+`;
+
+export const ModalExitButton = styled.button`
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  margin-top: 35px;
+  :hover {
+    background-color: #ffd600;
+  }
 `;

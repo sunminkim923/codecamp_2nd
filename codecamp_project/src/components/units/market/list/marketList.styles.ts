@@ -122,10 +122,20 @@ export const SearchWrapper = styled.div`
   display: flex;
 `;
 
-export const Text = styled.div`
+export const Text01 = styled.div`
   font-size: 18px;
   font-weight: 500;
   padding-right: 20px;
+  color: ${(props) => (props.soldItem ? "" : "#ffd600")};
+  cursor: pointer;
+`;
+
+export const Text02 = styled.div`
+  font-size: 18px;
+  font-weight: 500;
+  padding-right: 20px;
+  color: ${(props) => (props.soldItem ? "#ffd600" : "")};
+  cursor: pointer;
 `;
 
 export const SearchInput = styled.input`

@@ -1,5 +1,8 @@
+import withAuth from "../../src/components/commons/hocs/withAuth";
 import SideMenu from "../../src/components/units/mypage/sidemenu/mypage.container";
 
-export default function MypageIndex() {
+function MypageIndex() {
   return <SideMenu />;
 }
+
+export default withAuth(MypageIndex);

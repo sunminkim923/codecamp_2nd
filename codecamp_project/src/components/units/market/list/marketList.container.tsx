@@ -10,9 +10,26 @@ import {
 
 export default function MarketList() {
   const router = useRouter();
-  const { data, fetchMore } = useQuery(FETCH_USEDITEMS);
+
+  const [soldItem, setSoldItem] = useState(false);
+
+  const { data, fetchMore } = useQuery(FETCH_USEDITEMS, {
+    variables: {
+      isSoldout: soldItem,
+    },
+  });
+
   const { data: newData } = useQuery(FETCH_USEDITEMS_OF_THE_BEST);
+
   const [hasMore, setHasMore] = useState(true);
+
+  const onClickSelling = () => {
+    setSoldItem(false);
+  };
+
+  const onClickSold = () => {
+    setSoldItem(true);
+  };
 
   const onClickSubmit = () => {
     router.push("./write/");
@@ -52,6 +69,9 @@ export default function MarketList() {
       onClickProduct={onClickProduct}
       onLoadMore={onLoadMore}
       hasMore={hasMore}
+      onClickSelling={onClickSelling}
+      onClickSold={onClickSold}
+      soldItem={soldItem}
     />
   );
 }
