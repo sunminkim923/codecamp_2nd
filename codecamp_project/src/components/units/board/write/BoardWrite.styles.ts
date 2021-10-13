@@ -86,7 +86,7 @@ export const ZipCodeWrapper = styled.div`
   padding-top: 16px;
 `;
 
-export const ZipCode = styled.div`
+export const ZipCode = styled.input`
   margin-right: 16px;
   width: 77px;
   height: 52px;
@@ -94,6 +94,7 @@ export const ZipCode = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid #bdbdbd;
+  text-align: center;
   font-size: 16px;
   color: ${(props) => (props.address ? "" : "#bdbdbd")};
 `;
@@ -104,7 +105,7 @@ export const SearchAddress = styled.button`
   color: white;
   font-size: 16px;
 `;
-export const Address = styled.div`
+export const Address = styled.input`
   width: 100%;
   height: 52px;
   border: 1px solid #bdbdbd;

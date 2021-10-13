@@ -53,7 +53,6 @@ export default function BoardWriteUI(props) {
                   placeholder="이름을 입력해주세요"
                   type="text"
                   {...props.register("writer")}
-                  defaultValue={props.data?.fetchBoard.writer}
                   // readOnly={props.data?.fetchBoard.writer}
                 />
                 <Error>{props.errors.writer?.message}</Error>
@@ -91,9 +90,12 @@ export default function BoardWriteUI(props) {
             <AddressWrapper>
               <Text>주소</Text>
               <ZipCodeWrapper>
-                <ZipCode address={props.address}>
-                  {props.address ? props.zipCode : "우편번호"}
-                </ZipCode>
+                <ZipCode
+                  address={props.address}
+                  placeholder={props.address ? props.zipCode : "우편번호"}
+                  {...props.register("zipCode")}
+                  readOnly
+                />
                 <SearchAddress
                   type="button"
                   onClick={props.onClicksearchAdress}
@@ -111,11 +113,16 @@ export default function BoardWriteUI(props) {
                   <DaumPostcode onComplete={props.onComplete} />
                 </Modal>
               )}
-              <Address address={props.address}>
-                {props.address ? props.address : "주소를 검색해주세요"}
-              </Address>
+              <Address
+                address={props.address}
+                placeholder={
+                  props.address ? props.address : "주소를 검색해주세요"
+                }
+                {...props.register("address")}
+                readOnly
+              />
               <AddressDetail
-                onChange={props.onChangeAddressDetail}
+                {...props.register("addressDetail")}
                 placeholder="상세주소를 입력해주세요"
               />
             </AddressWrapper>

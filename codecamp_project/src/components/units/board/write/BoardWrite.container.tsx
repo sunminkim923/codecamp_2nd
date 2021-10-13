@@ -19,7 +19,6 @@ export default function BoardWrite(props) {
   const [isModal, setIsModal] = useState(false);
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
 
   const router = useRouter();
 
@@ -29,6 +28,9 @@ export default function BoardWrite(props) {
     title: yup.string().required("제목을 입력해주세요"),
     contents: yup.string().required("내용을 입력해주세요"),
     youtubeUr: yup.string(),
+    zipCode: yup.string(),
+    address: yup.string(),
+    addressDetail: yup.string(),
   });
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
@@ -42,6 +44,12 @@ export default function BoardWrite(props) {
       setValue("title", props.data?.fetchBoard.title);
       setValue("contents", props.data?.fetchBoard.contents);
       setValue("youtubeUrl", props.data?.fetchBoard.youtubeUrl);
+      setValue("zipCode", props.data?.fetchBoard.boardAddress.zipcode);
+      setValue("address", props.data?.fetchBoard.boardAddress.address);
+      setValue(
+        "addressDetail",
+        props.data?.fetchBoard.boardAddress.addressDetail
+      );
     }
   }, [props.data]);
 
@@ -66,6 +74,11 @@ export default function BoardWrite(props) {
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
             images: finalUrl,
+            boardAddress: {
+              zipcode: zipCode,
+              address: address,
+              addressDetail: data.addressDetail,
+            },
           },
         },
       });
@@ -97,6 +110,11 @@ export default function BoardWrite(props) {
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
             images: finalUrl,
+            boardAddress: {
+              zipcode: zipCode,
+              address: address,
+              addressDetail: addressDetail,
+            },
           },
         },
       });
@@ -121,10 +139,6 @@ export default function BoardWrite(props) {
     setZipCode(data.zonecode);
   };
 
-  const onChangeAddressDetail = (event) => {
-    setAddressDetail(event.target.value);
-  };
-
   return (
     <BoardWriteUI
       handleSubmit={handleSubmit}
@@ -141,7 +155,6 @@ export default function BoardWrite(props) {
       onComplete={onComplete}
       address={address}
       zipCode={zipCode}
-      onChangeAddressDetail={onChangeAddressDetail}
       data={props.data}
     />
   );
