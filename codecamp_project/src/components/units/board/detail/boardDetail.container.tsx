@@ -6,6 +6,7 @@ import {
   DELETE_BOARD,
   DISLIKE_BOARD,
   FETCH_BOARD,
+  FETCH_BOARDS_COUNT,
   LIKE_BOARD,
 } from "./boardDetail.queries";
 import BoardDetailUI from "./boardDetail.presenter";
@@ -28,8 +29,6 @@ export default function BoardDetail() {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.Id },
   });
-
-  console.log(data);
 
   const onClickEdit = () => {
     router.push(`/board/detail/${router.query.Id}/edit`);

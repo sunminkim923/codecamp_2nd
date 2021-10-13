@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import styled from "@emotion/styled";
 
 const SelectAmount = styled.select`
@@ -16,15 +16,19 @@ const PaymentButton = styled.button`
   font-weight: 500;
 `;
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
+
 export default function Payment() {
   const [amount, setAmount] = useState(0);
-  const onChangeOption = (event) => {
-    setAmount(event.target.value);
+  const onChangeOption = (event: ChangeEvent<HTMLOptionElement>) => {
+    setAmount((event.target as any).value);
   };
 
   const onClickPayment = () => {
-    IMP.init("imp49910675");
-    IMP.request_pay(
+    window.IMP.init("imp49910675");
+    window.IMP.request_pay(
       {
         // param
         pg: "html5_inicis",
@@ -38,7 +42,7 @@ export default function Payment() {
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "01181",
       },
-      function (rsp) {
+      function (rsp: { success: any }) {
         // callback
         if (rsp.success) {
           // 결제 성공 시 로직,

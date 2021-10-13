@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./boardWrite.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -31,10 +31,19 @@ export default function BoardWrite(props) {
     youtubeUr: yup.string(),
   });
 
-  const { handleSubmit, register, formState } = useForm({
+  const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    if (props.data) {
+      setValue("writer", props.data?.fetchBoard.writer);
+      setValue("title", props.data?.fetchBoard.title);
+      setValue("contents", props.data?.fetchBoard.contents);
+      setValue("youtubeUrl", props.data?.fetchBoard.youtubeUrl);
+    }
+  }, [props.data]);
 
   const onSubmit = async (data) => {
     try {
@@ -69,6 +78,16 @@ export default function BoardWrite(props) {
 
   const onEdit = async (data) => {
     try {
+      const resultFiles = await Promise.all(
+        imageFile.map((fileData) =>
+          uploadFile({ variables: { file: fileData } })
+        )
+      );
+
+      const finalUrl = resultFiles.map(
+        (resultUrl) => resultUrl.data.uploadFile.url
+      );
+
       const result = await updateBoard({
         variables: {
           boardId: router.query.Id,
@@ -77,7 +96,7 @@ export default function BoardWrite(props) {
             title: data.title,
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
-            // images: finalUrl,
+            images: finalUrl,
           },
         },
       });
@@ -123,6 +142,7 @@ export default function BoardWrite(props) {
       address={address}
       zipCode={zipCode}
       onChangeAddressDetail={onChangeAddressDetail}
+      data={props.data}
     />
   );
 }

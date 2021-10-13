@@ -107,7 +107,10 @@ export default function BoardListUI(props) {
           </SubmitButton>
         </ListBottomWrapper>
         <PagenationWrapper>
-          <Pagenation refetch={props.refetch} />
+          <Pagenation
+            refetch={props.refetch}
+            boardCountData={props.boardCountData}
+          />
         </PagenationWrapper>
       </Wrapper>
     </PageWrapper>

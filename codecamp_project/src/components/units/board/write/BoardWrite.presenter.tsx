@@ -53,6 +53,8 @@ export default function BoardWriteUI(props) {
                   placeholder="이름을 입력해주세요"
                   type="text"
                   {...props.register("writer")}
+                  defaultValue={props.data?.fetchBoard.writer}
+                  // readOnly={props.data?.fetchBoard.writer}
                 />
                 <Error>{props.errors.writer?.message}</Error>
               </WriterWrapper>
@@ -72,6 +74,7 @@ export default function BoardWriteUI(props) {
                 placeholder="제목을 입력해주세요"
                 type="text"
                 {...props.register("title")}
+                defaultValue={props.data?.fetchBoard.title}
               />
               <Error>{props.errors.title?.message}</Error>
             </TitleWrapper>
@@ -81,6 +84,7 @@ export default function BoardWriteUI(props) {
                 placeholder="내용을 입력해주세요"
                 type="text"
                 {...props.register("contents")}
+                defaultValue={props.data?.fetchBoard.contents}
               />
               <Error>{props.errors.contents?.message}</Error>
             </ContentsWrapper>

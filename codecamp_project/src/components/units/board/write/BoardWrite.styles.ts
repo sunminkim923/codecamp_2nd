@@ -73,6 +73,7 @@ export const Contents = styled.textarea`
   height: 480px;
   font-size: 16px;
   border: 1px solid #bdbdbd;
+  resize: none;
 `;
 export const AddressWrapper = styled.div`
   padding-top: 40px;
