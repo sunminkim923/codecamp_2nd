@@ -41,3 +41,12 @@ export const HeightLine = styled.div`
   height: 30px;
   border: 1px solid black;
 `;
+
+export const UserPoint = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffd600;
+`;

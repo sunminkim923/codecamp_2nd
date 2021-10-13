@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import LoginUI from "./login.presenter";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "./login.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "./login.queries";
 import { Modal } from "antd";
 import router from "next/router";
 import { GlobalContext } from "../../../../../pages/_app";
@@ -21,6 +21,10 @@ export default function Login() {
   //@ts-ignore
   const { setAccessToken } = useContext(GlobalContext);
 
+  const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
+
+  console.log("qweqwe", userData?.fetchUserLoggedIn.name);
+
   const { handleSubmit, register, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -35,9 +39,12 @@ export default function Login() {
           password: data.password,
         },
       });
+      Modal.info({
+        content: `${userData?.fetchUserLoggedIn.name} 님 반갑습니다.`,
+      });
       setAccessToken(result.data?.loginUser.accessToken || "");
       localStorage.setItem("refreshToken", "true");
-      Modal.info({ content: "반갑습니다^^" });
+
       router.push("./market/list/");
     } catch (error) {
       Modal.error({ content: error.message });

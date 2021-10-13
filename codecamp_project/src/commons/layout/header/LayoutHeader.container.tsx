@@ -1,7 +1,22 @@
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/dist/client/router";
+import { useEffect, useState } from "react";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
+import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./LayoutHeader.queries";
+
 export default function LayoutHeader() {
   const router = useRouter();
+
+  const [userLoggedIn, setUserLoggedIn] = useState<string | null>();
+
+  const [logoutUser] = useMutation(LOGOUT_USER);
+
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
+
+  useEffect(() => {
+    return setUserLoggedIn(localStorage.getItem("refreshToken"));
+  }, [data]);
+  console.log(userLoggedIn);
 
   const onClickLogin = () => {
     router.push("/login/");
@@ -11,7 +26,35 @@ export default function LayoutHeader() {
     router.push("/login/");
   };
 
+  const onClickSignup = () => {
+    router.push("/login/signup/");
+  };
+
+  const onClickLogout = async () => {
+    try {
+      await logoutUser({
+        refetchQueries: [
+          {
+            query: FETCH_USER_LOGGED_IN,
+          },
+        ],
+      });
+      alert("로그아웃 되었습니다.");
+      router.push("/board/list");
+      localStorage.removeItem("refreshToken");
+    } catch (error) {
+      alert("error.message");
+    }
+  };
+
   return (
-    <LayoutHeaderUI onClickLogin={onClickLogin} onClickLogo={onClickLogo} />
+    <LayoutHeaderUI
+      onClickLogin={onClickLogin}
+      onClickLogo={onClickLogo}
+      onClickSignup={onClickSignup}
+      data={data}
+      onClickLogout={onClickLogout}
+      userLoggedIn={userLoggedIn}
+    />
   );
 }
