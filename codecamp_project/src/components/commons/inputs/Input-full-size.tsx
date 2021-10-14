@@ -15,7 +15,7 @@ const ErrorMessage = styled.div`
   color: red;
 `;
 
-export default function InputFullSize(props) {
+export default function InputFullSize(props: any) {
   return (
     <>
       <Input

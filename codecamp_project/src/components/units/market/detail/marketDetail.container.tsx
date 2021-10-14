@@ -30,7 +30,7 @@ export default function MarketDetail() {
 
   const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
 
-  const marketSeller = data?.fetchUseditem.seller._id;
+  const marketSeller = data?.fetchUseditem.seller?._id;
   const loggedInUser = userData?.fetchUserLoggedIn._id;
 
   //@ts-ignore
@@ -104,7 +104,11 @@ export default function MarketDetail() {
     setIsOpen(false);
   };
 
-  const onClickBuyItem = async () => {
+  const onClickBuyItem = () => {
+    setIsOpen(true);
+  };
+
+  const onClickBuyItemOk = async () => {
     try {
       await createPointTransactionOfBuyingAndSelling({
         variables: {
@@ -132,6 +136,7 @@ export default function MarketDetail() {
       marketSeller={marketSeller}
       loggedInUser={loggedInUser}
       onClickBuyItem={onClickBuyItem}
+      onClickBuyItemOk={onClickBuyItemOk}
     />
   );
 }

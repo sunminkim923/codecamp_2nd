@@ -8,7 +8,7 @@ const Quill = styled(ReactQuill)`
   height: 320px;
 `;
 
-export default function TextAreaQuill(props) {
+export default function TextAreaQuill(props: any) {
   return (
     <Quill
       onChange={props.onChange}

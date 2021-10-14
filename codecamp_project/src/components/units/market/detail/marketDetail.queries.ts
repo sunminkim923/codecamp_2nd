@@ -11,6 +11,7 @@ export const FETCH_USEDITEM = gql`
       tags
       images
       pickedCount
+      createdAt
       seller {
         _id
         name

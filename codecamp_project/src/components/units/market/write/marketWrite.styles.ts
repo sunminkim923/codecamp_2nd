@@ -141,6 +141,7 @@ export const EditButton = styled.button`
   background-color: #bdbdbd;
   margin-top: 80px;
   background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
+  cursor: pointer;
 `;
 
 export const Error = styled.div`
@@ -148,4 +149,28 @@ export const Error = styled.div`
   color: red;
   padding-left: 16px;
   padding-top: 5px;
+`;
+
+export const ExplanationTextArea = styled.textarea`
+  width: 100%;
+  height: 320px;
+  border: 1px solid #bdbdbd;
+  resize: none;
+  padding-left: 16px;
+  padding-top: 10px;
+  font-size: 16px;
+`;
+
+export const AddressButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const AddressSearchButton = styled.button`
+  margin-left: 20px;
+  border: 1px solid #bdbdbd;
+  height: 30px;
+  width: 90px;
+  font-size: 14px;
+  background-color: #ffd600;
 `;

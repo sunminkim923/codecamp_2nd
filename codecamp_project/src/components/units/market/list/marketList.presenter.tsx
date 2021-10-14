@@ -128,7 +128,7 @@ export default function MarketListUI(props) {
                         <ProductTag>{data.tags}</ProductTag>
                         <ProfileWrapper>
                           <ProfileImg src="/images/profile-small.svg" />
-                          판매자
+                          {data?.seller?.name}
                           <HeartPoint src="/images/heart-small.svg" />
                           {data.pickedCount}
                         </ProfileWrapper>
@@ -172,7 +172,7 @@ export default function MarketListUI(props) {
                         <ProductTag>{data.tags}</ProductTag>
                         <ProfileWrapper>
                           <ProfileImg src="/images/profile-small.svg" />
-                          판매자
+                          {data.seller?.name}
                           <HeartPoint src="/images/heart-small.svg" />
                           {data.pickedCount}
                         </ProfileWrapper>

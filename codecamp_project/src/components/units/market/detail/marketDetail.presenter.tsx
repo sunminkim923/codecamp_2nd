@@ -46,8 +46,8 @@ export default function MarketDetailUI(props) {
             <ProfileWrapper>
               <Profile src="/images/profile.svg" />
               <WriterWrapper>
-                <div>판매자</div>
-                <div>Date : 2021.02.18</div>
+                <div>{props.data?.fetchUseditem.seller?.name}</div>
+                <div>{props.data?.fetchUseditem.createdAt}</div>
               </WriterWrapper>
             </ProfileWrapper>
             <LocationWrapper>
@@ -111,6 +111,14 @@ export default function MarketDetailUI(props) {
               <ButtonWrapperBuyer>
                 <ListButton onClick={props.onClickList}>목록으로</ListButton>
                 <BuyButton onClick={props.onClickBuyItem}>구매하기</BuyButton>
+                <Modal
+                  title="상품구매"
+                  visible={props.isOpen}
+                  onOk={props.onClickBuyItemOk}
+                  onCancel={props.onClickCancel}
+                >
+                  <div>상품을 구매하시겠습니까?</div>
+                </Modal>
               </ButtonWrapperBuyer>
             </BuyerButtonWrapper>
           )}

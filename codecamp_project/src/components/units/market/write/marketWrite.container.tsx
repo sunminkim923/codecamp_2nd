@@ -12,7 +12,7 @@ import {
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { FETCH_USEDITEM } from "../detail/marketDetail.queries";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const schema = yup.object().shape({
   productName: yup.string().required("상품명을 입력하세요"),
@@ -39,6 +39,21 @@ export default function MarketWrite(props) {
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
   });
+
+  useEffect(() => {
+    if (props.data) {
+      setValue("productName", props.data?.fetchUseditem.name);
+      setValue("productCharacter", props.data?.fetchUseditem.remarks);
+      setValue("productExplanation", props.data?.fetchUseditem.contents);
+      // setValue("price", props.data?.fetchBoard.youtubeUrl);
+      // setValue("zipCode", props.data?.fetchBoard.boardAddress.zipcode);
+      // setValue("address", props.data?.fetchBoard.boardAddress.address);
+      // setValue(
+      //   "addressDetail",
+      //   props.data?.fetchBoard.boardAddress.addressDetail
+      // );
+    }
+  }, [props.data]);
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -97,11 +112,11 @@ export default function MarketWrite(props) {
   };
 
   //@ts-ignore
-  const onChangeExplanation = (value) => {
-    const isBlank = "<p><br></p>";
-    setValue("productExplanation", value === isBlank ? "" : value);
-    trigger("productExplanation");
-  };
+  // const onChangeExplanation = (value) => {
+  //   const isBlank = "<p><br></p>";
+  //   setValue("productExplanation", value === isBlank ? "" : value);
+  //   trigger("productExplanation");
+  // };
 
   return (
     <MarketWriteUI
@@ -111,7 +126,7 @@ export default function MarketWrite(props) {
       onEdit={onEdit}
       errors={formState.errors}
       isActive={formState.isValid}
-      onChangeExplanation={onChangeExplanation}
+      // onChangeExplanation={onChangeExplanation}
       isEdit={props.isEdit}
       data={data}
       setImageFile={setImageFile}

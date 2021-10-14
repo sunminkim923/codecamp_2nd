@@ -11,6 +11,9 @@ export const FETCH_USEDITEMS = gql`
       pickedCount
       tags
       remarks
+      seller {
+        name
+      }
     }
   }
 `;

@@ -39,6 +39,19 @@ export default function BoardWrite(props) {
   });
 
   useEffect(() => {
+    setAddress(
+      props.data?.fetchBoard.boardAddress.address
+        ? props.data?.fetchBoard.boardAddress.address
+        : ""
+    );
+    setZipCode(
+      props.data?.fetchBoard.boardAddress.zipcode
+        ? props.data?.fetchBoard.boardAddress.zipcode
+        : ""
+    );
+  }, [props.data]);
+
+  useEffect(() => {
     if (props.data) {
       setValue("writer", props.data?.fetchBoard.writer);
       setValue("title", props.data?.fetchBoard.title);
@@ -113,7 +126,7 @@ export default function BoardWrite(props) {
             boardAddress: {
               zipcode: zipCode,
               address: address,
-              addressDetail: addressDetail,
+              addressDetail: data.addressDetail,
             },
           },
         },

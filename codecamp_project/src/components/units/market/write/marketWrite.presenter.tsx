@@ -8,6 +8,7 @@ import {
   InputWrapper,
   Text,
   TextInput,
+  ExplanationTextArea,
   PriceWrapper,
   PositionWrapper,
   MapWrapper,
@@ -18,10 +19,9 @@ import {
   Longitude,
   Local,
   AdressWrapper,
+  AddressButtonWrapper,
+  AddressSearchButton,
   ImageWrapper,
-  RadioWrapper,
-  Radio,
-  Text02,
   SubmitWrapper,
   SubmitButton,
   EditButton,
@@ -46,7 +46,6 @@ export default function MarketWriteUI(props) {
               type="text"
               register={{ ...props.register("productName") }}
               errorMessage={props.errors.productName?.message}
-              defaultValue={props.data?.fetchUseditem.name}
             />
           </InputWrapper>
           <InputWrapper>
@@ -56,16 +55,19 @@ export default function MarketWriteUI(props) {
               tpye="text"
               register={{ ...props.register("productCharacter") }}
               errorMessage={props.errors.productCharacter?.message}
-              defaultValue={props.data?.fetchUseditem.remarks}
             />
           </InputWrapper>
           <InputWrapper>
             <Text>상품설명</Text>
-            <TextAreaQuill
-              onChange={props.onChangeExplanation}
+            <ExplanationTextArea
+              {...props.register("productExplanation")}
               placeholder="상품을 설명해주세요"
-              defaultValue={props.data?.fetchUseditem.contents}
             />
+            {/* <TextAreaQuill
+              // onChange={props.onChangeExplanation}
+              {...props.register("productExplanation")}
+              placeholder="상품을 설명해주세요"
+            /> */}
             <Error>{props.errors.productExplanation?.message}</Error>
           </InputWrapper>
           <PriceWrapper>
@@ -76,17 +78,12 @@ export default function MarketWriteUI(props) {
                 placeholder="가격을 입력하세요"
                 register={{ ...props.register("price") }}
                 errorMessage={props.errors.price?.message}
-                defaultValue={props.data?.fetchUseditem.price}
               />
             </InputWrapper>
           </PriceWrapper>
           <InputWrapper>
             <Text>태그입력</Text>
-            <TextInput
-              type="text"
-              placeholder="#태그 #태그 #태그"
-              defaultValue={props.data?.fetchUseditem.tags}
-            />
+            <TextInput type="text" placeholder="#태그 #태그 #태그" />
           </InputWrapper>
           <PositionWrapper>
             <MapWrapper>
@@ -94,14 +91,13 @@ export default function MarketWriteUI(props) {
               <Map></Map>
             </MapWrapper>
             <GpsAdressWrapper>
-              <GpsWrapper>
-                <Text>GPS</Text>
-                <Lattitude>위도(LAT)</Lattitude>
-                <Local src="/images/local.svg" />
-                <Longitude>경도(LNG)</Longitude>
-              </GpsWrapper>
               <AdressWrapper>
-                <Text>주소</Text>
+                <AddressButtonWrapper>
+                  <Text>주소</Text>
+                  <AddressSearchButton type="button">
+                    주소검색
+                  </AddressSearchButton>
+                </AddressButtonWrapper>
                 <TextInput
                   type="text"
                   placeholder="주소를 입력하세요."
@@ -121,13 +117,6 @@ export default function MarketWriteUI(props) {
             <Text>사진첨부</Text>
             <ImageUpload setImageFile={props.setImageFile} />
           </ImageWrapper>
-          {/* <RadioWrapper>
-            <Text>메인사진 설정</Text>
-            <Radio type="radio" name="image" />
-            <Text02>사진 1</Text02>
-            <Radio type="radio" name="image" />
-            <Text02>사진 2</Text02>
-          </RadioWrapper> */}
           <SubmitWrapper>
             {!props.isEdit && (
               //@ts-ignore

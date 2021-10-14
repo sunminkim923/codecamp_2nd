@@ -59,6 +59,7 @@ export default function MarketList() {
       },
     });
   };
+  console.log("상품", data);
 
   return (
     <MarketListUI
