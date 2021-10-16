@@ -27,13 +27,15 @@ import {
   EditButton,
   Error,
 } from "./marketWrite.styles";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 
 // @ts-ignore
 export default function MarketWriteUI(props) {
   return (
     <PageWrapper>
       <Wrapper>
-        <Title>상품 등록하기</Title>
+        <Title>{!props.isEdit ? "상품 등록하기" : "상품 수정하기"} </Title>
         <form
           onSubmit={props.handleSubmit(
             !props.isEdit ? props.onSubmit : props.onEdit
@@ -63,11 +65,6 @@ export default function MarketWriteUI(props) {
               {...props.register("productExplanation")}
               placeholder="상품을 설명해주세요"
             />
-            {/* <TextAreaQuill
-              // onChange={props.onChangeExplanation}
-              {...props.register("productExplanation")}
-              placeholder="상품을 설명해주세요"
-            /> */}
             <Error>{props.errors.productExplanation?.message}</Error>
           </InputWrapper>
           <PriceWrapper>
@@ -83,7 +80,11 @@ export default function MarketWriteUI(props) {
           </PriceWrapper>
           <InputWrapper>
             <Text>태그입력</Text>
-            <TextInput type="text" placeholder="#태그 #태그 #태그" />
+            <TextInput
+              type="text"
+              placeholder="#태그 #태그 #태그"
+              {...props.register("tags")}
+            />
           </InputWrapper>
           <PositionWrapper>
             <MapWrapper>
@@ -94,14 +95,27 @@ export default function MarketWriteUI(props) {
               <AdressWrapper>
                 <AddressButtonWrapper>
                   <Text>주소</Text>
-                  <AddressSearchButton type="button">
+                  <AddressSearchButton
+                    type="button"
+                    onClick={props.onClickSearchAddress}
+                  >
                     주소검색
                   </AddressSearchButton>
+                  <Modal
+                    visible={props.isModal}
+                    onOk={props.onClickCancel}
+                    onCancel={props.onClickCancel}
+                  >
+                    <DaumPostcode onComplete={props.onComplete} />
+                  </Modal>
                 </AddressButtonWrapper>
                 <TextInput
-                  type="text"
-                  placeholder="주소를 입력하세요."
+                  placeholder={
+                    props.address ? props.address : "주소를 검색해주세요"
+                  }
                   {...props.register("address")}
+                  readOnly
+                  // value={props.address ? props.address : ""}
                 />
                 <Error>{props.errors.address?.message}</Error>
                 <TextInput

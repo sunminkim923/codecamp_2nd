@@ -25,6 +25,7 @@ const schema = yup.object().shape({
     .number()
     .typeError("가격은 숫자로 입력해 주세요")
     .required("상품의 가격을 입력해주세요"),
+  tags: yup.string(),
   address: yup.string().required("주소를 입력해주세요"),
   addressDetail: yup.string().required("상세주소를 입력하세요"),
 });
@@ -35,23 +36,33 @@ export default function MarketWrite(props) {
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [imageFile, setImageFile] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+  const [address, setAddress] = useState("");
 
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
   });
 
   useEffect(() => {
+    setAddress(
+      props.data?.fetchUseditem.useditemAddress?.address
+        ? props.data?.fetchUseditem.useditemAddress?.address
+        : ""
+    );
+  }, [props.data]);
+
+  useEffect(() => {
     if (props.data) {
       setValue("productName", props.data?.fetchUseditem.name);
       setValue("productCharacter", props.data?.fetchUseditem.remarks);
       setValue("productExplanation", props.data?.fetchUseditem.contents);
-      // setValue("price", props.data?.fetchBoard.youtubeUrl);
-      // setValue("zipCode", props.data?.fetchBoard.boardAddress.zipcode);
-      // setValue("address", props.data?.fetchBoard.boardAddress.address);
-      // setValue(
-      //   "addressDetail",
-      //   props.data?.fetchBoard.boardAddress.addressDetail
-      // );
+      setValue("price", props.data?.fetchUseditem.price);
+      setValue("tags", props.data?.fetchUseditem.tags);
+      setValue("address", props.data?.fetchUseditem.useditemAddress?.address);
+      setValue(
+        "addressDetail",
+        props.data?.fetchUseditem.useditemAddress?.addressDetail
+      );
     }
   }, [props.data]);
 
@@ -79,7 +90,12 @@ export default function MarketWrite(props) {
             remarks: data.productCharacter,
             contents: data.productExplanation,
             price: data.price,
+            tags: data.tags,
             images: finalUrl,
+            usditemAddress: {
+              address: address,
+              addressDetail: data.addressDetail,
+            },
           },
         },
       });
@@ -93,6 +109,16 @@ export default function MarketWrite(props) {
   //@ts-ignore
   const onEdit = async (data) => {
     try {
+      const resultFiles = await Promise.all(
+        imageFile.map((fileData) =>
+          uploadFile({ variables: { file: fileData } })
+        )
+      );
+
+      const finalUrl = resultFiles.map(
+        (resultUrl) => resultUrl.data.uploadFile.url
+      );
+
       const result = await updateUseditem({
         variables: {
           useditemId: router.query.id,
@@ -101,6 +127,12 @@ export default function MarketWrite(props) {
             remarks: data.productCharacter,
             contents: data.productExplanation,
             price: data.price,
+            tags: data.tags,
+            images: finalUrl,
+            usditemAddress: {
+              address: address,
+              addressDetail: data.addressDetail,
+            },
           },
         },
       });
@@ -111,12 +143,17 @@ export default function MarketWrite(props) {
     }
   };
 
-  //@ts-ignore
-  // const onChangeExplanation = (value) => {
-  //   const isBlank = "<p><br></p>";
-  //   setValue("productExplanation", value === isBlank ? "" : value);
-  //   trigger("productExplanation");
-  // };
+  const onClickSearchAddress = () => {
+    setIsModal(true);
+  };
+
+  const onClickCancel = () => {
+    setIsModal(false);
+  };
+
+  const onComplete = (data) => {
+    setAddress(data.address);
+  };
 
   return (
     <MarketWriteUI
@@ -126,10 +163,14 @@ export default function MarketWrite(props) {
       onEdit={onEdit}
       errors={formState.errors}
       isActive={formState.isValid}
-      // onChangeExplanation={onChangeExplanation}
       isEdit={props.isEdit}
       data={data}
       setImageFile={setImageFile}
+      onClickSearchAddress={onClickSearchAddress}
+      isModal={isModal}
+      onClickCancel={onClickCancel}
+      onComplete={onComplete}
+      address={address}
     />
   );
 }

@@ -147,7 +147,6 @@ export default function BoardWrite(props) {
   };
 
   const onComplete = (data) => {
-    console.log(data);
     setAddress(data.address);
     setZipCode(data.zonecode);
   };

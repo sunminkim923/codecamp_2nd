@@ -16,6 +16,10 @@ export const FETCH_USEDITEM = gql`
         _id
         name
       }
+      useditemAddress {
+        address
+        addressDetail
+      }
     }
   }
 `;
