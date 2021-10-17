@@ -25,12 +25,22 @@ import {
   TextLength,
   SubmitButton,
 } from "./commentlist.styles";
+import { useMutation } from "@apollo/client";
+import { UPDATE_USEDITEM_QUESTION } from "./commentlist.queries";
+import { Modal } from "antd";
+import { FETCH_BOARD_COMMENTS } from "../../../../board/detail/comment/commentList/commentList.queries";
+import { useRouter } from "next/router";
 
 //@ts-ignore
 export default function CommentListItem(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [isRecomment, setIsRecomment] = useState(false);
   const [textLength, setTextLength] = useState(0);
+  const [contents, setContents] = useState("");
+
+  const router = useRouter();
+
+  const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION);
 
   const onClickEdit = () => {
     setIsEdit(true);
@@ -46,8 +56,33 @@ export default function CommentListItem(props) {
 
   //@ts-ignore
   const onChangeText = (event) => {
+    setContents(event.target.value);
     setTextLength(event.target.value.length);
   };
+
+  const onClicSubmit = async () => {
+    try {
+      await updateUseditemQuestion({
+        variables: {
+          updateUseditemQuestionInput: {
+            contents: contents,
+          },
+          useditemQuestionId: props.data._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: props.data._id },
+          },
+        ],
+      });
+      setIsEdit(false);
+      Modal.info({ content: "댓글을 수정합니다." });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
+  console.log("asd", contents);
 
   return (
     <>
@@ -64,8 +99,8 @@ export default function CommentListItem(props) {
                       id={props.data._id}
                       src="/images/commentEdit.svg/"
                       onClick={onClickEdit}
-                      // onClick={onClickAaa}
                     />
+
                     <ReComment
                       src="/images/commentButton.svg/"
                       onClick={onClickRecomment}
@@ -94,7 +129,7 @@ export default function CommentListItem(props) {
               />
               <SubmitWrapper>
                 <TextLength> {textLength} / 100 </TextLength>
-                <SubmitButton>답글등록</SubmitButton>
+                <SubmitButton onClick={onClicSubmit}>수정하기</SubmitButton>
               </SubmitWrapper>
             </InputWrapper>
           </EditWrapper>

@@ -9,8 +9,12 @@ import {
   WriterName,
   Contents,
   CreatedAt,
-  RecommentButton,
+  EditWrapper,
+  DeleteButton,
+  EditButton,
 } from "./recommentList.styles";
+
+const onClickEdit = () => {};
 
 export default function ReCommentListUI(props) {
   return (
@@ -26,7 +30,13 @@ export default function ReCommentListUI(props) {
                   <WriterName>{data.user.name}</WriterName>
                   <Contents>{data.contents}</Contents>
                 </WriterWrapper>
-                <RecommentButton src="/images/commentButton.svg/" />
+                <EditWrapper>
+                  <EditButton
+                    src="/images/commentEdit.svg/"
+                    onClick={onClickEdit}
+                  />
+                  <DeleteButton src="/images/commentDelete.svg" />
+                </EditWrapper>
               </ContentsWrapper>
             </BodyWrapper>
           </CommentWrapper>

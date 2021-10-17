@@ -11,6 +11,7 @@ import {
 } from "./commentWrite.queries";
 import { FETCH_BOARD_COMMENTS } from "../commentList/commentList.queries";
 import { useState } from "react";
+import { Modal } from "antd";
 
 export default function CommentWrite(props) {
   const [createBoardComment] = useMutation(CREATE_BAORD_COMMENT);
@@ -100,9 +101,9 @@ export default function CommentWrite(props) {
         ],
       });
       props.setIsEdit(false);
-      alert("댓글을 수정합니다");
+      Modal.info({ content: "댓글을 수정합니다." });
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 

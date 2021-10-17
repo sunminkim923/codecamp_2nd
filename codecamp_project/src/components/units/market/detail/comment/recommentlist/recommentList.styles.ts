@@ -51,7 +51,17 @@ export const CreatedAt = styled.div`
   color: #bdbdbd;
 `;
 
-export const RecommentButton = styled.img`
+export const EditWrapper = styled.div``;
+
+export const DeleteButton = styled.img`
   width: 20px;
   height: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+`;
+
+export const EditButton = styled.img`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 `;
