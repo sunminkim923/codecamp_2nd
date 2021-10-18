@@ -114,7 +114,8 @@ export default function MarketWriteUI(props) {
                     props.address ? props.address : "주소를 검색해주세요"
                   }
                   {...props.register("address")}
-                  readOnly
+                  value={props.address ? props.address : ""}
+                  // readOnly
                   // value={props.address ? props.address : ""}
                 />
                 <Error>{props.errors.address?.message}</Error>

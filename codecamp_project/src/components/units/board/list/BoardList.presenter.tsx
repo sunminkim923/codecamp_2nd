@@ -36,6 +36,7 @@ import {
   ListBottomWrapper,
   SubmitButton,
   PagenationWrapper,
+  Keyword,
 } from "./boardList.styles";
 
 //@ts-ignore
@@ -77,8 +78,11 @@ export default function BoardListUI(props) {
           </BestBoardsWrapper>
         </HeadWrapper>
         <SearchWrapper>
-          <SearchInput placeholder="제목을 검색해주세요" />
-          <DateInput placeholder="YYYY.MM.DD ~ YYYY.MM.DD" />
+          <SearchInput
+            placeholder="제목을 검색해주세요"
+            onChange={props.onChangeSearch}
+          />
+          {/* <DateInput placeholder="YYYY.MM.DD ~ YYYY.MM.DD" /> */}
           <SearchButton>검색하기</SearchButton>
         </SearchWrapper>
         <BoardListWrapper>
@@ -95,7 +99,21 @@ export default function BoardListUI(props) {
               onClick={() => props.onClickBoard(data._id)}
             >
               <ListNumber>{index + 1}</ListNumber>
-              <ListTitle>{data.title}</ListTitle>
+              <ListTitle>
+                {data.title
+                  .replaceAll(props.keyword, `$!${props.keyword}$!`)
+                  .split("$!")
+                  .map((keywordData, index) => (
+                    <Keyword
+                      id={keywordData._id}
+                      key={index}
+                      isMatched={props.keyword === keywordData}
+                      onClick={() => props.onClickBoard(data._id)}
+                    >
+                      {keywordData}
+                    </Keyword>
+                  ))}
+              </ListTitle>
               <ListWriter>{data.writer}</ListWriter>
               <ListDate>{data.createdAt}</ListDate>
             </ListBodyWrapper>

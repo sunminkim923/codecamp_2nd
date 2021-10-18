@@ -139,7 +139,7 @@ export const Text02 = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: 282px;
+  width: 550px;
   height: 52px;
   border: none;
   background-color: #f2f2f2;
@@ -158,12 +158,13 @@ export const SearchDate = styled.div`
   margin-left: 20px;
 `;
 export const SearchButton = styled.button`
-  width: 78px;
+  width: 140px;
   height: 52px;
   border: none;
   background-color: black;
   color: white;
   margin-left: 20px;
+  border-radius: 10px;
 `;
 
 export const ProductWrapper = styled.div`
@@ -261,4 +262,10 @@ export const StickyWrapper = styled.div`
 export const InfiniteScrollWrapper = styled.div`
   height: 1000px;
   overflow: auto;
+`;
+
+export const Keyword = styled.span`
+  color: ${(props: { isMatched: boolean }) => (props.isMatched ? "red" : "")};
+  font-weight: ${(props: { isMatched: boolean }) =>
+    props.isMatched ? "bolder" : ""};
 `;

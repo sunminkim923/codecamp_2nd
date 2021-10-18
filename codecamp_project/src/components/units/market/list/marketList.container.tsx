@@ -1,19 +1,21 @@
 // @ts-nocheck
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import MarketListUI from "./marketList.presenter";
 import {
   FETCH_USEDITEMS,
   FETCH_USEDITEMS_OF_THE_BEST,
 } from "./marketList.queries";
+import _ from "lodash";
 
 export default function MarketList() {
   const router = useRouter();
 
   const [soldItem, setSoldItem] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
-  const { data, fetchMore } = useQuery(FETCH_USEDITEMS, {
+  const { data, fetchMore, refetch } = useQuery(FETCH_USEDITEMS, {
     variables: {
       isSoldout: soldItem,
     },
@@ -59,7 +61,19 @@ export default function MarketList() {
       },
     });
   };
-  console.log("상품", data);
+
+  const getDebounce = _.debounce((data) => {
+    refetch({ search: data });
+  }, 500);
+
+  const onClickSearch = (data) => {
+    refetch({ search: data });
+  };
+
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    getDebounce(event.target.value);
+    setKeyword(event.target.value);
+  };
 
   return (
     <MarketListUI
@@ -73,6 +87,8 @@ export default function MarketList() {
       onClickSelling={onClickSelling}
       onClickSold={onClickSold}
       soldItem={soldItem}
+      onChangeSearch={onChangeSearch}
+      keyword={keyword}
     />
   );
 }

@@ -16,15 +16,12 @@ export default function LayoutHeader() {
   useEffect(() => {
     return setUserLoggedIn(localStorage.getItem("refreshToken"));
   }, [data]);
-  console.log(userLoggedIn);
 
   const onClickLogin = () => {
     router.push("/login/");
   };
 
-  const onClickLogo = () => {
-    router.push("/login/");
-  };
+  const onClickLogo = () => {};
 
   const onClickSignup = () => {
     router.push("/login/signup/");

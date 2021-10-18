@@ -42,6 +42,7 @@ import {
   SubmitButton,
   StickyWrapper,
   InfiniteScrollWrapper,
+  Keyword,
 } from "./marketList.styles";
 
 export default function MarketListUI(props) {
@@ -91,9 +92,12 @@ export default function MarketListUI(props) {
               </Text02>
             </TextWrapper>
             <SearchWrapper>
-              <SearchInput placeholder="제품을 검색해주세요" />
-              <SearchDate>2020.12.02 ~ 2020.12.02</SearchDate>
-              <SearchButton>검색</SearchButton>
+              <SearchInput
+                placeholder="상품명을 검색해주세요"
+                onChange={props.onChangeSearch}
+              />
+              {/* <SearchDate>2020.12.02 ~ 2020.12.02</SearchDate> */}
+              <SearchButton onClick={props.onClickSearch}>검색</SearchButton>
             </SearchWrapper>
           </TopWrapper>
           <InfiniteScrollWrapper>
@@ -123,7 +127,21 @@ export default function MarketListUI(props) {
                     />
                     <ProductExplanationWrapper>
                       <ContentsWrapper>
-                        <ProductName>{data.name}</ProductName>
+                        <ProductName>
+                          {data.name
+                            .replaceAll(props.keyword, `$!${props.keyword}$!`)
+                            .split("$!")
+                            .map((keywordData, index) => (
+                              <Keyword
+                                id={keywordData._id}
+                                key={index}
+                                isMatched={props.keyword === keywordData}
+                                onClick={() => props.onClickProduct(data._id)}
+                              >
+                                {keywordData}
+                              </Keyword>
+                            ))}
+                        </ProductName>
                         <ProductCharacter>{data.remarks}</ProductCharacter>
                         <ProductTag>{data.tags}</ProductTag>
                         <ProfileWrapper>
@@ -167,7 +185,21 @@ export default function MarketListUI(props) {
                     />
                     <ProductExplanationWrapper>
                       <ContentsWrapper>
-                        <ProductName>{data.name}</ProductName>
+                        <ProductName>
+                          {data.name
+                            .replaceAll(props.keyword, `$!${props.keyword}$!`)
+                            .split("$!")
+                            .map((keywordData, index) => (
+                              <Keyword
+                                id={keywordData._id}
+                                key={index}
+                                isMatched={props.keyword === keywordData}
+                                onClick={() => props.onClickProduct(data._id)}
+                              >
+                                {keywordData}
+                              </Keyword>
+                            ))}
+                        </ProductName>
                         <ProductCharacter>{data.remarks}</ProductCharacter>
                         <ProductTag>{data.tags}</ProductTag>
                         <ProfileWrapper>

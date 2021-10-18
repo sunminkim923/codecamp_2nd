@@ -17,16 +17,14 @@ import { useEffect, useState } from "react";
 const schema = yup.object().shape({
   productName: yup.string().required("상품명을 입력하세요"),
   productCharacter: yup.string().required("상품의 특징을 입력해주세요"),
-  productExplanation: yup
-    .string()
-    .required("상품의 설명을 입력해주세요")
-    .min(30, "30자 이상 입력해주세요"),
+  productExplanation: yup.string().required("상품의 설명을 입력해주세요"),
+  // .min(30, "30자 이상 입력해주세요"),
   price: yup
     .number()
     .typeError("가격은 숫자로 입력해 주세요")
     .required("상품의 가격을 입력해주세요"),
   tags: yup.string(),
-  address: yup.string().required("주소를 입력해주세요"),
+  address: yup.string(),
   addressDetail: yup.string().required("상세주소를 입력하세요"),
 });
 
@@ -38,7 +36,7 @@ export default function MarketWrite(props) {
   const [imageFile, setImageFile] = useState([]);
   const [isModal, setIsModal] = useState(false);
   const [address, setAddress] = useState("");
-
+  const [addressDetail, setAddressDetail] = useState("");
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
   });
@@ -47,6 +45,11 @@ export default function MarketWrite(props) {
     setAddress(
       props.data?.fetchUseditem.useditemAddress?.address
         ? props.data?.fetchUseditem.useditemAddress?.address
+        : ""
+    );
+    setAddressDetail(
+      props.data?.fetchUseditem.useditemAddress?.addressDetail
+        ? props.data?.fetchUseditem.useditemAddress?.addressDetail
         : ""
     );
   }, [props.data]);
@@ -92,7 +95,7 @@ export default function MarketWrite(props) {
             price: data.price,
             tags: data.tags,
             images: finalUrl,
-            usditemAddress: {
+            useditemAddress: {
               address: address,
               addressDetail: data.addressDetail,
             },
@@ -129,7 +132,7 @@ export default function MarketWrite(props) {
             price: data.price,
             tags: data.tags,
             images: finalUrl,
-            usditemAddress: {
+            useditemAddress: {
               address: address,
               addressDetail: data.addressDetail,
             },
@@ -149,6 +152,10 @@ export default function MarketWrite(props) {
 
   const onClickCancel = () => {
     setIsModal(false);
+  };
+
+  const onChangeAddress = (data) => {
+    setAddress(data);
   };
 
   const onComplete = (data) => {
@@ -171,6 +178,7 @@ export default function MarketWrite(props) {
       onClickCancel={onClickCancel}
       onComplete={onComplete}
       address={address}
+      onChangeAddress={onChangeAddress}
     />
   );
 }

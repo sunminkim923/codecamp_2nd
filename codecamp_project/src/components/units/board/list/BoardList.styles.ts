@@ -104,7 +104,7 @@ export const SearchWrapper = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: 776px;
+  width: 1040px;
   height: 52px;
   background-color: #f2f2f2;
   border: none;
@@ -122,7 +122,7 @@ export const DateInput = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  width: 94px;
+  width: 140px;
   height: 52px;
   background-color: black;
   color: white;
@@ -240,4 +240,10 @@ export const PagenationWrapper = styled.div`
   padding-top: 20px;
   display: flex;
   justify-content: center;
+`;
+
+export const Keyword = styled.span`
+  color: ${(props: { isMatched: boolean }) => (props.isMatched ? "red" : "")};
+  font-weight: ${(props: { isMatched: boolean }) =>
+    props.isMatched ? "bolder" : ""};
 `;

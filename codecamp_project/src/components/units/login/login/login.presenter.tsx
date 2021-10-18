@@ -19,10 +19,13 @@ import {
 import Payment from "../../../commons/payment/payment";
 import KakaoLogin from "react-kakao-login";
 import { useRef } from "react";
+import { Modal } from "antd";
 
 export default function LoginUI(props: any) {
-  const aaa = (data: any) => {
-    console.log("aaa", data);
+  const onSuccessLogin = () => {
+    Modal.info({
+      content: "카카오 로그인은 서비스 준비중입니다.",
+    });
   };
 
   const kakaoRef = useRef(null);
@@ -64,7 +67,7 @@ export default function LoginUI(props: any) {
             />
             <KakaoLogin
               token={"fe853892c0427192f5e132563ab9f6aa"}
-              onSuccess={aaa}
+              onSuccess={onSuccessLogin}
               onFail={console.error}
               onLogout={console.info}
               ref={kakaoRef}
@@ -79,7 +82,6 @@ export default function LoginUI(props: any) {
             <div>|</div>
             <Join onClick={props.onClickSignUp}>회원가입</Join>
           </OnclickWrapper>
-          <Payment />
         </Wrapper>
       </PageWrapper>
     </>

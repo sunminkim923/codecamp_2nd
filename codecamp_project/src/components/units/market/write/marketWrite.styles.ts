@@ -10,7 +10,6 @@ export const PageWrapper = styled.div`
 
 export const Wrapper = styled.div`
   width: 1200px;
-  /* height: 2000px; */
   padding: 80px 102px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 `;
@@ -140,7 +139,7 @@ export const EditButton = styled.button`
   border: none;
   background-color: #bdbdbd;
   margin-top: 80px;
-  background-color: ${(props) => (props.isActive ? "#ffd600" : "")};
+  background-color: #ffd600;
   cursor: pointer;
 `;
 

@@ -26,9 +26,11 @@ import {
   SubmitButton,
 } from "./commentlist.styles";
 import { useMutation } from "@apollo/client";
-import { UPDATE_USEDITEM_QUESTION } from "./commentlist.queries";
+import {
+  FETCH_USEDITEM_QUESTIONS,
+  UPDATE_USEDITEM_QUESTION,
+} from "./commentlist.queries";
 import { Modal } from "antd";
-import { FETCH_BOARD_COMMENTS } from "../../../../board/detail/comment/commentList/commentList.queries";
 import { useRouter } from "next/router";
 
 //@ts-ignore
@@ -71,14 +73,15 @@ export default function CommentListItem(props) {
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: props.data._id },
+            query: FETCH_USEDITEM_QUESTIONS,
+            variables: { useditemId: router.query.id },
           },
         ],
       });
       setIsEdit(false);
       Modal.info({ content: "댓글을 수정합니다." });
     } catch (error) {
+      //@ts-ignore
       Modal.error({ content: error.message });
     }
   };

@@ -12,6 +12,10 @@ const FETCH_USEDITEM = gql`
       price
       tags
       images
+      useditemAddress {
+        address
+        addressDetail
+      }
     }
   }
 `;
