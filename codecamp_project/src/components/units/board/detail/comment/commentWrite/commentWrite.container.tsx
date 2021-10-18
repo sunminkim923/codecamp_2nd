@@ -37,7 +37,7 @@ export default function CommentWrite(props) {
   };
 
   const onChangeRating = (event) => {
-    console.log(event);
+    
     setInputRating(event);
   };
 
@@ -71,7 +71,7 @@ export default function CommentWrite(props) {
           },
         ],
       });
-      console.log("result", result);
+      
       alert("댓글을 등록합니다.");
       setInputWriter("");
       setInputPassword("");

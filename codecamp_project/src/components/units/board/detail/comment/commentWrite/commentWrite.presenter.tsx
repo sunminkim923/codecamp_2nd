@@ -17,7 +17,7 @@ import {
 } from "./commentWrite.styles";
 
 export default function CommentWriteUI(props) {
-  console.log(props.data, "ddd");
+  
   return (
     <PageWrapper>
       <form

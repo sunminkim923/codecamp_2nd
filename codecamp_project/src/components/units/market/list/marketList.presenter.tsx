@@ -54,7 +54,7 @@ export default function MarketListUI(props) {
           {props.newData?.fetchUseditemsOfTheBest.map((data, index) => (
             <BestProduct
               key={data._id}
-              onClick={() => props.onClickBestProduct(data._id)}
+              onClick={() => props.onClickBestProduct(data)}
             >
               <BestProductImg
                 src={
@@ -116,7 +116,7 @@ export default function MarketListUI(props) {
                 {props.data?.fetchUseditems.map((data) => (
                   <ProductWrapper
                     key={data._id}
-                    onClick={() => props.onClickProduct(data._id)}
+                    onClick={() => props.onClickProduct(data)}
                   >
                     <ProductImg
                       src={
@@ -136,7 +136,7 @@ export default function MarketListUI(props) {
                                 id={keywordData._id}
                                 key={index}
                                 isMatched={props.keyword === keywordData}
-                                onClick={() => props.onClickProduct(data._id)}
+                                onClick={() => props.onClickProduct(data)}
                               >
                                 {keywordData}
                               </Keyword>
@@ -174,7 +174,7 @@ export default function MarketListUI(props) {
                 {props.data?.fetchUseditems.map((data) => (
                   <ProductWrapper
                     key={data._id}
-                    onClick={() => props.onClickProduct(data._id)}
+                    onClick={() => props.onClickProduct(data)}
                   >
                     <ProductImg
                       src={
@@ -194,7 +194,7 @@ export default function MarketListUI(props) {
                                 id={keywordData._id}
                                 key={index}
                                 isMatched={props.keyword === keywordData}
-                                onClick={() => props.onClickProduct(data._id)}
+                                onClick={() => props.onClickProduct(data)}
                               >
                                 {keywordData}
                               </Keyword>
@@ -226,7 +226,11 @@ export default function MarketListUI(props) {
         </ProductListWrapper>
       </Wrapper>
       <StickyWrapper>
-        <ViewedProduct></ViewedProduct>
+        <ViewedProduct
+          baskets={props.baskets}
+          viewedItem={props.viewedItem}
+          onClickProduct={props.onClickProduct}
+        ></ViewedProduct>
       </StickyWrapper>
     </PageWrapper>
   );

@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import MarketListUI from "./marketList.presenter";
 import {
   FETCH_USEDITEMS,
@@ -14,6 +13,9 @@ export default function MarketList() {
 
   const [soldItem, setSoldItem] = useState(false);
   const [keyword, setKeyword] = useState("");
+
+  const [baskets, setBaskets] = useState();
+  const [viewedItem, setViewedItem] = useState(true);
 
   const { data, fetchMore, refetch } = useQuery(FETCH_USEDITEMS, {
     variables: {
@@ -37,12 +39,39 @@ export default function MarketList() {
     router.push("./write/");
   };
 
-  const onClickBestProduct = (data) => {
+  const onClickBestProduct = (data: any) => {
     router.push(`./detail/${data}`);
   };
 
-  const onClickProduct = (data) => {
-    router.push(`./detail/${data}`);
+  useEffect(() => {
+    const items = JSON.parse(sessionStorage.getItem("todaylist") || "[]");
+    setBaskets(items);
+  }, []);
+
+  const onClickProduct = (data: any) => {
+    setViewedItem(false);
+
+    // ===========
+    const newBaskets = [data];
+    const baskets = JSON.parse(
+      sessionStorage.getItem("todaylist") || "[]"
+    ).filter((el: any, i: any) => i < 4 && el._id !== data._id);
+    sessionStorage.setItem(
+      "todaylist",
+      JSON.stringify(newBaskets.concat(baskets))
+    );
+    // ===========
+    router.push(`./detail/${data._id}`);
+
+    // setViewedItem(false);
+    // const newBaskets = [data];
+    // const baskets = JSON.parse(
+    //   sessionStorage.getItem("todayViewedList") || "[]"
+    // ).filter((el: any, i: any) => i < 4 && el?._id !== data);
+    // sessionStorage.setItem(
+    //   "todayViewedList",
+    //   JSON.stringify(newBaskets.concat(baskets))
+    // );
   };
 
   const onLoadMore = () => {
@@ -51,10 +80,13 @@ export default function MarketList() {
     fetchMore({
       variables: { page: Math.floor(data?.fetchUseditems.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
+        //@ts-ignore
         if (!fetchMoreResult.fetchUseditems.length) setHasMore(false);
         return {
           fetchUseditems: [
+            //@ts-ignore
             ...prev.fetchUseditems,
+            //@ts-ignore
             ...fetchMoreResult.fetchUseditems,
           ],
         };
@@ -63,6 +95,7 @@ export default function MarketList() {
   };
 
   const getDebounce = _.debounce((data) => {
+    //@ts-ignore
     refetch({ search: data });
   }, 500);
 
@@ -71,6 +104,7 @@ export default function MarketList() {
     setKeyword(event.target.value);
   };
 
+  
   return (
     <MarketListUI
       data={data}
@@ -85,6 +119,8 @@ export default function MarketList() {
       soldItem={soldItem}
       onChangeSearch={onChangeSearch}
       keyword={keyword}
+      baskets={baskets}
+      viewedItem={viewedItem}
     />
   );
 }

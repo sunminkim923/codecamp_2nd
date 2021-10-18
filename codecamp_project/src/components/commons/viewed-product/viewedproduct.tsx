@@ -72,24 +72,32 @@ const Tags = styled.div`
   color: #bdbdbd;
 `;
 
-export default function ViewedProduct() {
+export default function ViewedProduct(props: any) {
   return (
     <>
       <Wrapper>
         <Title>오늘 본 상품</Title>
-        <ProductWrapper>
-          <HeartPointWrapper>
-            <Heart src="/images/heart-smaller.svg" />
-            <HeartPoint>20</HeartPoint>
-          </HeartPointWrapper>
-          <BodyWrapper>
-            <ProductImg />
-          </BodyWrapper>
-          <ProductName>삼성전자 갤럭시탭A 10.1</ProductName>
-          <Remarks>2019 LTE 32GB</Remarks>
-          <Price>240,120 원</Price>
-          <Tags>#삼성전자 #갤럭시탭 #갓성비</Tags>
-        </ProductWrapper>
+        {props?.baskets?.map((data: any) => (
+          <ProductWrapper key={data?._id} onClick={props.onClickProduct}>
+            <HeartPointWrapper>
+              <Heart src="/images/heart-smaller.svg" />
+              <HeartPoint>{data?.pickedCount}</HeartPoint>
+            </HeartPointWrapper>
+            <BodyWrapper>
+              <ProductImg
+                src={
+                  data.images[0]
+                    ? `https://storage.googleapis.com/${data.images[0]}`
+                    : " "
+                }
+              />
+            </BodyWrapper>
+            <ProductName>{data?.name}</ProductName>
+            <Remarks> {data?.remarks} </Remarks>
+            <Price> {data?.price} 원 </Price>
+            <Tags> {data?.tags} </Tags>
+          </ProductWrapper>
+        ))}
       </Wrapper>
     </>
   );

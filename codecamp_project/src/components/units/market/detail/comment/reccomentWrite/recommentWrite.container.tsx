@@ -23,8 +23,8 @@ export default function RecommentWrite(props) {
   };
 
   const onClickSubmit = async (data) => {
-    console.log("props.data._id", props.data._id);
-    console.log("data", data);
+    
+    
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {

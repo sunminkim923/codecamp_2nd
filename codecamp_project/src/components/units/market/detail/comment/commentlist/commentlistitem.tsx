@@ -85,7 +85,7 @@ export default function CommentListItem(props) {
       Modal.error({ content: error.message });
     }
   };
-  console.log("asd", contents);
+  
 
   return (
     <>

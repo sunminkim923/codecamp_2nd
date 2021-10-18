@@ -48,7 +48,7 @@ export default function Payment(props: any) {
   );
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
-  console.log("유저정보", data);
+  
 
   const onChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     setAmount((event.target as any).value);
