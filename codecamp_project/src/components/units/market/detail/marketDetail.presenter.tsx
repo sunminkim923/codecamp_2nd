@@ -35,6 +35,7 @@ import CommentWrite from "./comment/commentwrite/commentwrite.container";
 import CommentList from "./comment/commentlist/commentlist.container";
 import ReComment from "./comment/recommentlist/recommentList.contatiner";
 import { Modal } from "antd";
+import { getDate } from "../../../../commons/libraries/utils";
 
 //@ts-ignore
 export default function MarketDetailUI(props) {
@@ -47,7 +48,7 @@ export default function MarketDetailUI(props) {
               <Profile src="/images/profile.svg" />
               <WriterWrapper>
                 <div>{props.data?.fetchUseditem.seller?.name}</div>
-                <div>{props.data?.fetchUseditem.createdAt}</div>
+                <div>{getDate(props.data?.fetchUseditem.createdAt)}</div>
               </WriterWrapper>
             </ProfileWrapper>
             <LocationWrapper>

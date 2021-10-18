@@ -1,5 +1,6 @@
 // @ts-nocheck
 import Pagenation from "../../../commons/pagenations/pagenations.container";
+import { getDate } from "../../../../commons/libraries/utils";
 import {
   PageWrapper,
   Wrapper,
@@ -66,7 +67,7 @@ export default function BoardListUI(props) {
                       <ProfileImg src="/images/profile.svg" />
                       <WriterName>{data.writer}</WriterName>
                     </Writer>
-                    <WriteDate>{data.createdAt}</WriteDate>
+                    <WriteDate>{getDate(data.createdAt)}</WriteDate>
                   </WriterWrapper>
                   <LikeBoardWrapper>
                     <LikeBoardImg src="/images/likeboard.png/" />
@@ -115,7 +116,7 @@ export default function BoardListUI(props) {
                   ))}
               </ListTitle>
               <ListWriter>{data.writer}</ListWriter>
-              <ListDate>{data.createdAt}</ListDate>
+              <ListDate>{getDate(data.createdAt)}</ListDate>
             </ListBodyWrapper>
           ))}
         </BoardListWrapper>

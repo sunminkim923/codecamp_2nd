@@ -2,6 +2,8 @@
 import CommentWrite from "./comment/commentWrite/commentWrite.container";
 import CommentList from "./comment/commentList/commentList.container";
 import { Modal } from "antd";
+import { getDate } from "../../../../commons/libraries/utils";
+import { Tooltip } from "antd";
 import {
   PageWrapper,
   Wrapper,
@@ -44,12 +46,18 @@ export default function BoardDetailUI(props) {
               <ProfileImg src="/images/profile.svg/" />
               <WriterWrapper>
                 <Writer> {props.data?.fetchBoard.writer} </Writer>
-                <Date> Date: {props.data?.fetchBoard.createdAt} </Date>
+                <Date> Date: {getDate(props.data?.fetchBoard.createdAt)} </Date>
               </WriterWrapper>
             </ProfileWrapper>
             <IconWrapper>
               <Link src="/images/link.png" />
-              <Location src="/images/location.png" />
+
+              <Tooltip
+                placement="topRight"
+                title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+              >
+                <Location src="/images/location.png" />
+              </Tooltip>
             </IconWrapper>
           </HeadWrapper>
           <UnderLine01 />

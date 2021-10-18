@@ -66,10 +66,6 @@ export default function MarketList() {
     refetch({ search: data });
   }, 500);
 
-  const onClickSearch = (data) => {
-    refetch({ search: data });
-  };
-
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
     getDebounce(event.target.value);
     setKeyword(event.target.value);
