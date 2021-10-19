@@ -17,6 +17,7 @@ import {
   ProfileImg,
   WriterName,
   WriteDate,
+  BestBoardImgWrapper,
   LikeBoardImg,
   LikeBoardPoint,
   SearchWrapper,
@@ -53,13 +54,16 @@ export default function BoardListUI(props) {
               <BestBoardWrapper
                 onClick={() => props.onClickBestBoard(data._id)}
               >
-                <BestBoardImg
-                  src={
-                    data.images[0]
-                      ? `https://storage.googleapis.com/${data.images[0]}`
-                      : "/images/porsche01.png/"
-                  }
-                />
+                <BestBoardImgWrapper>
+                  <BestBoardImg
+                    src={
+                      data.images[0]
+                        ? `https://storage.googleapis.com/${data.images[0]}`
+                        : "/images/porsche01.png/"
+                    }
+                  />
+                </BestBoardImgWrapper>
+
                 <BestBoardTitle>{data.title}</BestBoardTitle>
                 <BottomWrapper>
                   <WriterWrapper>

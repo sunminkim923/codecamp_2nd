@@ -89,7 +89,8 @@ export default function MarketDetailUI(props) {
           <UnderLine />
           <Map id="map" />
           <MapAddress>
-            거래위치 : {props.data?.fetchUseditem.useditemAddress?.address}{" "}
+            거래 희망 위치 :{" "}
+            {props.data?.fetchUseditem.useditemAddress?.address}{" "}
             {props.data?.fetchUseditem.useditemAddress?.addressDetail}
           </MapAddress>
           <UnderLine />

@@ -36,9 +36,11 @@ export const BestBoardWrapper = styled.div`
   }
 `;
 
+export const BestBoardImgWrapper = styled.div``;
+
 export const BestBoardImg = styled.img`
   width: 100%;
-  height: 120px;
+  height: 128px;
   border-radius: 10px;
 `;
 
