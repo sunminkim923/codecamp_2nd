@@ -65,6 +65,7 @@ export const Map = styled.div`
   height: 252px;
   background-color: #bdbdbd;
   margin-top: 16px;
+  z-index: 1;
 `;
 
 export const GpsAdressWrapper = styled.div`

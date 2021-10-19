@@ -30,6 +30,7 @@ import {
   EditButton,
   DeleteButton,
   BuyButton,
+  MapAddress,
 } from "./marketDetail.styles";
 import CommentWrite from "./comment/commentwrite/commentwrite.container";
 import CommentList from "./comment/commentlist/commentlist.container";
@@ -86,7 +87,11 @@ export default function MarketDetailUI(props) {
           ></ProductExplanation>
           <ProductTag>{props.data?.fetchUseditem.tags}</ProductTag>
           <UnderLine />
-          <Map />
+          <Map id="map" />
+          <MapAddress>
+            거래위치 : {props.data?.fetchUseditem.useditemAddress?.address}{" "}
+            {props.data?.fetchUseditem.useditemAddress?.addressDetail}
+          </MapAddress>
           <UnderLine />
           {props.marketSeller === props.loggedInUser && (
             <ButtonWrapper>

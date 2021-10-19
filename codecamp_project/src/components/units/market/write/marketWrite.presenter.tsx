@@ -89,7 +89,7 @@ export default function MarketWriteUI(props) {
           <PositionWrapper>
             <MapWrapper>
               <Text>거래위치</Text>
-              <Map></Map>
+              <Map id="map"></Map>
             </MapWrapper>
             <GpsAdressWrapper>
               <AdressWrapper>
@@ -101,13 +101,15 @@ export default function MarketWriteUI(props) {
                   >
                     주소검색
                   </AddressSearchButton>
-                  <Modal
-                    visible={props.isModal}
-                    onOk={props.onClickCancel}
-                    onCancel={props.onClickCancel}
-                  >
-                    <DaumPostcode onComplete={props.onComplete} />
-                  </Modal>
+                  {props.isModal && (
+                    <Modal
+                      visible={true}
+                      onOk={props.onClickCancel}
+                      onCancel={props.onClickCancel}
+                    >
+                      <DaumPostcode onComplete={props.onComplete} autoClose />
+                    </Modal>
+                  )}
                 </AddressButtonWrapper>
                 <TextInput
                   placeholder={

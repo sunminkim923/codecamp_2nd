@@ -118,7 +118,7 @@ export const ProductTag = styled.div`
 
 export const Map = styled.div`
   margin-top: 80px;
-  margin-bottom: 55px;
+  margin-bottom: 35px;
   width: 100%;
   height: 360px;
   background-color: #bdbdbd;
@@ -185,4 +185,9 @@ export const BuyButton = styled.button`
   :hover {
     background-color: #ffd600;
   }
+`;
+
+export const MapAddress = styled.div`
+  font-size: 16px;
+  padding-bottom: 20px;
 `;

@@ -46,12 +46,12 @@ export default function Login() {
           },
         },
       });
-      Modal.info({
-        content: `${LoggedinUser.data?.fetchUserLoggedIn.name} 님 반갑습니다.`,
-      });
       setAccessToken(result.data?.loginUser.accessToken || "");
       localStorage.setItem("refreshToken", "true");
 
+      Modal.info({
+        content: `${LoggedinUser.data?.fetchUserLoggedIn.name} 님 반갑습니다.`,
+      });
       router.push("./market/list/");
     } catch (error: any) {
       Modal.error({ content: error.message });

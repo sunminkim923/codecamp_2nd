@@ -33,10 +33,18 @@ export default function MarketWrite(props) {
   const [createUseditem] = useMutation(CREATE_USEDITEM);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
+
   const [imageFile, setImageFile] = useState([]);
   const [isModal, setIsModal] = useState(false);
-  const [address, setAddress] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
+  const [address, setAddress] = useState(
+    props.data?.fetchUseditem.useditemAddress.address || ""
+  );
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
+
+  const [addressDetail, setAddressDetail] = useState(
+    props.data?.fetchUseditem.useditemAddress.addressDetail || ""
+  );
   const { data } = useQuery(FETCH_USEDITEM, {
     variables: { useditemId: router.query.id },
   });
@@ -98,6 +106,8 @@ export default function MarketWrite(props) {
             useditemAddress: {
               address: address,
               addressDetail: data.addressDetail,
+              lat: lat,
+              lng: lng,
             },
           },
         },
@@ -122,6 +132,8 @@ export default function MarketWrite(props) {
         (resultUrl) => resultUrl.data.uploadFile.url
       );
 
+      const { address, addressDetail, ...rest } = data;
+
       const result = await updateUseditem({
         variables: {
           useditemId: router.query.id,
@@ -135,6 +147,8 @@ export default function MarketWrite(props) {
             useditemAddress: {
               address: address,
               addressDetail: data.addressDetail,
+              lat: lat,
+              lng: lng,
             },
           },
         },
@@ -160,8 +174,87 @@ export default function MarketWrite(props) {
 
   const onComplete = (data) => {
     setAddress(data.address);
+    setValue("address", data.address);
+    // @ts-ignore
+    trigger("address");
+    setIsModal(false);
   };
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=fe853892c0427192f5e132563ab9f6aa&libraries=services&autoload=false";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
+
+        const mapContainer = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
+        const mapOption = {
+          // 지도를 생성할 때 필요한 기본 옵션
+          center: new window.kakao.maps.LatLng(
+            props.data?.fetchUseditem.useditemAddress.lat
+              ? props.data?.fetchUseditem.useditemAddress.lat
+              : 37.577948,
+            props.data?.fetchUseditem.useditemAddress.lng
+              ? props.data?.fetchUseditem.useditemAddress.lng
+              : 126.976781
+          ), // 지도의 중심좌표.
+          level: 5, // 지도의 레벨(확대, 축소 정도)
+        };
+
+        const map = new window.kakao.maps.Map(mapContainer, mapOption); // 지도 생성 및 객체 리턴
+
+        // // 마커가 표시될 위치입니다
+        const markerPosition = new window.kakao.maps.LatLng(
+          props.data?.fetchUseditem.useditemAddress.lat
+            ? props.data?.fetchUseditem.useditemAddress.lat
+            : 37.577948,
+          props.data?.fetchUseditem.useditemAddress.lng
+            ? props.data?.fetchUseditem.useditemAddress.lng
+            : 126.976781
+        );
+
+        // // 마커를 생성합니다
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+        });
+
+        const geocoder = new window.kakao.maps.services.Geocoder();
+        geocoder.addressSearch(
+          props.data?.fetchUseditem.useditemAddress.address === address
+            ? props.data?.fetchUseditem.useditemAddress.address
+            : address,
+          function (result: any, status: any) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
+
+              setLng(coords.La);
+              setLat(coords.Ma);
+
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
+              console.log(marker);
+
+              map.setCenter(coords);
+            }
+          }
+        );
+
+        marker.setMap(map);
+      });
+    };
+  }, [address, props.data]);
+
+  console.log("주소", address);
   return (
     <MarketWriteUI
       handleSubmit={handleSubmit}
