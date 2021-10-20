@@ -1,6 +1,7 @@
 import ReCommentList from "../recommentlist/recommentList.contatiner";
 import RecommentWrite from "../reccomentWrite/recommentWrite.container";
 import { useState } from "react";
+import { getDate } from "../../../../../../commons/libraries/utils";
 
 import {
   Wrapper,
@@ -27,22 +28,24 @@ import {
 } from "./commentlist.styles";
 import { useMutation } from "@apollo/client";
 import {
+  DELETE_USEDITEM_QUESTION,
   FETCH_USEDITEM_QUESTIONS,
   UPDATE_USEDITEM_QUESTION,
 } from "./commentlist.queries";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 
-//@ts-ignore
-export default function CommentListItem(props) {
+export default function CommentListItem(props: any) {
   const [isEdit, setIsEdit] = useState(false);
   const [isRecomment, setIsRecomment] = useState(false);
   const [textLength, setTextLength] = useState(0);
   const [contents, setContents] = useState("");
+  const [isModal, setIsModal] = useState(false);
 
   const router = useRouter();
 
   const [updateUseditemQuestion] = useMutation(UPDATE_USEDITEM_QUESTION);
+  const [deleteUseditemQuestion] = useMutation(DELETE_USEDITEM_QUESTION);
 
   const onClickEdit = () => {
     setIsEdit(true);
@@ -86,6 +89,32 @@ export default function CommentListItem(props) {
     }
   };
 
+  const onClickDelete = () => {
+    setIsModal(true);
+  };
+
+  const onClickCancel = () => {
+    setIsModal(false);
+  };
+
+  const onClickOk = async () => {
+    try {
+      await deleteUseditemQuestion({
+        variables: { useditemQuestionId: props.data._id },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEM_QUESTIONS,
+            variables: { useditemId: router.query.id },
+          },
+        ],
+      });
+      Modal.info({ content: "게시글이 삭제되었습니다." });
+      setIsModal(false);
+    } catch (error) {
+      //@ts-ignore
+      alert(error.message);
+    }
+  };
   return (
     <>
       <Wrapper key={props.data._id}>
@@ -109,15 +138,28 @@ export default function CommentListItem(props) {
                       src="/images/commentButton.svg/"
                       onClick={onClickRecomment}
                     />
-                    {props.loggedInuser === props.data.user._id && (
-                      <CommentDelete src="/images/commentDelete.svg" />
+                    {props.loggedInUser === props.data.user._id && (
+                      <CommentDelete
+                        src="/images/commentDelete.svg"
+                        onClick={onClickDelete}
+                      />
+                    )}
+                    {isModal && (
+                      <Modal
+                        title="댓글 삭제"
+                        visible={true}
+                        onCancel={onClickCancel}
+                        onOk={onClickOk}
+                      >
+                        댓글을 삭제하시겠습니까?
+                      </Modal>
                     )}
                   </ButtonWrapper>
                 </TopWrapper>
                 <Contents>{props.data.contents}</Contents>
               </ContentsWrapper>
             </HeadWrapper>
-            <WritedDate> {props.data.createdAt} </WritedDate>
+            <WritedDate> {getDate(props.data.createdAt)} </WritedDate>
           </div>
         )}
         {isEdit && (

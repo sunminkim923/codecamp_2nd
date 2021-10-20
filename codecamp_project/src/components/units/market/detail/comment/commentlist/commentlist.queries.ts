@@ -28,3 +28,9 @@ export const UPDATE_USEDITEM_QUESTION = gql`
     }
   }
 `;
+
+export const DELETE_USEDITEM_QUESTION = gql`
+  mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
+    deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
+  }
+`;
