@@ -85,7 +85,6 @@ export default function CommentListItem(props) {
       Modal.error({ content: error.message });
     }
   };
-  
 
   return (
     <>
@@ -98,23 +97,27 @@ export default function CommentListItem(props) {
                 <TopWrapper>
                   <Writer>{props.data.user.name}</Writer>
                   <ButtonWrapper>
-                    <CommentEdit
-                      id={props.data._id}
-                      src="/images/commentEdit.svg/"
-                      onClick={onClickEdit}
-                    />
+                    {props.loggedInUser === props.data.user._id && (
+                      <CommentEdit
+                        id={props.data._id}
+                        src="/images/commentEdit.svg/"
+                        onClick={onClickEdit}
+                      />
+                    )}
 
                     <ReComment
                       src="/images/commentButton.svg/"
                       onClick={onClickRecomment}
                     />
-                    <CommentDelete src="/images/commentDelete.svg" />
+                    {props.loggedInuser === props.data.user._id && (
+                      <CommentDelete src="/images/commentDelete.svg" />
+                    )}
                   </ButtonWrapper>
                 </TopWrapper>
                 <Contents>{props.data.contents}</Contents>
               </ContentsWrapper>
             </HeadWrapper>
-            <WritedDate> {props.data.user.createdAt} </WritedDate>
+            <WritedDate> {props.data.createdAt} </WritedDate>
           </div>
         )}
         {isEdit && (

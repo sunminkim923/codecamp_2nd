@@ -5,9 +5,11 @@ export const FETCH_USEDITEM_QUESTIONS = gql`
     fetchUseditemQuestions(useditemId: $useditemId) {
       _id
       contents
+      createdAt
       user {
+        _id
+        email
         name
-        createdAt
       }
     }
   }

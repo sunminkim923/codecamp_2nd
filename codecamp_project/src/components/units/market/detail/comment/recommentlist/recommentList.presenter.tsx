@@ -16,10 +16,10 @@ import {
 
 const onClickEdit = () => {};
 
-export default function ReCommentListUI(props) {
+export default function ReCommentListUI(props: any) {
   return (
     <div>
-      {props.answerData?.fetchUseditemQuestionAnswers.map((data) => (
+      {props.answerData?.fetchUseditemQuestionAnswers.map((data: any) => (
         <Wrapper>
           <CommentWrapper key={data._id}>
             <ArrowImg src="/images/arrow_comment.png/" />
@@ -31,11 +31,16 @@ export default function ReCommentListUI(props) {
                   <Contents>{data.contents}</Contents>
                 </WriterWrapper>
                 <EditWrapper>
-                  <EditButton
-                    src="/images/commentEdit.svg/"
-                    onClick={onClickEdit}
-                  />
-                  <DeleteButton src="/images/commentDelete.svg" />
+                  {props.loggedInuser === data.user._id && (
+                    <EditButton
+                      src="/images/commentEdit.svg/"
+                      onClick={onClickEdit}
+                    />
+                  )}
+
+                  {props.loggedInuser === data.user._id && (
+                    <DeleteButton src="/images/commentDelete.svg" />
+                  )}
                 </EditWrapper>
               </ContentsWrapper>
             </BodyWrapper>

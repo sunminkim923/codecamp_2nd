@@ -40,7 +40,7 @@ export default function MarketList() {
   };
 
   const onClickBestProduct = (data: any) => {
-    router.push(`./detail/${data}`);
+    router.push(`./detail/${data._id}`);
   };
 
   useEffect(() => {
@@ -104,7 +104,6 @@ export default function MarketList() {
     setKeyword(event.target.value);
   };
 
-  
   return (
     <MarketListUI
       data={data}

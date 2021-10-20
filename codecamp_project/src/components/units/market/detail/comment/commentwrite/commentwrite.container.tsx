@@ -4,6 +4,7 @@ import { useState } from "react";
 import CommentWriteUI from "./commentwrite.presenter";
 import { CREATE_USEDITEM_QUESTION } from "./commentwrite.queries";
 import { FETCH_USEDITEM_QUESTIONS } from "../commentlist/commentlist.queries";
+import { Modal } from "antd";
 
 export default function CommentWrite() {
   const [createUseditemQuestion] = useMutation(CREATE_USEDITEM_QUESTION);
@@ -32,10 +33,11 @@ export default function CommentWrite() {
           },
         ],
       });
-      alert("댓글을 등록합니다.");
+      Modal.info({ content: "댓글을 등록합니다." });
       setContents("");
     } catch (error) {
-      alert(error.message);
+      //@ts-ignore
+      Modal.error({ content: error.message });
     }
   };
 
