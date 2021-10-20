@@ -4,7 +4,9 @@ import LayoutNavigationUI from "./LayoutNavigation.presenter";
 export default function LayoutNavigation() {
   const router = useRouter();
 
-  const onClickMain = () => {};
+  const onClickMain = () => {
+    router.push("/");
+  };
 
   const onClickBoard = () => {
     router.push("/board/list");

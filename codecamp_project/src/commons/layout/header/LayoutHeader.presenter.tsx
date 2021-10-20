@@ -24,7 +24,9 @@ export default function LayoutHeaderUI(props: any) {
       ) : (
         <UserWrapper>
           <ProfileImg src="/images/profile.svg" />
-          <Text>{props.data?.fetchUserLoggedIn.name}님</Text>
+          <Text onClick={props.onClickName}>
+            {props.data?.fetchUserLoggedIn.name}님
+          </Text>
           <HeightLine />
           <UserPoint onClick={props.onClickPoint}>
             {props.data?.fetchUserLoggedIn.userPoint.amount} Point
