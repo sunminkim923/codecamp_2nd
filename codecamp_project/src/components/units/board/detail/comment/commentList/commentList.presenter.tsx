@@ -6,7 +6,7 @@ export default function CommentListUI(props) {
   return (
     <PageWrapper>
       {props.commentData?.fetchBoardComments.map((data) => (
-        <CommentListItem data={data} />
+        <CommentListItem data={data} key={data} />
       ))}
     </PageWrapper>
   );

@@ -55,7 +55,7 @@ export default function ImageUpload(props) {
   return (
     <Wrapper>
       {imageUrl.map((data) => (
-        <Images src={data} />
+        <Images src={data} key={data} />
       ))}
 
       <Button type="button" onClick={onClickUpload}>

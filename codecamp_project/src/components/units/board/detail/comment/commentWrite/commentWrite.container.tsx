@@ -37,7 +37,6 @@ export default function CommentWrite(props) {
   };
 
   const onChangeRating = (event) => {
-    
     setInputRating(event);
   };
 
@@ -71,7 +70,7 @@ export default function CommentWrite(props) {
           },
         ],
       });
-      
+
       alert("댓글을 등록합니다.");
       setInputWriter("");
       setInputPassword("");
@@ -117,7 +116,6 @@ export default function CommentWrite(props) {
       onChangeInputPassword={onChangeInputPassword}
       onChangeInPutContents={onChangeInPutContents}
       onChangeRating={onChangeRating}
-      inputWriter={inputWriter}
       inputPassword={inputPassword}
       inputContents={inputContents}
       inputRating={inputRating}

@@ -6,7 +6,9 @@ import { FETCH_USER_LOGGED_IN } from "./landing.queries";
 
 export default function Landing() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
-  const { accessToken } = useContext(GlobalContext);
 
-  return <LandingUI data={data} />;
+  return (
+    //@ts-ignore
+    <LandingUI data={data} />
+  );
 }

@@ -64,7 +64,7 @@ export default function BoardWrite(props) {
         props.data?.fetchBoard.boardAddress.addressDetail
       );
     }
-  }, [props.data]);
+  }, [props.data, setValue]);
 
   const onSubmit = async (data) => {
     try {

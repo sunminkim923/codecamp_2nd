@@ -9,7 +9,7 @@ import {
   HeightLine,
 } from "./LayoutNavigation.styles";
 
-export default function LayoutNavigationUI(props) {
+export default function LayoutNavigationUI(props: any) {
   return (
     <Wrapper>
       <Header>

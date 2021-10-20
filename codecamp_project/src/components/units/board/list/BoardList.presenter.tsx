@@ -53,6 +53,7 @@ export default function BoardListUI(props) {
             {props.bestData?.fetchBoardsOfTheBest.map((data) => (
               <BestBoardWrapper
                 onClick={() => props.onClickBestBoard(data._id)}
+                key={data._id}
               >
                 <BestBoardImgWrapper>
                   <BestBoardImg

@@ -75,7 +75,7 @@ export default function MarketWrite(props) {
         props.data?.fetchUseditem.useditemAddress?.addressDetail
       );
     }
-  }, [props.data]);
+  }, [props.data, setValue]);
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",

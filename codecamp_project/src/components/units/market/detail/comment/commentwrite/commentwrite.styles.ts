@@ -62,3 +62,5 @@ export const RegisterButton = styled.button`
   border: none;
   color: white;
 `;
+
+export const CommnetImg = styled.img``;

@@ -8,6 +8,7 @@ export default function CommentListUI(props) {
     <PageWrapper>
       {props.commentData?.fetchUseditemQuestions.map((data) => (
         <CommentListItem
+          key={data}
           data={data}
           commentData={props.commentData}
           loggedInUser={props.loggedInUser}

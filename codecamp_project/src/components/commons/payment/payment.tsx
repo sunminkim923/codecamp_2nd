@@ -48,14 +48,13 @@ export default function Payment(props: any) {
   );
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
-  
-
   const onChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     setAmount((event.target as any).value);
   };
 
   const onClickPayment = () => {
     props.setIsModal(false);
+
     window.IMP.init("imp49910675");
     window.IMP.request_pay(
       {
@@ -93,7 +92,7 @@ export default function Payment(props: any) {
   };
 
   return (
-    <>
+    <div>
       <Head>
         <script
           type="text/javascript"
@@ -115,6 +114,6 @@ export default function Payment(props: any) {
         </SelectAmount>
         <PaymentButton onClick={onClickPayment}>충전하기</PaymentButton>
       </Wrapper>
-    </>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
@@ -96,6 +97,7 @@ export const ZipCode = styled.input`
   border: 1px solid #bdbdbd;
   text-align: center;
   font-size: 16px;
+
   color: ${(props) => (props.address ? "" : "#bdbdbd")};
 `;
 export const SearchAddress = styled.button`
