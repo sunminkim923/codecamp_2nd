@@ -1,4 +1,5 @@
-import Head from "next/head";
+// import Head from "next/head";
+import Script from "next/script";
 import { ChangeEvent, useState } from "react";
 import styled from "@emotion/styled";
 import { gql, useMutation, useQuery } from "@apollo/client";
@@ -93,16 +94,16 @@ export default function Payment(props: any) {
 
   return (
     <div>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://code.jquery.com/jquery-1.12.4.min.js"
-        ></script>
-        <script
-          type="text/javascript"
-          src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"
-        ></script>
-      </Head>
+      {/* <Head> */}
+      <Script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+      ></Script>
+      <Script
+        type="text/javascript"
+        src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"
+      ></Script>
+      {/* </Head> */}
       <Wrapper>
         <SelectAmount name="selected" onChange={onChangeOption}>
           <option>--금액을 선택하세요--</option>
