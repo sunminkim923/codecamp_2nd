@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useState } from "react";
 import { FETCH_USEDITEM_QUESTION_ANSWERS } from "../recommentlist/recommentList.queries";
 import RecommnetWriteUI from "./recommentWrite.presenter";
@@ -22,9 +23,7 @@ export default function RecommentWrite(props) {
     props.setIsRecomment(false);
   };
 
-  const onClickSubmit = async (data) => {
-    
-    
+  const onClickSubmit = async () => {
     try {
       const result = await createUseditemQuestionAnswer({
         variables: {
@@ -39,9 +38,10 @@ export default function RecommentWrite(props) {
         ],
       });
       setContents("");
-      alert("댓글을 등록합니다.");
+      props.setIsRecomment(false);
+      Modal.info({ content: "댓글이 등록되었습니다." });
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 

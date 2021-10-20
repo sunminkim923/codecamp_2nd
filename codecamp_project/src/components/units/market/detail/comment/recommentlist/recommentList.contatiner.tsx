@@ -13,6 +13,10 @@ export default function ReCommentList(props: any) {
   const loggedInuser = data?.fetchUserLoggedIn._id;
 
   return (
-    <ReCommentListUI answerData={answerData} loggedInuser={loggedInuser} />
+    <ReCommentListUI
+      answerData={answerData}
+      loggedInuser={loggedInuser}
+      commentId={props.commentId}
+    />
   );
 }

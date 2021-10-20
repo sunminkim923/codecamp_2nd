@@ -35,6 +35,7 @@ export default function CommentWrite() {
       });
       Modal.info({ content: "댓글을 등록합니다." });
       setContents("");
+      setContentsLength(0);
     } catch (error) {
       //@ts-ignore
       Modal.error({ content: error.message });
