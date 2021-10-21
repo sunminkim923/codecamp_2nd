@@ -12,22 +12,25 @@ export const Section01 = styled.div`
 export const Section02 = styled.div`
   width: 100%;
   height: 900px;
-  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f8fb;
 `;
 export const Section03 = styled.div`
   width: 100%;
   height: 900px;
-  background-color: green;
+  /* background-color: green; */
 `;
 export const Section04 = styled.div`
   width: 100%;
   height: 900px;
-  background-color: blue;
+  background-color: #f7f8fb;
 `;
 export const Section05 = styled.div`
   width: 100%;
   height: 900px;
-  background-color: purple;
+  /* background-color: purple; */
 `;
 
 export const Title = styled.div`
@@ -69,3 +72,5 @@ export const ProfileExplanationText = styled.div`
   font-size: 20px;
   text-align: center;
 `;
+
+export const ProjectExplanationWrapper = styled.div``;

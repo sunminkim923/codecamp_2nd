@@ -14,9 +14,15 @@ import {
   ProfileExplanationWrapper,
   ProfileExplanationTextWrapper,
   ProfileExplanationText,
+  ProjectExplanationWrapper,
 } from "./landing.styles";
 
 export default function LandingUI() {
+  const onClickButton = () => {
+    // location.href = "https://www.naver.com/";
+    window.open("https://www.naver.com/");
+  };
+
   return (
     <Wrapper>
       <Fade bottom>
@@ -49,7 +55,8 @@ export default function LandingUI() {
       </Fade>
       <Fade bottom>
         <Section02>
-          <h1>안녕하세요</h1>
+          <Title>프로젝트 소개</Title>
+          <ProjectExplanationWrapper></ProjectExplanationWrapper>
         </Section02>
       </Fade>
       <Fade bottom>
