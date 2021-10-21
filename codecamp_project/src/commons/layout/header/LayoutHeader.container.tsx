@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
@@ -36,11 +37,12 @@ export default function LayoutHeader() {
           },
         ],
       });
-      alert("로그아웃 되었습니다.");
+      Modal.info({ content: "로그아웃 되었습니다." });
       router.push("/board/list");
       localStorage.removeItem("refreshToken");
     } catch (error) {
-      alert("error.message");
+      //@ts-ignore
+      Modal.error({ content: error.message });
     }
   };
 

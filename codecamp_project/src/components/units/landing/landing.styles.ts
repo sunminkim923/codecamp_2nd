@@ -32,29 +32,40 @@ export const Section05 = styled.div`
 
 export const Title = styled.div`
   padding-top: 100px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   font-size: 70px;
   font-weight: 500;
   text-shadow: 20px;
 `;
 
 export const ProfileWrapper = styled.div`
-  width: 60%;
+  width: 1400px;
+  height: 600px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid black;
 `;
 
 export const ProfileImg = styled.img`
-  width: 400px;
+  width: 380px;
   border-radius: 40px;
 `;
 
 export const ProfileExplanationWrapper = styled.div`
-  padding-top: 60px;
   padding-right: 60px;
+`;
+
+export const ProfileExplanationTextWrapper = styled.div`
+  width: 750px;
+  height: 500px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 export const ProfileExplanationText = styled.div`
   font-size: 20px;
+  text-align: center;
 `;

@@ -38,20 +38,21 @@ export default function Login() {
           password: data.password,
         },
       });
-      const LoggedinUser = await client.query({
-        query: FETCH_USER_LOGGED_IN,
-        context: {
-          headers: {
-            authorization: `Bearer ${result.data?.loginUser.accessToken}`,
-          },
-        },
-      });
+      // const LoggedinUser = await client.query({
+      //   query: FETCH_USER_LOGGED_IN,
+      //   context: {
+      //     headers: {
+      //       authorization: `Bearer ${result.data?.loginUser.accessToken}`,
+      //     },
+      //   },
+      // });
       setAccessToken(result.data?.loginUser.accessToken || "");
       localStorage.setItem("refreshToken", "true");
 
-      Modal.info({
-        content: `${LoggedinUser.data?.fetchUserLoggedIn.name} 님 반갑습니다.`,
-      });
+      // Modal.info({
+      //   content: `${LoggedinUser.data?.fetchUserLoggedIn.name} 님 반갑습니다.`,
+      // });
+      Modal.info({ content: "로그인에 성공하였습니다" });
       router.push("./market/list/");
     } catch (error: any) {
       Modal.error({ content: error.message });

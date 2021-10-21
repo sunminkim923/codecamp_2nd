@@ -12,6 +12,7 @@ import {
   ProfileWrapper,
   ProfileImg,
   ProfileExplanationWrapper,
+  ProfileExplanationTextWrapper,
   ProfileExplanationText,
 } from "./landing.styles";
 
@@ -20,14 +21,28 @@ export default function LandingUI() {
     <Wrapper>
       <Fade bottom>
         <Section01>
-          <Title> WELCOME! </Title>
+          <Fade bottom>
+            <Title> WELCOME! </Title>
+          </Fade>
           <ProfileWrapper>
             <ProfileImg src="/images/myprofile/main_profile.jpg" />
             <ProfileExplanationWrapper>
-              <ProfileExplanationText>
-                환영합니다. 고객경험을 넘어서 현재는 개발을 사랑하는 프론트엔드
-                개발자 김선민입니다.
-              </ProfileExplanationText>
+              <Fade bottom>
+                <ProfileExplanationTextWrapper>
+                  <ProfileExplanationText>
+                    환영합니다. 고객경험을 넘어서 현재는 개발을 사랑하는
+                    프론트엔드 개발자 김선민입니다.
+                  </ProfileExplanationText>
+                  {/* <ProfileExplanationText>
+                    환영합니다. 고객경험을 넘어서 현재는 개발을 사랑하는
+                    프론트엔드 개발자 김선민입니다.
+                  </ProfileExplanationText>
+                  <ProfileExplanationText>
+                    환영합니다. 고객경험을 넘어서 현재는 개발을 사랑하는
+                    프론트엔드 개발자 김선민입니다.
+                  </ProfileExplanationText> */}
+                </ProfileExplanationTextWrapper>
+              </Fade>
             </ProfileExplanationWrapper>
           </ProfileWrapper>
         </Section01>
