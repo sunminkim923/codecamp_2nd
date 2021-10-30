@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const PageWrapper = styled.div`
   display: flex;
   justify-content: center;
+  padding-bottom: 80px;
 `;
 
 export const Wrapper = styled.div``;
@@ -28,11 +29,14 @@ export const BestBoardsWrapper = styled.div`
 export const BestBoardWrapper = styled.div`
   width: 282px;
   height: 257px;
-  border: 1px solid #bdbdbd;
+
   border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   :hover {
-    background-color: #ffd600;
+    /* background-color: #ffd600; */
+    transition: 0.5s;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.4);
   }
 `;
 

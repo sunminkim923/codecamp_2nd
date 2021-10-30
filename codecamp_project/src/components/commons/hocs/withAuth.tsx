@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -7,12 +8,12 @@ const withAuth = (Component: any) => (props: any) => {
 
   useEffect(() => {
     if (!localStorage.getItem("refreshToken")) {
-      alert("로그인이 필요한 페이지입니다.");
+      Modal.error({ content: "로그인이 필요한 페이지입니다." });
       router.push("/login/");
     }
   });
   if (typeof window !== "undefined" && !localStorage.getItem("refreshToken")) {
-    return;
+    router.push("/login/");
   }
 
   return <Component {...props} />;
